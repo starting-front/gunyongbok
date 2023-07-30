@@ -5,7 +5,7 @@ import SubTitle from '../../commons/Title/SignIn/SubTitle';
 import SignInContainer from '../../components/Wrapper/SignInContainer';
 import SignInInputBox from '../../components/Wrapper/SignInInputBox';
 import SignInLabel from '../../commons/Label/SignIn/SignInLabel';
-import SignInInput from '../../commons/Input/SignIn/SignInInput';
+import Input from '../../components/Input/Input';
 import BreakLine from '../../commons/Break/BreakLine';
 import SignInBtn from '../../commons/Button/SignInBtn';
 import Logo from '../../assets/kakakoLogo.svg';
@@ -54,11 +54,11 @@ const SignIn = () => {
                     <SignInContainer height="164px" marginbottom="48px">
                         <SignInInputBox>
                             <SignInLabel>이메일</SignInLabel>
-                            <SignInInput placeholder="이메일을 입력해주세요" />
+                            <Input placeholder="이메일을 입력해주세요" />
                         </SignInInputBox>
                         <SignInInputBox>
                             <SignInLabel>비밀번호</SignInLabel>
-                            <SignInInput placeholder="비밀번호를 입력해주세요" />
+                            <Input placeholder="비밀번호를 입력해주세요" />
                         </SignInInputBox>
                     </SignInContainer>
                     <SignInContainer height="148px" marginbottom="40px">

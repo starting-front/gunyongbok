@@ -2,10 +2,16 @@ import styled from 'styled-components';
 import SignInHeader from '../../components/Header/SignInHeader';
 import MainTitle from '../../commons/Title/SignIn/MainTitle';
 import SubTitle from '../../commons/Title/SignIn/SubTitle';
-import SignInInputContainer from '../../components/Wrapper/SignInInputContainer';
+import SignInContainer from '../../components/Wrapper/SignInContainer';
 import SignInInputBox from '../../components/Wrapper/SignInInputBox';
-import SignInLabel from '../../commons/Label/SignInLabel';
+import SignInLabel from '../../commons/Label/SignIn/SignInLabel';
 import SignInInput from '../../commons/Input/SignIn/SignInInput';
+import BreakLine from '../../commons/Break/BreakLine';
+import SignInBtn from '../../commons/Button/SignInBtn';
+import Logo from '../../assets/kakakoLogo.svg';
+import SignInFooter from '../../components/Wrapper/SignInFooter';
+import TextBox from '../../commons/Text/TextBox';
+import TextBreakLine from '../../commons/Break/TextBreakLine';
 
 const TopContainer = styled.div`
     width: 1280px;
@@ -30,6 +36,12 @@ const MainContainer = styled.div`
     flex-direction: column;
 `;
 
+const LogoBox = styled.img`
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+`;
+
 const SignIn = () => {
     return (
         <>
@@ -39,7 +51,7 @@ const SignIn = () => {
                         <MainTitle>세상에 없던 이력서</MainTitle>
                         <SubTitle>나를 잘 표현한 이력서 멘토와 함께 작성해보세요</SubTitle>
                     </SignInHeader>
-                    <SignInInputContainer>
+                    <SignInContainer height="164px" marginbottom="48px">
                         <SignInInputBox>
                             <SignInLabel>이메일</SignInLabel>
                             <SignInInput placeholder="이메일을 입력해주세요" />
@@ -48,7 +60,23 @@ const SignIn = () => {
                             <SignInLabel>비밀번호</SignInLabel>
                             <SignInInput placeholder="비밀번호를 입력해주세요" />
                         </SignInInputBox>
-                    </SignInInputContainer>
+                    </SignInContainer>
+                    <SignInContainer height="148px" marginbottom="40px">
+                        <SignInBtn color="#FFF" background="#8644FF">
+                            이메일로 로그인 또는 회원가입
+                        </SignInBtn>
+                        <BreakLine />
+                        <SignInBtn color="#351C1B" background="#FBE54D">
+                            <LogoBox src={Logo} alt="logo" /> 카카오로 3초만에 계속하기
+                        </SignInBtn>
+                    </SignInContainer>
+                    <SignInFooter>
+                        <TextBox>회원가입</TextBox>
+                        <TextBreakLine />
+                        <TextBox>이메일찾기</TextBox>
+                        <TextBreakLine />
+                        <TextBox>비밀번호 찾기</TextBox>
+                    </SignInFooter>
                 </MainContainer>
             </TopContainer>
         </>

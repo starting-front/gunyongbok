@@ -22,6 +22,13 @@ const TopContainer = styled.div`
     align-items: center;
     padding: 67px 436px;
     box-sizing: border-box;
+    @media (max-width: 599px) {
+        width: 360px;
+        height: 800px;
+        padding: 0;
+        padding: 103px 0 147px 0;
+        background: #fff;
+    }
 `;
 
 const MainContainer = styled.div`
@@ -34,6 +41,13 @@ const MainContainer = styled.div`
     box-shadow: 0px 0px 22px 0px rgba(0, 0, 0, 0.06);
     display: flex;
     flex-direction: column;
+    @media (max-width: 599px) {
+        width: 328px;
+        height: 506px;
+        padding: 0;
+        box-sizing: content-box;
+        box-shadow: none;
+    }
 `;
 
 const LogoBox = styled.img`

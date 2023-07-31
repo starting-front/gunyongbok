@@ -4,15 +4,22 @@ import DeleteImg from '../../assets/deleteImg.svg';
 
 interface InputProps {
     placeholder: string;
+    width?: string;
 }
 
-const InputWrapper = styled.div`
+interface InputWrapperProps {
+    width?: string;
+}
+
+const InputWrapper = styled.div<InputWrapperProps>`
     position: relative;
+    width: ${(props) => props.width};
+    height: 48px;
 `;
 
 const StyledInput = styled.input`
-    width: 328px;
-    height: 48px;
+    width: 100%;
+    height: 100%;
     padding: 12px 12px 12px 16px;
     display: flex;
     align-items: center;
@@ -36,6 +43,11 @@ const StyledInput = styled.input`
             color: #050505;
         }
     }
+
+    &:focus {
+        outline: none;
+        border: 1px solid #8644ff;
+    }
 `;
 
 const ClearImg = styled.img<{ $visible: boolean }>`
@@ -48,7 +60,7 @@ const ClearImg = styled.img<{ $visible: boolean }>`
     cursor: pointer;
 `;
 
-const Input = ({ placeholder }: InputProps) => {
+const Input = ({ placeholder, width }: InputProps) => {
     const [value, setValue] = useState('');
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,7 +72,7 @@ const Input = ({ placeholder }: InputProps) => {
     };
 
     return (
-        <InputWrapper>
+        <InputWrapper width={width}>
             <StyledInput type="text" value={value} onChange={handleChange} placeholder={placeholder} />
             <ClearImg $visible={value !== ''} onClick={handleClear} src={DeleteImg} />
         </InputWrapper>

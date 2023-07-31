@@ -2,16 +2,16 @@ import styled from 'styled-components';
 import SignInHeader from '../../components/Header/SignInHeader';
 import MainTitle from '../../commons/Title/SignIn/MainTitle';
 import SubTitle from '../../commons/Title/SignIn/SubTitle';
-import SignInContainer from '../../components/Wrapper/SignInContainer';
-import SignInInputBox from '../../components/Wrapper/SignInInputBox';
-import SignInLabel from '../../commons/Label/SignIn/SignInLabel';
-import Input from '../../components/Input/Input';
-import BreakLine from '../../commons/Break/BreakLine';
+import SignInContainer from '../../components/Wrapper/SignIn/SignInContainer';
+import Input from '../../commons/Input/Input';
+import BreakLine from '../../commons/Break/SignIn/BreakLine';
 import SignInBtn from '../../commons/Button/SignInBtn';
 import Logo from '../../assets/kakakoLogo.svg';
-import SignInFooter from '../../components/Wrapper/SignInFooter';
+import SignInFooter from '../../components/Wrapper/SignIn/SignInFooter';
 import TextBox from '../../commons/Text/TextBox';
-import TextBreakLine from '../../commons/Break/TextBreakLine';
+import TextBreakLine from '../../commons/Break/SignIn/TextBreakLine';
+import Label from '../../commons/Label/Label';
+import InputBox from '../../components/Wrapper/InputBox';
 
 const TopContainer = styled.div`
     width: 1280px;
@@ -66,17 +66,17 @@ const SignIn = () => {
                         <SubTitle>나를 잘 표현한 이력서 멘토와 함께 작성해보세요</SubTitle>
                     </SignInHeader>
                     <SignInContainer height="164px" marginbottom="48px">
-                        <SignInInputBox>
-                            <SignInLabel>이메일</SignInLabel>
+                        <InputBox>
+                            <Label>이메일</Label>
                             <Input placeholder="이메일을 입력해주세요" />
-                        </SignInInputBox>
-                        <SignInInputBox>
-                            <SignInLabel>비밀번호</SignInLabel>
+                        </InputBox>
+                        <InputBox>
+                            <Label>비밀번호</Label>
                             <Input placeholder="비밀번호를 입력해주세요" />
-                        </SignInInputBox>
+                        </InputBox>
                     </SignInContainer>
                     <SignInContainer height="148px" marginbottom="40px">
-                        <SignInBtn color="#FFF" background="#8644FF">
+                        <SignInBtn navigatePath="/signup" color="#FFF" background="#8644FF">
                             이메일로 로그인 또는 회원가입
                         </SignInBtn>
                         <BreakLine />

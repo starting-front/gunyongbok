@@ -1,10 +1,11 @@
+import { ReactNode } from 'react';
 import { styled } from 'styled-components';
 
 interface LabelProps {
-    children: String;
+    children: ReactNode;
 }
 
-const Label = styled.label`
+const StyledLabel = styled.label`
     width: 328px;
     height: 28px;
     box-sizing: border-box;
@@ -19,8 +20,8 @@ const Label = styled.label`
     font-weight: 400;
 `;
 
-const SignInLabel = ({ children }: LabelProps) => {
-    return <Label>{children}</Label>;
+const Label = ({ children }: LabelProps) => {
+    return <StyledLabel>{children}</StyledLabel>;
 };
 
-export default SignInLabel;
+export default Label;

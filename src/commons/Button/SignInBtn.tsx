@@ -1,10 +1,12 @@
 import { ReactNode } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 interface BtnProps {
     children: ReactNode;
     background: string;
     color: string;
+    navigatePath?: string;
 }
 
 const Btn = styled.button<BtnProps>`
@@ -25,9 +27,16 @@ const Btn = styled.button<BtnProps>`
     font-weight: 600;
 `;
 
-const SignInBtn = ({ background, color, children }: BtnProps) => {
+const SignInBtn = ({ background, color, children, navigatePath }: BtnProps) => {
+    const navigate = useNavigate();
+
+    const MoveToSignUp = () => {
+        if (navigatePath) {
+            navigate(navigatePath);
+        }
+    };
     return (
-        <Btn background={background} color={color}>
+        <Btn onClick={MoveToSignUp} background={background} color={color}>
             {children}
         </Btn>
     );

@@ -5,13 +5,13 @@ interface BoxProps {
     children: ReactNode;
 }
 
-const InputBox = styled.div`
+const StyledInputBox = styled.div`
     display: flex;
     flex-direction: column;
 `;
 
-const SignInInputBox = ({ children }: BoxProps) => {
-    return <InputBox>{children}</InputBox>;
+const InputBox = ({ children }: BoxProps) => {
+    return <StyledInputBox>{children}</StyledInputBox>;
 };
 
-export default SignInInputBox;
+export default InputBox;

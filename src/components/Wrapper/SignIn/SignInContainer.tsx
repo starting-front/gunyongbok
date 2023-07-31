@@ -14,7 +14,7 @@ const InputContainer = styled.div<ContainerProps>`
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
-    margin-bottom: ${(props) => props.marginbottom || '0'};
+    margin-bottom: ${(props) => props.marginbottom};
     height: ${(props) => props.height};
 `;
 

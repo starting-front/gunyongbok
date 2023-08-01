@@ -27,7 +27,7 @@ const Btn = styled.button<BtnProps>`
     font-weight: 600;
 `;
 
-const SignInBtn = ({ background, color, children, navigatePath }: BtnProps) => {
+const StandardBtn = ({ background, color, children, navigatePath }: BtnProps) => {
     const navigate = useNavigate();
 
     const MoveToSignUp = () => {
@@ -42,4 +42,4 @@ const SignInBtn = ({ background, color, children, navigatePath }: BtnProps) => {
     );
 };
 
-export default SignInBtn;
+export default StandardBtn;

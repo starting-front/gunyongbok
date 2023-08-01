@@ -7,7 +7,7 @@ interface ContainerProps {
 
 const Container = styled.div`
     width: 440px;
-    height: 900px;
+    height: 780px;
     padding: 16px 40px 120px 40px;
     box-sizing: border-box;
     display: flex;

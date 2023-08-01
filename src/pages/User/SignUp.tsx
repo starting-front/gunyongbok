@@ -9,6 +9,12 @@ import ValidateInputBox from '../../components/Wrapper/ValidateInputBox';
 import ValidateBtn from '../../commons/Button/ValidateBtn';
 import BackArrow from '../../assets/leftArrow.svg';
 import PageBackBtn from '../../commons/Button/PageBackBtn';
+import StandardBtn from '../../commons/Button/StandardBtn';
+import SignUpNextBtnBox from '../../components/Wrapper/SignUp/SIgnUpNextBtnBox';
+import SignUpAgreeBox from '../../components/Wrapper/SignUp/SignUpAgreeBox';
+import AgreeBox from '../../components/Wrapper/AgreeBox';
+import RightImg from '../../assets/right.svg';
+import { ChangeEvent, FormEvent, useState } from 'react';
 
 const TopContainer = styled.div`
     width: 1280px;
@@ -19,7 +25,6 @@ const TopContainer = styled.div`
     align-items: center;
     padding: 0px 420px;
     box-sizing: border-box;
-    overflow: hidden;
 `;
 
 const HeaderContainer = styled.header`
@@ -54,7 +59,56 @@ const RequiredText = styled.div`
     margin-left: 4px;
 `;
 
+const RadioBtn = styled.button`
+    width: 32px;
+    height: 32px;
+    padding: 6px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+`;
+
+const Right = styled.img`
+    width: 18px;
+    height: 18px;
+    margin-left: 8px;
+`;
+
+interface FormData {
+    name: string;
+    email: string;
+    password: string;
+}
+
 const SignUp = () => {
+    const [formData, setFormData] = useState<FormData>({
+        name: '',
+        email: '',
+        password: '',
+    });
+
+    const [rePassword, setRePassword] = useState<string>('');
+
+    const handleChange = (event: ChangeEvent<HTMLInputElement>, field: keyof FormData) => {
+        setFormData({ ...formData, [field]: event.target.value });
+    };
+
+    const handleChangeField = (fieldName: keyof FormData, e: ChangeEvent<HTMLInputElement>) => {
+        handleChange(e, fieldName);
+    };
+
+    const handleChangeRePassword = (event: ChangeEvent<HTMLInputElement>) => {
+        setRePassword(event.target.value);
+    };
+
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        console.log(formData);
+    };
+
     return (
         <TopContainer>
             <HeaderContainer>
@@ -65,19 +119,19 @@ const SignUp = () => {
             </HeaderContainer>
             <MainContent>
                 <SignUpContainer>
-                    <SignUpInputContainer>
+                    <SignUpInputContainer onSubmit={handleSubmit}>
                         <InputBox>
                             <Label>
                                 이름 <RequiredText>(필수)</RequiredText>
                             </Label>
-                            <Input placeholder="이름을 입력해주세요" />
+                            <Input value={formData.name} onChange={(e) => handleChangeField('name', e)} placeholder="이름을 입력해주세요" />
                         </InputBox>
                         <InputBox>
                             <Label>
                                 이메일 <RequiredText>(필수)</RequiredText>
                             </Label>
                             <ValidateInputBox>
-                                <Input width="239px" placeholder="이메일을 입력해주세요" />
+                                <Input value={formData.email} onChange={(e) => handleChangeField('email', e)} width="239px" placeholder="이메일을 입력해주세요" />
                                 <ValidateBtn>중복검사</ValidateBtn>
                             </ValidateInputBox>
                         </InputBox>
@@ -85,20 +139,21 @@ const SignUp = () => {
                             <Label>
                                 비밀번호 <RequiredText>(필수)</RequiredText>
                             </Label>
-                            <Input placeholder="8자 이상 영문, 숫자, 특수문자 포함" />
+                            <Input value={formData.password} onChange={(e) => handleChangeField('password', e)} placeholder="8자 이상 영문, 숫자, 특수문자 포함" />
                         </InputBox>
                         <InputBox>
                             <Label>
                                 비밀번호 재입력 <RequiredText>(필수)</RequiredText>
                             </Label>
-                            <Input placeholder="비밀번호를 다시 입력해주세요" />
+                            <Input value={rePassword} onChange={handleChangeRePassword} placeholder="비밀번호를 다시 입력해주세요" />
                         </InputBox>
                         <InputBox>
                             <Label>
                                 전화번호 <RequiredText>(필수)</RequiredText>
                             </Label>
                             <ValidateInputBox>
-                                <Input width="239px" placeholder="전화번호를 입력해주세요" />
+                                {/* onchange 설정안함 */}
+                                <Input value="" width="239px" placeholder="전화번호를 입력해주세요" />
                                 <ValidateBtn>본인인증</ValidateBtn>
                             </ValidateInputBox>
                         </InputBox>
@@ -107,11 +162,27 @@ const SignUp = () => {
                                 인증번호 <RequiredText>(필수)</RequiredText>
                             </Label>
                             <ValidateInputBox>
-                                <Input width="239px" placeholder="인증번호를 입력해주세요" />
+                                {/* onchange 설정안함 */}
+                                <Input value="" width="239px" placeholder="인증번호를 입력해주세요" />
                                 <ValidateBtn>확인</ValidateBtn>
                             </ValidateInputBox>
                         </InputBox>
                     </SignUpInputContainer>
+                    <SignUpAgreeBox>
+                        <AgreeBox>
+                            <RadioBtn></RadioBtn>
+                            약관에 모두 동의 (필수)
+                        </AgreeBox>
+                        <AgreeBox padding="12px 6px 4px 6px" fontSize="12px" border="none">
+                            <RadioBtn></RadioBtn>
+                            개인정보 수집 및 이용동의 (필수) <Right src={RightImg} />
+                        </AgreeBox>
+                    </SignUpAgreeBox>
+                    <SignUpNextBtnBox>
+                        <StandardBtn color="#FFF" background="#8644FF">
+                            다음
+                        </StandardBtn>
+                    </SignUpNextBtnBox>
                 </SignUpContainer>
             </MainContent>
         </TopContainer>

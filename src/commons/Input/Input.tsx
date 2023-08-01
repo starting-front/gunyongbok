@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { ChangeEvent } from 'react';
 import styled from 'styled-components';
 import DeleteImg from '../../assets/deleteImg.svg';
 
 interface InputProps {
     placeholder: string;
     width?: string;
+    value?: string;
+    onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 interface InputWrapperProps {
@@ -60,20 +62,16 @@ const ClearImg = styled.img<{ $visible: boolean }>`
     cursor: pointer;
 `;
 
-const Input = ({ placeholder, width }: InputProps) => {
-    const [value, setValue] = useState('');
-
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setValue(event.target.value);
-    };
-
+const Input = ({ placeholder, width, value, onChange }: InputProps) => {
     const handleClear = () => {
-        setValue('');
+        if (onChange) {
+            onChange({ target: { value: '' } } as ChangeEvent<HTMLInputElement>);
+        }
     };
 
     return (
         <InputWrapper width={width}>
-            <StyledInput type="text" value={value} onChange={handleChange} placeholder={placeholder} />
+            <StyledInput type="text" value={value} onChange={onChange} placeholder={placeholder} />
             <ClearImg $visible={value !== ''} onClick={handleClear} src={DeleteImg} />
         </InputWrapper>
     );

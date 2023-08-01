@@ -5,13 +5,13 @@ import SubTitle from '../../commons/Title/SignIn/SubTitle';
 import SignInContainer from '../../components/Wrapper/SignIn/SignInContainer';
 import Input from '../../commons/Input/Input';
 import BreakLine from '../../commons/Break/SignIn/BreakLine';
-import SignInBtn from '../../commons/Button/SignInBtn';
 import Logo from '../../assets/kakakoLogo.svg';
 import SignInFooter from '../../components/Wrapper/SignIn/SignInFooter';
 import TextBox from '../../commons/Text/TextBox';
 import TextBreakLine from '../../commons/Break/SignIn/TextBreakLine';
 import Label from '../../commons/Label/Label';
 import InputBox from '../../components/Wrapper/InputBox';
+import StandardBtn from '../../commons/Button/StandardBtn';
 
 const TopContainer = styled.div`
     width: 1280px;
@@ -76,13 +76,13 @@ const SignIn = () => {
                         </InputBox>
                     </SignInContainer>
                     <SignInContainer height="148px" marginbottom="40px">
-                        <SignInBtn navigatePath="/signup" color="#FFF" background="#8644FF">
+                        <StandardBtn navigatePath="/signup" color="#FFF" background="#8644FF">
                             이메일로 로그인 또는 회원가입
-                        </SignInBtn>
+                        </StandardBtn>
                         <BreakLine />
-                        <SignInBtn color="#351C1B" background="#FBE54D">
+                        <StandardBtn color="#351C1B" background="#FBE54D">
                             <LogoBox src={Logo} alt="logo" /> 카카오로 3초만에 계속하기
-                        </SignInBtn>
+                        </StandardBtn>
                     </SignInContainer>
                     <SignInFooter>
                         <TextBox>회원가입</TextBox>

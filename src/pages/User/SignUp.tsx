@@ -14,7 +14,8 @@ import SignUpNextBtnBox from '../../components/Wrapper/SignUp/SIgnUpNextBtnBox';
 import SignUpAgreeBox from '../../components/Wrapper/SignUp/SignUpAgreeBox';
 import AgreeBox from '../../components/Wrapper/AgreeBox';
 import RightImg from '../../assets/right.svg';
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
+import axios from 'axios';
 
 const TopContainer = styled.div`
     width: 1280px;
@@ -78,22 +79,24 @@ const Right = styled.img`
 `;
 
 interface FormData {
-    name: string;
+    username: string;
     email: string;
     password: string;
+    role: string;
 }
 
 const SignUp = () => {
-    const [formData, setFormData] = useState<FormData>({
-        name: '',
+    const [data, setData] = useState<FormData>({
+        username: '',
         email: '',
         password: '',
+        role: 'MENTEE',
     });
 
     const [rePassword, setRePassword] = useState<string>('');
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>, field: keyof FormData) => {
-        setFormData({ ...formData, [field]: event.target.value });
+        setData({ ...data, [field]: event.target.value });
     };
 
     const handleChangeField = (fieldName: keyof FormData, e: ChangeEvent<HTMLInputElement>) => {
@@ -104,9 +107,19 @@ const SignUp = () => {
         setRePassword(event.target.value);
     };
 
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        console.log(formData);
+    console.log(data);
+
+    const serverUrl = import.meta.env.VITE_REACT_APP_DEFAULT_SERVER_URL;
+
+    const submitSignUpInfo = () => {
+        axios
+            .post(`${serverUrl}/users/signup`, data)
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     };
 
     return (
@@ -119,19 +132,19 @@ const SignUp = () => {
             </HeaderContainer>
             <MainContent>
                 <SignUpContainer>
-                    <SignUpInputContainer onSubmit={handleSubmit}>
+                    <SignUpInputContainer>
                         <InputBox>
                             <Label>
                                 이름 <RequiredText>(필수)</RequiredText>
                             </Label>
-                            <Input value={formData.name} onChange={(e) => handleChangeField('name', e)} placeholder="이름을 입력해주세요" />
+                            <Input value={data.username} onChange={(e) => handleChangeField('username', e)} placeholder="이름을 입력해주세요" />
                         </InputBox>
                         <InputBox>
                             <Label>
                                 이메일 <RequiredText>(필수)</RequiredText>
                             </Label>
                             <ValidateInputBox>
-                                <Input value={formData.email} onChange={(e) => handleChangeField('email', e)} width="239px" placeholder="이메일을 입력해주세요" />
+                                <Input value={data.email} onChange={(e) => handleChangeField('email', e)} width="239px" placeholder="이메일을 입력해주세요" />
                                 <ValidateBtn>중복검사</ValidateBtn>
                             </ValidateInputBox>
                         </InputBox>
@@ -139,13 +152,13 @@ const SignUp = () => {
                             <Label>
                                 비밀번호 <RequiredText>(필수)</RequiredText>
                             </Label>
-                            <Input value={formData.password} onChange={(e) => handleChangeField('password', e)} placeholder="8자 이상 영문, 숫자, 특수문자 포함" />
+                            <Input type="password" value={data.password} onChange={(e) => handleChangeField('password', e)} placeholder="8자 이상 영문, 숫자, 특수문자 포함" />
                         </InputBox>
                         <InputBox>
                             <Label>
                                 비밀번호 재입력 <RequiredText>(필수)</RequiredText>
                             </Label>
-                            <Input value={rePassword} onChange={handleChangeRePassword} placeholder="비밀번호를 다시 입력해주세요" />
+                            <Input type="password" value={rePassword} onChange={handleChangeRePassword} placeholder="비밀번호를 다시 입력해주세요" />
                         </InputBox>
                         <InputBox>
                             <Label>
@@ -179,7 +192,7 @@ const SignUp = () => {
                         </AgreeBox>
                     </SignUpAgreeBox>
                     <SignUpNextBtnBox>
-                        <StandardBtn color="#FFF" background="#8644FF">
+                        <StandardBtn onClick={submitSignUpInfo} color="#FFF" background="#8644FF">
                             다음
                         </StandardBtn>
                     </SignUpNextBtnBox>

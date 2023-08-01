@@ -1,9 +1,8 @@
-import { FormEvent, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { styled } from 'styled-components';
 
 interface InputContainerProps {
     children: ReactNode;
-    onSubmit: (event: FormEvent<HTMLFormElement>) => void;
 }
 
 const InputContainer = styled.form`
@@ -16,8 +15,8 @@ const InputContainer = styled.form`
     gap: 12px;
 `;
 
-const SignUpInputContainer = ({ children, onSubmit }: InputContainerProps) => {
-    return <InputContainer onSubmit={onSubmit}>{children}</InputContainer>;
+const SignUpInputContainer = ({ children }: InputContainerProps) => {
+    return <InputContainer>{children}</InputContainer>;
 };
 
 export default SignUpInputContainer;

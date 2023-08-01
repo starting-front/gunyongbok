@@ -6,6 +6,7 @@ interface InputProps {
     placeholder: string;
     width?: string;
     value?: string;
+    type?: string;
     onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -62,7 +63,7 @@ const ClearImg = styled.img<{ $visible: boolean }>`
     cursor: pointer;
 `;
 
-const Input = ({ placeholder, width, value, onChange }: InputProps) => {
+const Input = ({ placeholder, width, value, onChange, type }: InputProps) => {
     const handleClear = () => {
         if (onChange) {
             onChange({ target: { value: '' } } as ChangeEvent<HTMLInputElement>);
@@ -71,7 +72,7 @@ const Input = ({ placeholder, width, value, onChange }: InputProps) => {
 
     return (
         <InputWrapper width={width}>
-            <StyledInput type="text" value={value} onChange={onChange} placeholder={placeholder} />
+            <StyledInput type={type} value={value} onChange={onChange} placeholder={placeholder} />
             <ClearImg $visible={value !== ''} onClick={handleClear} src={DeleteImg} />
         </InputWrapper>
     );

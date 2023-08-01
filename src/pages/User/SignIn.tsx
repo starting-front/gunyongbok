@@ -12,6 +12,8 @@ import TextBreakLine from '../../commons/Break/SignIn/TextBreakLine';
 import Label from '../../commons/Label/Label';
 import InputBox from '../../components/Wrapper/InputBox';
 import StandardBtn from '../../commons/Button/StandardBtn';
+import { ChangeEvent, FormEvent, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const TopContainer = styled.div`
     width: 1280px;
@@ -56,7 +58,26 @@ const LogoBox = styled.img`
     margin-right: 8px;
 `;
 
+interface FormData {
+    email: string;
+    password: string;
+}
+
 const SignIn = () => {
+    const navigate = useNavigate();
+    const [data, setData] = useState<FormData>({
+        email: '',
+        password: '',
+    });
+
+    const handleChange = (event: ChangeEvent<HTMLInputElement>, field: keyof FormData) => {
+        setData({ ...data, [field]: event.target.value });
+    };
+
+    const handleChangeField = (fieldName: keyof FormData, e: ChangeEvent<HTMLInputElement>) => {
+        handleChange(e, fieldName);
+    };
+
     return (
         <>
             <TopContainer>
@@ -68,15 +89,21 @@ const SignIn = () => {
                     <SignInContainer height="164px" marginbottom="48px">
                         <InputBox>
                             <Label>이메일</Label>
-                            <Input placeholder="이메일을 입력해주세요" />
+                            <Input value={data.email} onChange={(e) => handleChangeField('email', e)} placeholder="이메일을 입력해주세요" />
                         </InputBox>
                         <InputBox>
                             <Label>비밀번호</Label>
-                            <Input placeholder="비밀번호를 입력해주세요" />
+                            <Input value={data.password} onChange={(e) => handleChangeField('password', e)} placeholder="비밀번호를 입력해주세요" />
                         </InputBox>
                     </SignInContainer>
                     <SignInContainer height="148px" marginbottom="40px">
-                        <StandardBtn navigatePath="/signup" color="#FFF" background="#8644FF">
+                        <StandardBtn
+                            onClick={() => {
+                                navigate('/signup');
+                            }}
+                            color="#FFF"
+                            background="#8644FF"
+                        >
                             이메일로 로그인 또는 회원가입
                         </StandardBtn>
                         <BreakLine />

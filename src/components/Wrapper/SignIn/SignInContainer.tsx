@@ -7,7 +7,7 @@ interface ContainerProps {
     height: string;
 }
 
-const InputContainer = styled.div<ContainerProps>`
+const InputContainer = styled.form<ContainerProps>`
     width: 328px;
     height: 164px;
     display: flex;

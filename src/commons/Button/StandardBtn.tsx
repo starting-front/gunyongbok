@@ -1,12 +1,11 @@
-import { ReactNode } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { MouseEventHandler, ReactNode } from 'react';
 import { styled } from 'styled-components';
 
 interface BtnProps {
     children: ReactNode;
     background: string;
     color: string;
-    navigatePath?: string;
+    onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
 const Btn = styled.button<BtnProps>`
@@ -27,16 +26,9 @@ const Btn = styled.button<BtnProps>`
     font-weight: 600;
 `;
 
-const StandardBtn = ({ background, color, children, navigatePath }: BtnProps) => {
-    const navigate = useNavigate();
-
-    const MoveToSignUp = () => {
-        if (navigatePath) {
-            navigate(navigatePath);
-        }
-    };
+const StandardBtn = ({ background, color, children, onClick }: BtnProps) => {
     return (
-        <Btn onClick={MoveToSignUp} background={background} color={color}>
+        <Btn onClick={onClick} background={background} color={color}>
             {children}
         </Btn>
     );

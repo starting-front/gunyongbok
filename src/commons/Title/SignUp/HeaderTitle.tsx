@@ -18,6 +18,7 @@ const Title = styled.div`
     font-size: 17px;
     font-style: normal;
     font-weight: 600;
+    background: rgba(255, 255, 255, 0.8);
 `;
 
 const HeaderTitle = ({ children }: TitleProps) => {

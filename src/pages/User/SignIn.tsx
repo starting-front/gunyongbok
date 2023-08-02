@@ -12,12 +12,12 @@ import TextBreakLine from '../../commons/Break/SignIn/TextBreakLine';
 import Label from '../../commons/Label/Label';
 import InputBox from '../../components/Wrapper/InputBox';
 import StandardBtn from '../../commons/Button/StandardBtn';
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const TopContainer = styled.div`
     width: 1280px;
-    height: 720px;
+    height: 804px;
     background-color: #fafafa;
     display: flex;
     justify-content: center;

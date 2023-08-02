@@ -10,12 +10,18 @@ import ValidateBtn from '../../commons/Button/ValidateBtn';
 import BackArrow from '../../assets/leftArrow.svg';
 import PageBackBtn from '../../commons/Button/PageBackBtn';
 import StandardBtn from '../../commons/Button/StandardBtn';
-import SignUpNextBtnBox from '../../components/Wrapper/SignUp/SIgnUpNextBtnBox';
+import SignUpNextBtnBox from '../../components/Wrapper/SignUp/SignUpNextBtnBox';
 import SignUpAgreeBox from '../../components/Wrapper/SignUp/SignUpAgreeBox';
 import AgreeBox from '../../components/Wrapper/AgreeBox';
 import RightImg from '../../assets/right.svg';
 import { ChangeEvent, useState } from 'react';
 import axios from 'axios';
+import StrokeBtn from '../../assets/radioBtnStroke.svg';
+import FillBtn from '../../assets/radioBtnFill.svg';
+import RadioBtn from '../../commons/Button/RadioBtn';
+import ErrorInput from '../../commons/Input/ErrorInput';
+import validatePassword from '../../function/ValidatePw';
+import validateRePassword from '../../function/ValidateRePw';
 
 const TopContainer = styled.div`
     width: 1280px;
@@ -35,11 +41,11 @@ const HeaderContainer = styled.header`
     justify-content: center;
     padding: 40px 40px 0px 40px;
     box-sizing: border-box;
-    background-color: #fff;
     position: fixed;
     top: 0;
     border-bottom: 1px solid #e2e4eb;
     z-index: 1;
+    background: rgba(255, 255, 255, 0.8);
 `;
 
 const MainContent = styled.div`
@@ -60,22 +66,34 @@ const RequiredText = styled.div`
     margin-left: 4px;
 `;
 
-const RadioBtn = styled.button`
-    width: 32px;
-    height: 32px;
-    padding: 6px;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: transparent;
-    border: none;
-`;
-
 const Right = styled.img`
     width: 18px;
     height: 18px;
     margin-left: 8px;
+`;
+
+const StrokeImg = styled.img`
+    width: 20px;
+    height: 20px;
+`;
+
+const FillImg = styled.img`
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    top: 10px;
+`;
+
+const ErrorMessageBox = styled.div`
+    width: 328px;
+    height: 28px;
+    padding: 8px;
+    box-sizing: border-box;
+    color: #ff4500;
+    font-family: Pretendard;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
 `;
 
 interface FormData {
@@ -86,6 +104,8 @@ interface FormData {
 }
 
 const SignUp = () => {
+    const serverUrl = import.meta.env.VITE_REACT_APP_DEFAULT_SERVER_URL;
+
     const [data, setData] = useState<FormData>({
         username: '',
         email: '',
@@ -94,6 +114,16 @@ const SignUp = () => {
     });
 
     const [rePassword, setRePassword] = useState<string>('');
+    const [fillBtnSelected, setFillBtnSelected] = useState<boolean>(false);
+    const [strokeBtnSelected, setStrokeBtnSelected] = useState<boolean>(false);
+
+    const handleFillBtn = () => {
+        setFillBtnSelected(!fillBtnSelected);
+    };
+
+    const handleStrokeBtn = () => {
+        setStrokeBtnSelected(!strokeBtnSelected);
+    };
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>, field: keyof FormData) => {
         setData({ ...data, [field]: event.target.value });
@@ -109,8 +139,6 @@ const SignUp = () => {
 
     console.log(data);
 
-    const serverUrl = import.meta.env.VITE_REACT_APP_DEFAULT_SERVER_URL;
-
     const submitSignUpInfo = () => {
         axios
             .post(`${serverUrl}/users/signup`, data)
@@ -121,7 +149,6 @@ const SignUp = () => {
                 console.log(error);
             });
     };
-
     return (
         <TopContainer>
             <HeaderContainer>
@@ -152,13 +179,23 @@ const SignUp = () => {
                             <Label>
                                 비밀번호 <RequiredText>(필수)</RequiredText>
                             </Label>
-                            <Input type="password" value={data.password} onChange={(e) => handleChangeField('password', e)} placeholder="8자 이상 영문, 숫자, 특수문자 포함" />
+                            {validatePassword(data['password']) ? (
+                                <Input type="password" value={data.password} onChange={(e) => handleChangeField('password', e)} placeholder="8자 이상 영문, 숫자, 특수문자 포함" />
+                            ) : (
+                                <ErrorInput type="password" value={data.password} onChange={(e) => handleChangeField('password', e)} placeholder="8자 이상 영문, 숫자, 특수문자 포함" />
+                            )}
+                            {validatePassword(data['password']) || <ErrorMessageBox>8자 이상의 영문,숫자,특수문자가 포함 되어야 해요</ErrorMessageBox>}
                         </InputBox>
                         <InputBox>
                             <Label>
                                 비밀번호 재입력 <RequiredText>(필수)</RequiredText>
                             </Label>
-                            <Input type="password" value={rePassword} onChange={handleChangeRePassword} placeholder="비밀번호를 다시 입력해주세요" />
+                            {validateRePassword(data['password'], rePassword) ? (
+                                <Input type="password" value={rePassword} onChange={handleChangeRePassword} placeholder="비밀번호를 다시 입력해주세요" />
+                            ) : (
+                                <ErrorInput type="password" value={rePassword} onChange={handleChangeRePassword} placeholder="비밀번호를 다시 입력해주세요" />
+                            )}
+                            {validateRePassword(data['password'], rePassword) || <ErrorMessageBox>비밀번호가 일치하지 않습니다</ErrorMessageBox>}
                         </InputBox>
                         <InputBox>
                             <Label>
@@ -183,20 +220,26 @@ const SignUp = () => {
                     </SignUpInputContainer>
                     <SignUpAgreeBox>
                         <AgreeBox>
-                            <RadioBtn></RadioBtn>
+                            <RadioBtn onClick={handleStrokeBtn} selected={strokeBtnSelected}>
+                                <StrokeImg src={StrokeBtn} />
+                                <FillImg src={FillBtn} />
+                            </RadioBtn>
                             약관에 모두 동의 (필수)
                         </AgreeBox>
                         <AgreeBox padding="12px 6px 4px 6px" fontSize="12px" border="none">
-                            <RadioBtn></RadioBtn>
+                            <RadioBtn onClick={handleFillBtn} selected={fillBtnSelected}>
+                                <StrokeImg src={StrokeBtn} />
+                                <FillImg src={FillBtn} />
+                            </RadioBtn>
                             개인정보 수집 및 이용동의 (필수) <Right src={RightImg} />
                         </AgreeBox>
                     </SignUpAgreeBox>
-                    <SignUpNextBtnBox>
-                        <StandardBtn onClick={submitSignUpInfo} color="#FFF" background="#8644FF">
-                            다음
-                        </StandardBtn>
-                    </SignUpNextBtnBox>
                 </SignUpContainer>
+                <SignUpNextBtnBox>
+                    <StandardBtn onClick={submitSignUpInfo} color="#FFF" background="#8644FF">
+                        다음
+                    </StandardBtn>
+                </SignUpNextBtnBox>
             </MainContent>
         </TopContainer>
     );

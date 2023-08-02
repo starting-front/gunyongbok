@@ -7,7 +7,7 @@ interface InputContainerProps {
 
 const InputContainer = styled.form`
     width: 360px;
-    height: 516px;
+    height: 572px;
     padding: 0px 16px;
     box-sizing: border-box;
     display: flex;

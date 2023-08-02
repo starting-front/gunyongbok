@@ -24,6 +24,7 @@ const Btn = styled.button<BtnProps>`
     font-size: 14px;
     font-style: normal;
     font-weight: 600;
+    box-shadow: 0px 8px 11px 0px rgba(134, 68, 255, 0.2);
 `;
 
 const StandardBtn = ({ background, color, children, onClick }: BtnProps) => {

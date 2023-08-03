@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 
 interface ButtonProps {
     children: string;
+    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const Button = styled.button`
@@ -20,10 +21,22 @@ const Button = styled.button`
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
+
+    &:focus {
+        border: 1px solid #8644ff;
+        color: #8644ff;
+    }
 `;
 
-const ValidateBtn = ({ children }: ButtonProps) => {
-    return <Button>{children}</Button>;
+const ValidateBtn = ({ children, onClick }: ButtonProps) => {
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        // Prevent the default behavior
+        event.preventDefault();
+        if (onClick) {
+            onClick(event);
+        }
+    };
+    return <Button onClick={handleClick}>{children}</Button>;
 };
 
 export default ValidateBtn;

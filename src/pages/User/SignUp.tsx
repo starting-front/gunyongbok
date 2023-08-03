@@ -62,8 +62,8 @@ const HeaderContainer = styled.header`
 
 const MainContent = styled.div`
     width: 440px;
-    height: 699px;
-    margin-top: 105px;
+    height: 730px;
+    margin-top: 125px;
     overflow: auto;
 `;
 
@@ -96,17 +96,21 @@ const FillImg = styled.img`
     top: 10px;
 `;
 
-const ErrorMessageBox = styled.div`
+const MessageBox = styled.div<MessageBoxProps>`
     width: 328px;
     height: 28px;
     padding: 8px;
     box-sizing: border-box;
-    color: #ff4500;
+    color: ${(props) => props.color || '#FF4500'};
     font-family: Pretendard;
     font-size: 11px;
     font-style: normal;
     font-weight: 400;
 `;
+
+interface MessageBoxProps {
+    color?: string;
+}
 
 interface FormData {
     username: string;
@@ -117,6 +121,11 @@ interface FormData {
 
 const SignUp = () => {
     const serverUrl = import.meta.env.VITE_REACT_APP_DEFAULT_SERVER_URL;
+    const [overLap, setOverLap] = useState<boolean>(false);
+    const [clicked, setClicked] = useState<boolean>(false);
+    const [rePassword, setRePassword] = useState<string>('');
+    const [fillBtnSelected, setFillBtnSelected] = useState<boolean>(false);
+    const [strokeBtnSelected, setStrokeBtnSelected] = useState<boolean>(false);
 
     const [data, setData] = useState<FormData>({
         username: '',
@@ -124,10 +133,6 @@ const SignUp = () => {
         password: '',
         role: 'MENTEE',
     });
-
-    const [rePassword, setRePassword] = useState<string>('');
-    const [fillBtnSelected, setFillBtnSelected] = useState<boolean>(false);
-    const [strokeBtnSelected, setStrokeBtnSelected] = useState<boolean>(false);
 
     const handleFillBtn = () => {
         setFillBtnSelected(!fillBtnSelected);
@@ -149,17 +154,8 @@ const SignUp = () => {
         setRePassword(event.target.value);
     };
 
-    const isFormValid = (): boolean => {
-        const isUsernameValid = data.username.trim() !== '';
-        const isEmailValid = data.email.trim() !== '';
-        const isPasswordValid = data.password.trim() !== '';
-
-        return isUsernameValid && isEmailValid && isPasswordValid && fillBtnSelected && strokeBtnSelected;
-    };
-
-    console.log(data);
-
-    const submitSignUpInfo = () => {
+    // 회원가입 (임시)
+    const SubmitSignUpInfo = () => {
         axios
             .post(`${serverUrl}/users/signup`, data)
             .then((response) => {
@@ -169,6 +165,34 @@ const SignUp = () => {
                 console.log(error);
             });
     };
+
+    // 이메일 중복 여부 검사
+    const ValidateOverLapEmail = () => {
+        axios
+            .get(`${serverUrl}/users/signup/${data['email']}`)
+            .then((response) => {
+                console.log(response);
+                setOverLap(false);
+                setClicked(true);
+            })
+            .catch((error) => {
+                console.log(error);
+                setOverLap(true);
+                setClicked(true);
+            });
+    };
+
+    // 필수 사항 모두 입력했을때 누를 수 있게 만들어주는 함수
+    const isFormValid = (): boolean => {
+        const isUsernameValid = data.username.trim() !== '';
+        const isEmailValid = data.email.trim() !== '';
+        const isPasswordValid = data.password.trim() !== '';
+
+        return isUsernameValid && isEmailValid && isPasswordValid && fillBtnSelected && strokeBtnSelected;
+    };
+
+    console.log(data, overLap);
+
     return (
         <TopContainer>
             <HeaderContainer>
@@ -191,9 +215,14 @@ const SignUp = () => {
                                 이메일 <RequiredText>(필수)</RequiredText>
                             </Label>
                             <ValidateInputBox>
-                                <Input value={data.email} onChange={(e) => handleChangeField('email', e)} width="239px" placeholder="이메일을 입력해주세요" />
-                                <ValidateBtn>중복검사</ValidateBtn>
+                                {overLap ? (
+                                    <ErrorInput value={data.email} onChange={(e) => handleChangeField('email', e)} width="239px" placeholder="이메일을 입력해주세요" />
+                                ) : (
+                                    <Input value={data.email} onChange={(e) => handleChangeField('email', e)} width="239px" placeholder="이메일을 입력해주세요" />
+                                )}
+                                <ValidateBtn onClick={ValidateOverLapEmail}>중복검사</ValidateBtn>
                             </ValidateInputBox>
+                            {clicked && (overLap ? <MessageBox color="#FF4500">이미 사용중인 이메일입니다.</MessageBox> : <MessageBox color="#303646">사용가능한 이메일입니다</MessageBox>)}
                         </InputBox>
                         <InputBox>
                             <Label>
@@ -204,7 +233,7 @@ const SignUp = () => {
                             ) : (
                                 <ErrorInput type="password" value={data.password} onChange={(e) => handleChangeField('password', e)} placeholder="8자 이상 영문, 숫자, 특수문자 포함" />
                             )}
-                            {validatePassword(data['password']) || <ErrorMessageBox>8자 이상의 영문,숫자,특수문자가 포함 되어야 해요</ErrorMessageBox>}
+                            {validatePassword(data['password']) || <MessageBox>8자 이상의 영문,숫자,특수문자가 포함 되어야 해요</MessageBox>}
                         </InputBox>
                         <InputBox>
                             <Label>
@@ -215,7 +244,7 @@ const SignUp = () => {
                             ) : (
                                 <ErrorInput type="password" value={rePassword} onChange={handleChangeRePassword} placeholder="비밀번호를 다시 입력해주세요" />
                             )}
-                            {validateRePassword(data['password'], rePassword) || <ErrorMessageBox>비밀번호가 일치하지 않습니다</ErrorMessageBox>}
+                            {validateRePassword(data['password'], rePassword) || <MessageBox>비밀번호가 일치하지 않습니다</MessageBox>}
                         </InputBox>
                         <InputBox>
                             <Label>
@@ -257,11 +286,11 @@ const SignUp = () => {
                 </SignUpContainer>
                 <SignUpNextBtnBox>
                     {isFormValid() ? (
-                        <StandardBtn disabled={false} onClick={submitSignUpInfo} color="#FFF" background="#8644FF">
+                        <StandardBtn disabled={false} onClick={SubmitSignUpInfo} color="#FFF" background="#8644FF">
                             다음
                         </StandardBtn>
                     ) : (
-                        <StandardBtn disabled={true} onClick={submitSignUpInfo} color="#FFF" background="#C6A7FF">
+                        <StandardBtn disabled={true} onClick={SubmitSignUpInfo} color="#FFF" background="#C6A7FF">
                             다음
                         </StandardBtn>
                     )}

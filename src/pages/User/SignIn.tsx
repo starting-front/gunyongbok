@@ -1,19 +1,27 @@
 import styled from 'styled-components';
+import { ChangeEvent, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+// Header
 import SignInHeader from '../../components/Header/SignInHeader';
 import MainTitle from '../../commons/Title/SignIn/MainTitle';
 import SubTitle from '../../commons/Title/SignIn/SubTitle';
+
+// SignIn
 import SignInContainer from '../../components/Wrapper/SignIn/SignInContainer';
 import Input from '../../commons/Input/Input';
 import BreakLine from '../../commons/Break/SignIn/BreakLine';
-import Logo from '../../assets/kakakoLogo.svg';
+import Label from '../../commons/Label/Label';
+import InputBox from '../../components/Wrapper/InputBox';
+
+// Footer
 import SignInFooter from '../../components/Wrapper/SignIn/SignInFooter';
 import TextBox from '../../commons/Text/TextBox';
 import TextBreakLine from '../../commons/Break/SignIn/TextBreakLine';
-import Label from '../../commons/Label/Label';
-import InputBox from '../../components/Wrapper/InputBox';
+
+// Reused Standard Btn
 import StandardBtn from '../../commons/Button/StandardBtn';
-import { ChangeEvent, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import Logo from '../../assets/kakakoLogo.svg';
 
 const TopContainer = styled.div`
     width: 1280px;

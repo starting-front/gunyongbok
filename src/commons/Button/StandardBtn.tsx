@@ -6,6 +6,7 @@ interface BtnProps {
     background: string;
     color: string;
     onClick?: MouseEventHandler<HTMLButtonElement>;
+    disabled: boolean;
 }
 
 const Btn = styled.button<BtnProps>`
@@ -27,9 +28,9 @@ const Btn = styled.button<BtnProps>`
     box-shadow: 0px 8px 11px 0px rgba(134, 68, 255, 0.2);
 `;
 
-const StandardBtn = ({ background, color, children, onClick }: BtnProps) => {
+const StandardBtn = ({ background, color, children, onClick, disabled }: BtnProps) => {
     return (
-        <Btn onClick={onClick} background={background} color={color}>
+        <Btn disabled={disabled} onClick={onClick} background={background} color={color}>
             {children}
         </Btn>
     );

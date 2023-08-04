@@ -22,6 +22,7 @@ import TextBreakLine from '../../commons/Break/SignIn/TextBreakLine';
 // Reused Standard Btn
 import StandardBtn from '../../commons/Button/StandardBtn';
 import Logo from '../../assets/kakakoLogo.svg';
+import axios from 'axios';
 
 const TopContainer = styled.div`
     width: 1280px;
@@ -73,6 +74,7 @@ interface FormData {
 
 const SignIn = () => {
     const navigate = useNavigate();
+    const serverUrl = import.meta.env.VITE_REACT_APP_DEFAULT_SERVER_URL;
     const [data, setData] = useState<FormData>({
         email: '',
         password: '',
@@ -84,6 +86,23 @@ const SignIn = () => {
 
     const handleChangeField = (fieldName: keyof FormData, e: ChangeEvent<HTMLInputElement>) => {
         handleChange(e, fieldName);
+    };
+
+    console.log(data);
+
+    const handleLogin = () => {
+        if (data.email.trim() === '' || data.password.trim() === '') {
+            navigate('/signup');
+        } else {
+            axios
+                .post(`${serverUrl}/users/login`, data)
+                .then((response) => {
+                    console.log(response);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
     };
 
     return (
@@ -101,17 +120,11 @@ const SignIn = () => {
                         </InputBox>
                         <InputBox>
                             <Label>비밀번호</Label>
-                            <Input value={data.password} onChange={(e) => handleChangeField('password', e)} placeholder="비밀번호를 입력해주세요" />
+                            <Input type="password" value={data.password} onChange={(e) => handleChangeField('password', e)} placeholder="비밀번호를 입력해주세요" />
                         </InputBox>
                     </SignInContainer>
                     <SignInContainer height="148px" marginbottom="40px">
-                        <StandardBtn
-                            onClick={() => {
-                                navigate('/signup');
-                            }}
-                            color="#FFF"
-                            background="#8644FF"
-                        >
+                        <StandardBtn onClick={handleLogin} color="#FFF" background="#8644FF">
                             이메일로 로그인 또는 회원가입
                         </StandardBtn>
                         <BreakLine />

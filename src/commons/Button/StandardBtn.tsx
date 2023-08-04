@@ -6,7 +6,7 @@ interface BtnProps {
     background: string;
     color: string;
     onClick?: MouseEventHandler<HTMLButtonElement>;
-    disabled: boolean;
+    disabled?: boolean;
 }
 
 const Btn = styled.button<BtnProps>`

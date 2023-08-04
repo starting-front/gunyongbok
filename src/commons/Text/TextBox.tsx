@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 
 interface TextProps {
     children: string;
+    onClick?: () => void;
 }
 
 const Text = styled.div`
@@ -17,10 +18,11 @@ const Text = styled.div`
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
+    cursor: pointer;
 `;
 
-const TextBox = ({ children }: TextProps) => {
-    return <Text>{children}</Text>;
+const TextBox = ({ children, onClick }: TextProps) => {
+    return <Text onClick={onClick}>{children}</Text>;
 };
 
 export default TextBox;

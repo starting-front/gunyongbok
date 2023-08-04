@@ -29,8 +29,14 @@ const Btn = styled.button<BtnProps>`
 `;
 
 const StandardBtn = ({ background, color, children, onClick, disabled }: BtnProps) => {
+    const handleClick: MouseEventHandler<HTMLButtonElement> = (event) => {
+        event.preventDefault(); // Prevent page reload
+        if (onClick) {
+            onClick(event); // Call the original onClick handler, if provided
+        }
+    };
     return (
-        <Btn disabled={disabled} onClick={onClick} background={background} color={color}>
+        <Btn disabled={disabled} onClick={handleClick} background={background} color={color}>
             {children}
         </Btn>
     );

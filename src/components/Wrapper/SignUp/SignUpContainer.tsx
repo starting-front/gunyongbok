@@ -7,14 +7,15 @@ interface ContainerProps {
 
 const Container = styled.div`
     width: 440px;
-    height: 780px;
-    padding: 16px 40px 120px 40px;
+    height: 690px;
+    padding: 16px 40px 24px 40px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 24px;
     background: #fff;
+    overflow: auto;
 `;
 
 const SignUpContainer = ({ children }: ContainerProps) => {

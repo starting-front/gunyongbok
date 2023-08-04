@@ -13,9 +13,9 @@ const Box = styled.div`
     height: 96px;
     padding: 24px 0px;
     box-sizing: border-box;
-    position: fixed;
+    position: relative;
     bottom: 0;
-    background: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255);
 `;
 
 const SignUpNextBtnBox = ({ children }: BoxProps) => {

@@ -75,6 +75,8 @@ interface FormData {
 const SignIn = () => {
     const navigate = useNavigate();
     const serverUrl = import.meta.env.VITE_REACT_APP_DEFAULT_SERVER_URL;
+    const [error, setError] = useState<boolean>(false);
+
     const [data, setData] = useState<FormData>({
         email: '',
         password: '',
@@ -91,18 +93,14 @@ const SignIn = () => {
     console.log(data);
 
     const handleLogin = () => {
-        if (data.email.trim() === '' || data.password.trim() === '') {
-            navigate('/signup');
-        } else {
-            axios
-                .post(`${serverUrl}/users/login`, data)
-                .then((response) => {
-                    console.log(response);
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-        }
+        axios
+            .post(`${serverUrl}/users/login`, data)
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     };
 
     return (
@@ -133,7 +131,13 @@ const SignIn = () => {
                         </StandardBtn>
                     </SignInContainer>
                     <SignInFooter>
-                        <TextBox>회원가입</TextBox>
+                        <TextBox
+                            onClick={() => {
+                                navigate('/signup');
+                            }}
+                        >
+                            회원가입
+                        </TextBox>
                         <TextBreakLine />
                         <TextBox>이메일찾기</TextBox>
                         <TextBreakLine />
@@ -146,3 +150,10 @@ const SignIn = () => {
 };
 
 export default SignIn;
+
+// {
+//     "username": "연습",
+//     "email": "practice99@gmail.com",
+//     "password": "practice99!",
+//     "role": "MENTEE"
+// }

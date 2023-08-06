@@ -16,7 +16,7 @@ const Router = () => {
     <>
       {isInLogged ? (
         <Routes>
-          <Route path="/" element={<KakaoAuthBtn />} />
+          <Route path="/" element={<Home />} />
           <Route path="/oauth/kakaoCallback" element={<KakaoCallback />} />
           <Route path="/usertype" element={<UserTypeSelect />} />
           <Route path="/*" element={<div></div>} />

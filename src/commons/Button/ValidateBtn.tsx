@@ -30,7 +30,6 @@ const Button = styled.button`
 
 const ValidateBtn = ({ children, onClick }: ButtonProps) => {
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-        // Prevent the default behavior
         event.preventDefault();
         if (onClick) {
             onClick(event);

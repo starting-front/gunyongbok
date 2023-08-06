@@ -7,7 +7,7 @@ const userTypeSelect = [
     id: 1,
     iconSrc: mento,
     name: "멘토 회원",
-    mainDesc: "피드백 해주고 내실력도 up!",
+    mainDesc: "피드백 해주고 내 실력도 up!",
     subDesc: "꿈나무들을 위해 이력서 피드백 해주고 싶어요",
   },
   {

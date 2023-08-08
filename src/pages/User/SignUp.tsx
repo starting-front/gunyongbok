@@ -32,8 +32,8 @@ import RadioBtn from '../../commons/Button/RadioBtn';
 
 // Validate Input Value
 import ErrorInput from '../../commons/Input/ErrorInput';
-import validatePassword from '../../function/ValidatePw';
-import validateRePassword from '../../function/ValidateRePw';
+import validatePassword from '../../utility/ValidatePw';
+import validateRePassword from '../../utility/ValidateRePw';
 
 const TopContainer = styled.div`
   width: 1280px;
@@ -149,31 +149,27 @@ const SignUp = () => {
   };
 
   // 회원가입 (임시)
-  const SubmitSignUpInfo = () => {
-    axios
-      .post(`${serverUrl}/users/signup`, data)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const SubmitSignUpInfo = async () => {
+    try {
+      const response = await axios.post(`${serverUrl}/users/signup`, data);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   // 이메일 중복 여부 검사
-  const ValidateOverLapEmail = () => {
-    axios
-      .get(`${serverUrl}/users/signup/${data['email']}`)
-      .then((response) => {
-        console.log(response);
-        setOverLap(false);
-        setClicked(true);
-      })
-      .catch((error) => {
-        console.log(error);
-        setOverLap(true);
-        setClicked(true);
-      });
+  const ValidateOverLapEmail = async () => {
+    try {
+      const response = await axios.get(`${serverUrl}/users/signup/${data['email']}`);
+      console.log(response);
+      setOverLap(false);
+      setClicked(true);
+    } catch (error) {
+      console.log(error);
+      setOverLap(true);
+      setClicked(true);
+    }
   };
 
   // 필수 사항 모두 입력했을때 누를 수 있게 만들어주는 함수

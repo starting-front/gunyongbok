@@ -24,6 +24,11 @@ import StandardBtn from '../../commons/Button/StandardBtn';
 import Logo from '../../assets/kakakoLogo.svg';
 import axios from 'axios';
 
+interface FormData {
+  email: string;
+  password: string;
+}
+
 const TopContainer = styled.div`
   width: 1280px;
   height: 804px;
@@ -67,15 +72,10 @@ const LogoBox = styled.img`
   margin-right: 8px;
 `;
 
-interface FormData {
-  email: string;
-  password: string;
-}
-
 const SignIn = () => {
   const navigate = useNavigate();
   const serverUrl = import.meta.env.VITE_REACT_APP_DEFAULT_SERVER_URL;
-  const [error, setError] = useState<boolean>(false);
+  const [loginError, setLoginError] = useState<boolean>(false);
 
   const [data, setData] = useState<FormData>({
     email: '',
@@ -149,8 +149,8 @@ const SignIn = () => {
 export default SignIn;
 
 // {
-//     "username": "연습",
-//     "email": "practice99@gmail.com",
-//     "password": "practice99!",
-//     "role": "MENTEE"
+//   "username": "practice0810",
+//   "email": "practice0810@gmail.com",
+//   "password": "practice0810!",
+//   "role": "MENTEE"
 // }

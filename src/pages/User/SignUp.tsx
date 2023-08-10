@@ -34,6 +34,7 @@ import RadioBtn from '../../commons/Button/RadioBtn';
 import ErrorInput from '../../commons/Input/ErrorInput';
 import validatePassword from '../../utility/ValidatePw';
 import validateRePassword from '../../utility/ValidateRePw';
+import ErrorMessage from '../../commons/Text/ErrorMessage';
 
 const TopContainer = styled.div`
   width: 1280px;
@@ -212,7 +213,7 @@ const SignUp = () => {
               )}
               <ValidateBtn onClick={ValidateOverLapEmail}>중복검사</ValidateBtn>
             </ValidateInputBox>
-            {clicked && (overLap ? <MessageBox color="#FF4500">이미 사용중인 이메일입니다.</MessageBox> : <MessageBox color="#303646">사용가능한 이메일입니다</MessageBox>)}
+            {clicked && (overLap ? <ErrorMessage text="이미 사용중인 이메일입니다." /> : <ErrorMessage text="사용가능한 이메일입니다" color="#303646" />)}
           </InputBox>
           <InputBox>
             <Label>
@@ -223,7 +224,7 @@ const SignUp = () => {
             ) : (
               <ErrorInput type="password" value={data.password} onChange={(e) => handleChangeField('password', e)} placeholder="8자 이상 영문, 숫자, 특수문자 포함" />
             )}
-            {validatePassword(data['password']) || <MessageBox>8자 이상의 영문,숫자,특수문자가 포함 되어야 해요</MessageBox>}
+            {validatePassword(data['password']) || <ErrorMessage text="8자 이상의 영문,숫자,특수문자가 포함 되어야 해요" />}
           </InputBox>
           <InputBox>
             <Label>
@@ -234,7 +235,7 @@ const SignUp = () => {
             ) : (
               <ErrorInput type="password" value={rePassword} onChange={handleChangeRePassword} placeholder="비밀번호를 다시 입력해주세요" />
             )}
-            {validateRePassword(data['password'], rePassword) || <MessageBox>비밀번호가 일치하지 않습니다</MessageBox>}
+            {validateRePassword(data['password'], rePassword) || <ErrorMessage text="비밀번호가 일치하지 않습니다" />}
           </InputBox>
           <InputBox>
             <Label>

@@ -46,7 +46,20 @@ const TopContainer = styled.div`
   align-items: center;
   padding: 0px 420px;
   box-sizing: border-box;
+  @media (max-width: 599px) {
+    width: 360px;
+    height: 800px;
+    padding: 0;
+    background: #fff;
+  }
 `;
+
+interface FormData {
+  username: string;
+  email: string;
+  password: string;
+  role: string;
+}
 
 const HeaderContainer = styled.header`
   width: 440px;
@@ -90,29 +103,6 @@ const FillImg = styled.img`
   position: absolute;
   top: 10px;
 `;
-
-const MessageBox = styled.div<MessageBoxProps>`
-  width: 328px;
-  height: 28px;
-  padding: 8px;
-  box-sizing: border-box;
-  color: ${(props) => props.color || '#FF4500'};
-  font-family: Pretendard;
-  font-size: 11px;
-  font-style: normal;
-  font-weight: 400;
-`;
-
-interface MessageBoxProps {
-  color?: string;
-}
-
-interface FormData {
-  username: string;
-  email: string;
-  password: string;
-  role: string;
-}
 
 const SignUp = () => {
   const serverUrl = import.meta.env.VITE_REACT_APP_DEFAULT_SERVER_URL;
@@ -192,7 +182,6 @@ const SignUp = () => {
           회원가입
         </HeaderTitle>
       </HeaderContainer>
-
       <SignUpContainer>
         <SignUpInputContainer>
           <InputBox>

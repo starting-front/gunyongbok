@@ -106,8 +106,6 @@ const SignIn = () => {
     }
   };
 
-  console.log(loginError);
-
   return (
     <>
       <TopContainer>

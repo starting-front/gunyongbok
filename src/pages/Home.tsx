@@ -1,5 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
 const Home = () => {
-  return <div>루트 페이지</div>;
+  const navigate = useNavigate();
+  return <div onClick={() => navigate("/signin")}>로그인하러가기</div>;
 };
 
 export default Home;

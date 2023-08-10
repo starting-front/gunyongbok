@@ -1,29 +1,24 @@
 import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
-
-// OAuth
-import KakaoCallback from "../components/Auth/Kakao/KakaoCallback";
-import KakaoAuthBtn from "../components/Auth/Kakao/KakaoAuthBtn";
-
-// Components
+import SignIn from "./User/SignIn";
+import SignUp from "./User/SignUp";
 import Home from "./Home";
-import UserTypeSelect from "./UserType/UserTypeSelect";
 
 const Router = () => {
-  const [isInLogged, setisInLogged] = useState(true);
+  const [isInLogged, setisInLogged] = useState(false);
 
   return (
     <>
       {isInLogged ? (
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/oauth/kakaoCallback" element={<KakaoCallback />} />
-          <Route path="/usertype" element={<UserTypeSelect />} />
-          <Route path="/*" element={<div></div>} />
+          <Route path="/" />
+          <Route path="/*" />
         </Routes>
       ) : (
         <Routes>
-          <Route />
+          <Route index element={<Home />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
         </Routes>
       )}
     </>

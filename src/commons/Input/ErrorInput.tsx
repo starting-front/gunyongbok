@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
 import styled from 'styled-components';
-import DeleteImg from '../../assets/deleteImg.svg';
+import Error from '../../assets/ErrorIcon.svg';
 
 interface InputProps {
     placeholder: string;
@@ -28,7 +28,7 @@ const StyledInput = styled.input`
     align-items: center;
     justify-content: flex-start;
     border-radius: 6px;
-    border: 1px solid #626e8e;
+    border: 1px solid #ff4500;
     box-sizing: border-box;
 
     ::placeholder {
@@ -63,7 +63,7 @@ const ClearImg = styled.img<{ $visible: boolean }>`
     cursor: pointer;
 `;
 
-const Input = ({ placeholder, width, value, onChange, type }: InputProps) => {
+const ErrorInput = ({ placeholder, width, value, onChange, type }: InputProps) => {
     const handleClear = () => {
         if (onChange) {
             onChange({ target: { value: '' } } as ChangeEvent<HTMLInputElement>);
@@ -73,9 +73,9 @@ const Input = ({ placeholder, width, value, onChange, type }: InputProps) => {
     return (
         <InputWrapper width={width}>
             <StyledInput type={type} value={value} onChange={onChange} placeholder={placeholder} />
-            <ClearImg $visible={value !== ''} onClick={handleClear} src={DeleteImg} />
+            <ClearImg $visible={value !== ''} onClick={handleClear} src={Error} />
         </InputWrapper>
     );
 };
 
-export default Input;
+export default ErrorInput;

@@ -14,6 +14,9 @@ import BreakLine from '../../commons/Break/SignIn/BreakLine';
 import Label from '../../commons/Label/Label';
 import InputBox from '../../components/Wrapper/InputBox';
 
+// Error
+import ErrorMessage from '../../commons/Text/ErrorMessage';
+
 // Footer
 import SignInFooter from '../../components/Wrapper/SignIn/SignInFooter';
 import TextBox from '../../commons/Text/TextBox';
@@ -96,10 +99,14 @@ const SignIn = () => {
     try {
       const response = await axios.post(`${serverUrl}/users/login`, data);
       console.log(response);
+      setLoginError(false);
     } catch (error) {
+      setLoginError(true);
       console.log(error);
     }
   };
+
+  console.log(loginError);
 
   return (
     <>
@@ -118,6 +125,7 @@ const SignIn = () => {
               <Label>비밀번호</Label>
               <Input type="password" value={data.password} onChange={(e) => handleChangeField('password', e)} placeholder="비밀번호를 입력해주세요" />
             </InputBox>
+            {loginError && <ErrorMessage text="이메일 또는 비밀번호가 일치하지 않습니다." />}
           </SignInContainer>
           <SignInContainer height="148px" marginbottom="40px">
             <StandardBtn onClick={handleLogin} color="#FFF" background="#8644FF">

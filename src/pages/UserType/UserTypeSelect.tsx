@@ -7,10 +7,22 @@ import MentoMentee from "../../components/UserType/MentoMentee";
 
 const UserSelect = {
   Wrapper: styled.div`
+    width: 100%;
+    min-height: 100vh;
+    background-color: #fafafa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  `,
+  Container: styled.div`
+    width: 100%;
+    height: 100%;
+    max-width: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color: white;
   `,
 
   Header: styled.div`
@@ -52,13 +64,15 @@ const UserSelect = {
 const UserTypeSelect = () => {
   return (
     <UserSelect.Wrapper>
-      <UserSelect.Header>
-        <UserTypeHeader title="회원유형 선택" />
-      </UserSelect.Header>
-      <UserSelect.Main>
-        <MentoMentee />
-        <UserSelect.Button>다음</UserSelect.Button>
-      </UserSelect.Main>
+      <UserSelect.Container>
+        <UserSelect.Header>
+          <UserTypeHeader title="회원유형 선택" />
+        </UserSelect.Header>
+        <UserSelect.Main>
+          <MentoMentee />
+          <UserSelect.Button>다음</UserSelect.Button>
+        </UserSelect.Main>
+      </UserSelect.Container>
     </UserSelect.Wrapper>
   );
 };

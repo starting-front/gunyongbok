@@ -13,7 +13,6 @@ const Router = () => {
       {isInLogged ? (
         <Routes>
           <Route path="/" />
-          <Route path="/usertype" element={<UserTypeSelect />} />
           <Route path="/*" />
         </Routes>
       ) : (
@@ -21,6 +20,7 @@ const Router = () => {
           <Route index element={<Home />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/usertype" element={<UserTypeSelect />} />
         </Routes>
       )}
     </>

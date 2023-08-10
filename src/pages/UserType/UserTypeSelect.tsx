@@ -22,7 +22,7 @@ const UserSelect = {
 
   Main: styled.div`
     width: 100%;
-    max-width: 440px;
+    max-width: 450px;
     padding: 40px 56px;
     box-sizing: border-box;
     display: flex;
@@ -32,14 +32,19 @@ const UserSelect = {
 
   Button: styled.div`
     width: 100%;
-    max-width: 330px;
+    height: 48px;
+    max-width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
     padding: 14px 0;
     box-sizing: border-box;
-    text-align: center;
-    color: white;
     background-color: #8644ff;
-    box-shadow: 0px 8px 11px 0px rgba(134, 68, 255, 0.2);
     border-radius: 6px;
+    box-shadow: 0px 8px 11px 0px rgba(134, 68, 255, 0.2);
+    font-size: 14px;
+    color: white;
     cursor: pointer;
   `,
 };

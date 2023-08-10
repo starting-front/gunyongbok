@@ -25,7 +25,6 @@ const hoverBackground = keyframes`
 const UserType = {
   Background: styled.div`
     width: 100%;
-    max-width: 330px;
     padding: 12px 16px;
     box-sizing: border-box;
     border-radius: 6px;
@@ -34,6 +33,11 @@ const UserType = {
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    color: #050505;
+
+    &:hover {
+      background-color: #fafafa;
+    }
 
     &.userActive::before {
       content: "";
@@ -86,7 +90,7 @@ const MentoMentee = () => {
             <UserType.sectionName>
               <div>{userTypeData.name}</div>
               <div>
-                <HiOutlineChevronRight fontSize="22px" />
+                <HiOutlineChevronRight fontSize="18px" />
               </div>
             </UserType.sectionName>
             <UserType.sectionDesc>

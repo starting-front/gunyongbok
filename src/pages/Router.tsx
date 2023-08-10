@@ -3,6 +3,7 @@ import { useState } from "react";
 import SignIn from "./User/SignIn";
 import SignUp from "./User/SignUp";
 import Home from "./Home";
+import UserTypeSelect from "./UserType/UserTypeSelect";
 
 const Router = () => {
   const [isInLogged, setisInLogged] = useState(false);
@@ -12,6 +13,7 @@ const Router = () => {
       {isInLogged ? (
         <Routes>
           <Route path="/" />
+          <Route path="/usertype" element={<UserTypeSelect />} />
           <Route path="/*" />
         </Routes>
       ) : (

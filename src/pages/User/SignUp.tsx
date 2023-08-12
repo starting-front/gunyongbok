@@ -134,6 +134,7 @@ const SignUp = () => {
 
   const handleStrokeBtn = () => {
     setStrokeBtnSelected(!strokeBtnSelected);
+    setFillBtnSelected(!fillBtnSelected);
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>, field: keyof FormData) => {

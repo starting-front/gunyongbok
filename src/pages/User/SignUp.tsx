@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 import { ChangeEvent, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 // Header
 import HeaderTitle from '../../commons/Title/SignUp/HeaderTitle';
@@ -114,6 +115,7 @@ interface FormData {
 }
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const serverUrl = import.meta.env.VITE_REACT_APP_DEFAULT_SERVER_URL;
   const [overLap, setOverLap] = useState<boolean>(false);
   const [clicked, setClicked] = useState<boolean>(false);
@@ -125,7 +127,7 @@ const SignUp = () => {
     username: '',
     email: '',
     password: '',
-    role: 'MENTEE',
+    role: '',
   });
 
   const handleFillBtn = () => {
@@ -149,14 +151,9 @@ const SignUp = () => {
     setRePassword(event.target.value);
   };
 
-  // 회원가입 (임시)
-  const SubmitSignUpInfo = async () => {
-    try {
-      const response = await axios.post(`${serverUrl}/users/signup`, data);
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
+  // 멘토 멘티 페이지 이동
+  const MoveToUserTypePage = () => {
+    navigate('/usertype', { state: data });
   };
 
   // 이메일 중복 여부 검사
@@ -275,11 +272,11 @@ const SignUp = () => {
         </SignUpContainer>
         <SignUpNextBtnBox>
           {isFormValid() ? (
-            <StandardBtn disabled={false} onClick={SubmitSignUpInfo} color="#FFF" background="#8644FF">
+            <StandardBtn disabled={false} onClick={MoveToUserTypePage} color="#FFF" background="#8644FF">
               다음
             </StandardBtn>
           ) : (
-            <StandardBtn disabled={true} onClick={SubmitSignUpInfo} color="#FFF" background="#C6A7FF">
+            <StandardBtn disabled={true} color="#FFF" background="#C6A7FF">
               다음
             </StandardBtn>
           )}

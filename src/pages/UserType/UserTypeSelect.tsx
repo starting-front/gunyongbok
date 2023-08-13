@@ -1,9 +1,13 @@
 // CSS
-import styled from "styled-components";
+import styled from 'styled-components';
 
 // Components
-import UserTypeHeader from "../../components/UserType/UserTypeHeader/UserTypeHeader";
-import MentoMentee from "../../components/UserType/MentoMentee";
+import UserTypeHeader from '../../components/UserType/UserTypeHeader/UserTypeHeader';
+import MentoMentee from '../../components/UserType/MentoMentee';
+
+// Hook
+import { useLocation } from 'react-router-dom';
+import { useState } from 'react';
 
 const UserSelect = {
   Wrapper: styled.div`
@@ -62,6 +66,16 @@ const UserSelect = {
 };
 
 const UserTypeSelect = () => {
+  const { state } = useLocation();
+  const [userInfo, setUserInfo] = useState({});
+
+  const handleUserTypeClick = (role: string) => {
+    state['role'] = role;
+    setUserInfo(state);
+  };
+
+  console.log(userInfo);
+
   return (
     <UserSelect.Wrapper>
       <UserSelect.Container>
@@ -69,7 +83,7 @@ const UserTypeSelect = () => {
           <UserTypeHeader title="회원유형 선택" />
         </UserSelect.Header>
         <UserSelect.Main>
-          <MentoMentee />
+          <MentoMentee onUserTypeClick={handleUserTypeClick} />
           <UserSelect.Button>다음</UserSelect.Button>
         </UserSelect.Main>
       </UserSelect.Container>

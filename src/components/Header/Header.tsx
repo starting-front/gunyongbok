@@ -6,7 +6,8 @@ import ProfileLogo from '../../assets/account_circle.svg';
 const HeaderBox = styled.div`
   width: 100%;
   max-width: 1280px;
-  height: 80px;
+  height: 100%;
+  max-height: 80px;
   padding: 24px 200px 0px 200px;
   box-sizing: border-box;
   display: flex;

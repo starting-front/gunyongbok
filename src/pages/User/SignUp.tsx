@@ -33,8 +33,8 @@ import RadioBtn from '../../commons/Button/RadioBtn';
 
 // Validate Input Value
 import ErrorInput from '../../commons/Input/ErrorInput';
-import validatePassword from '../../utility/ValidatePw';
-import validateRePassword from '../../utility/ValidateRePw';
+import validatePassword from '../../utility/validatePw';
+import validateRePassword from '../../utility/validateRePw';
 import ErrorMessage from '../../commons/Text/ErrorMessage';
 
 const TopContainer = styled.div`

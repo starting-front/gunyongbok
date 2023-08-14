@@ -9,7 +9,6 @@ const Container = styled.div`
   box-sizing: border-box;
   display: flex;
   gap: 20px;
-  background-color: yellow;
   position: absolute;
   bottom: 0;
 `;

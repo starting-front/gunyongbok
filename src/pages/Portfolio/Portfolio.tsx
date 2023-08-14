@@ -8,6 +8,8 @@ import ProfileContainer from '../../components/Profile/ProfileContainer';
 const TopContainer = styled.div`
   width: 100%;
   height: 100vh;
+  max-width: 1280px;
+  max-height: 720px;
   background-color: #fafafa;
   display: flex;
   flex-direction: column;
@@ -23,6 +25,9 @@ const ProfileWrapper = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
+  border-radius: 13px;
+  border: 1px solid #ccd0dc;
+  background: #fff;
 `;
 
 const Portfolio = () => {

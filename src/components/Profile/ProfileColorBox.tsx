@@ -5,7 +5,7 @@ const ColorBox = styled.div`
   height: 100%;
   max-width: 880px;
   max-height: 90px;
-  border-radius: 12px 12px 0px 0px;
+  border-radius: 11px 11px 0px 0px;
   background: linear-gradient(147deg, #c89eff 0%, #ff89c2 100%);
   position: absolute;
   top: 0;

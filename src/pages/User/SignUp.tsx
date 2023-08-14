@@ -40,17 +40,25 @@ import ErrorMessage from '../../commons/Text/ErrorMessage';
 const TopContainer = styled.div`
   width: 100%;
   height: 100vh;
+  max-width: 1280px;
+  max-height: 720px;
   background-color: #fafafa;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  @media (max-width: 599px) {
+    height: 100vh;
+    max-height: none;
+    background-color: #fff;
+  }
 `;
 
 const MainContainer = styled.div`
   width: 100%;
   max-width: 440px;
   height: 100%;
+  max-height: 740px;
   border-radius: 8px;
   background-color: #fff;
   box-sizing: border-box;
@@ -60,7 +68,9 @@ const MainContainer = styled.div`
   align-items: center;
   justify-content: center;
   @media (max-width: 599px) {
-    width: 100%;
+    height: 100vh;
+    max-height: none;
+    box-shadow: none;
   }
 `;
 

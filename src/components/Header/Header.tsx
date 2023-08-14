@@ -14,7 +14,7 @@ const HeaderBox = styled.div`
   justify-content: space-between;
   align-items: center;
   position: fixed;
-  top: 0;
+  top: 4vh;
 `;
 
 const BtnBox = styled.div`

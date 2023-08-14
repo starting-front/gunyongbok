@@ -35,10 +35,18 @@ interface FormData {
 const TopContainer = styled.div`
   width: 100%;
   height: 100vh;
+  max-width: 1280px;
+  max-height: 720px;
   background-color: #fafafa;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  @media (max-width: 599px) {
+    height: 100vh;
+    max-height: none;
+    background-color: #fff;
+  }
 `;
 
 const MainContainer = styled.div`
@@ -55,7 +63,7 @@ const MainContainer = styled.div`
   align-items: center;
   justify-content: center;
   @media (max-width: 599px) {
-    height: 100%;
+    box-shadow: none;
   }
 `;
 

@@ -13,6 +13,9 @@ const Container = styled.div`
   gap: 20px;
   position: absolute;
   bottom: 0;
+  @media (max-width: 599px) {
+    padding: 0;
+  }
 `;
 
 const InfoWrapper = styled.div`
@@ -25,6 +28,13 @@ const InfoWrapper = styled.div`
   position: absolute;
   left: 40px;
   bottom: 48px;
+  @media (max-width: 599px) {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 2vh;
+    align-items: center;
+  }
 `;
 
 const TabWrapper = styled.div`
@@ -36,6 +46,9 @@ const TabWrapper = styled.div`
   bottom: -3px;
   display: flex;
   flex-direction: column;
+  @media (max-width: 599px) {
+    display: none;
+  }
 `;
 
 const TabText = styled.div`

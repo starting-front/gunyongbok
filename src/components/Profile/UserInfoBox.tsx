@@ -6,6 +6,9 @@ const InfoBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  @media (max-width: 599px) {
+    align-items: center;
+  }
 `;
 
 const NameBox = styled.div`

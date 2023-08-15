@@ -10,6 +10,10 @@ const ColorBox = styled.div`
   position: absolute;
   top: 0;
   z-index: 1;
+  @media (max-width: 599px) {
+    max-height: 124px;
+    border-radius: 0;
+  }
 `;
 
 const ProfileColorBox = () => {

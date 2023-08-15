@@ -13,8 +13,9 @@ const HeaderBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: absolute;
-  top: 1vh;
+  @media (max-width: 599px) {
+    display: none;
+  }
 `;
 
 const BtnBox = styled.div`

@@ -15,6 +15,7 @@ const TopContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
 `;
 
 const ProfileWrapper = styled.div`
@@ -30,11 +31,23 @@ const ProfileWrapper = styled.div`
   background: #fff;
 `;
 
+const ProfileImg = styled.div`
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+  background-color: gray;
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  z-index: 2;
+`;
+
 const Portfolio = () => {
   return (
     <TopContainer>
       <Header />
       <ProfileWrapper>
+        <ProfileImg />
         <ProfileColorBox />
         <ProfileContainer />
       </ProfileWrapper>

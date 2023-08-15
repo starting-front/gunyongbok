@@ -13,8 +13,8 @@ const HeaderBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
-  top: 4vh;
+  position: absolute;
+  top: 1vh;
 `;
 
 const BtnBox = styled.div`

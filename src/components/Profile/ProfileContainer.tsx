@@ -1,4 +1,5 @@
 import { styled } from 'styled-components';
+import UserInfoBox from './UserInfoBox';
 
 const Container = styled.div`
   width: 100%;
@@ -13,8 +14,55 @@ const Container = styled.div`
   bottom: 0;
 `;
 
+const InfoWrapper = styled.div`
+  width: 456px;
+  height: 102px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  position: absolute;
+  left: 40px;
+  bottom: 48px;
+`;
+
+const TabWrapper = styled.div`
+  width: 74px;
+  height: 28px;
+  gap: 4px;
+  position: absolute;
+  left: 40px;
+  bottom: -3px;
+  display: flex;
+  flex-direction: column;
+`;
+
+const TabText = styled.div`
+  color: #303646;
+  font-family: Pretendard;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 600;
+`;
+
+const TabIndicator = styled.div`
+  width: 74px;
+  height: 2px;
+  background: #303646;
+`;
+
 const ProfileContainer = () => {
-  return <Container></Container>;
+  return (
+    <Container>
+      <InfoWrapper>
+        <UserInfoBox></UserInfoBox>
+      </InfoWrapper>
+      <TabWrapper>
+        <TabText>포트폴리오</TabText>
+        <TabIndicator />
+      </TabWrapper>
+    </Container>
+  );
 };
 
 export default ProfileContainer;

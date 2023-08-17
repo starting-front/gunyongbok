@@ -311,11 +311,7 @@ const SignUp = () => {
                 전화번호 <RequiredText>(필수)</RequiredText>
               </Label>
               <ValidateInputBox>
-                <Input
-                  value=""
-                  width="239px"
-                  placeholder="전화번호를 입력해주세요"
-                />
+                <Input width="239px" placeholder="전화번호를 입력해주세요" />
                 <ValidateBtn>본인인증</ValidateBtn>
               </ValidateInputBox>
             </InputBox>
@@ -324,11 +320,7 @@ const SignUp = () => {
                 인증번호 <RequiredText>(필수)</RequiredText>
               </Label>
               <ValidateInputBox>
-                <Input
-                  value=""
-                  width="239px"
-                  placeholder="인증번호를 입력해주세요"
-                />
+                <Input width="239px" placeholder="인증번호를 입력해주세요" />
                 <ValidateBtn>확인</ValidateBtn>
               </ValidateInputBox>
             </InputBox>

@@ -1,14 +1,14 @@
 // React Hooks
-import { useState } from "react";
+import { useState } from 'react';
 
 // UserType Select
-import userTypeSelect from "./userTypeList";
+import userTypeSelect from './userTypeList';
 
 // React-icons
-import { HiOutlineChevronRight } from "react-icons/hi";
+import { HiOutlineChevronRight } from 'react-icons/hi';
 
 // CSS
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes } from 'styled-components';
 
 const hoverBackground = keyframes`
   from{
@@ -40,7 +40,7 @@ const UserType = {
     }
 
     &.userActive::before {
-      content: "";
+      content: '';
       position: absolute;
       width: 300px;
       height: 300px;
@@ -69,23 +69,25 @@ const UserType = {
     line-height: 20px;
   `,
 };
+interface MentoMenteeProps {
+  onUserTypeClick: (role: string) => void;
+}
 
-const MentoMentee = () => {
+const MentoMentee = ({ onUserTypeClick }: MentoMenteeProps) => {
   const [clickUserTypeId, setClickUserTypeId] = useState<number>(0);
 
   // 클릭한 회원유형 Id Get
-  const handleBackgroundClick = (id: number) => setClickUserTypeId(id);
+  const handleBackgroundClick = (id: number, role: string) => {
+    setClickUserTypeId(id);
+    onUserTypeClick(role);
+  };
 
   return (
     <>
       {userTypeSelect?.map((userTypeData, _) => {
         const isClicked = userTypeData.id === clickUserTypeId;
         return (
-          <UserType.Background
-            key={userTypeData.id}
-            onClick={() => handleBackgroundClick(userTypeData.id)}
-            className={isClicked ? "userActive" : ""}
-          >
+          <UserType.Background key={userTypeData.id} onClick={() => handleBackgroundClick(userTypeData.id, userTypeData.role)} className={isClicked ? 'userActive' : ''}>
             <UserType.img src={userTypeData.iconSrc} alt="" />
             <UserType.sectionName>
               <div>{userTypeData.name}</div>

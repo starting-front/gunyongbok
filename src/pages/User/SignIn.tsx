@@ -33,38 +33,36 @@ interface FormData {
 }
 
 const TopContainer = styled.div`
-  width: 1280px;
-  height: 804px;
+  width: 100%;
+  height: 100vh;
+  max-width: 1280px;
+  max-height: 720px;
   background-color: #fafafa;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 67px 436px;
-  box-sizing: border-box;
   @media (max-width: 599px) {
-    width: 360px;
-    height: 800px;
-    padding: 0;
-    padding: 103px 0 147px 0;
-    background: #fff;
+    height: 100vh;
+    max-height: none;
+    background-color: #fff;
   }
 `;
 
 const MainContainer = styled.div`
-  width: 408px;
-  height: 586px;
-  padding: 40px;
+  width: 100%;
+  max-width: 408px;
+  height: 80%;
   border-radius: 8px;
   background-color: #fff;
+  padding: 40px;
   box-sizing: border-box;
   box-shadow: 0px 0px 22px 0px rgba(0, 0, 0, 0.06);
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   @media (max-width: 599px) {
-    width: 328px;
-    height: 506px;
-    padding: 0;
-    box-sizing: content-box;
     box-shadow: none;
   }
 `;

@@ -1,9 +1,15 @@
 // CSS
-import styled from "styled-components";
+import styled from 'styled-components';
 
 // Components
-import UserTypeHeader from "../../components/UserType/UserTypeHeader/UserTypeHeader";
-import MentoMentee from "../../components/UserType/MentoMentee";
+import UserTypeHeader from '../../components/UserType/UserTypeHeader/UserTypeHeader';
+import MentoMentee from '../../components/UserType/MentoMentee';
+
+// Hook
+import { useLocation } from 'react-router-dom';
+import { useState } from 'react';
+
+import axios from 'axios';
 
 const UserSelect = {
   Wrapper: styled.div`
@@ -62,6 +68,25 @@ const UserSelect = {
 };
 
 const UserTypeSelect = () => {
+  const { state } = useLocation();
+  const [userInfo, setUserInfo] = useState({});
+  const serverUrl = import.meta.env.VITE_REACT_APP_DEFAULT_SERVER_URL;
+
+  const handleUserTypeClick = (role: string) => {
+    state['role'] = role;
+    setUserInfo(state);
+  };
+
+  // 로컬 회원가입
+  const SubmitSignUpInfo = async () => {
+    try {
+      const response = await axios.post(`${serverUrl}/users/signup`, userInfo);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <UserSelect.Wrapper>
       <UserSelect.Container>
@@ -69,8 +94,8 @@ const UserTypeSelect = () => {
           <UserTypeHeader title="회원유형 선택" />
         </UserSelect.Header>
         <UserSelect.Main>
-          <MentoMentee />
-          <UserSelect.Button>다음</UserSelect.Button>
+          <MentoMentee onUserTypeClick={handleUserTypeClick} />
+          <UserSelect.Button onClick={SubmitSignUpInfo}>다음</UserSelect.Button>
         </UserSelect.Main>
       </UserSelect.Container>
     </UserSelect.Wrapper>

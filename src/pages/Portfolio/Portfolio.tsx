@@ -21,7 +21,6 @@ const TopContainer = styled.div`
   @media (max-width: 599px) {
     width: 100%;
     max-height: 100vh;
-    background-color: #fff;
   }
 `;
 

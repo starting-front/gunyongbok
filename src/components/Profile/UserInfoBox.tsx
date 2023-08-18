@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import { styled } from "styled-components";
 
 const InfoBox = styled.div`
   width: 100%;
@@ -62,7 +62,9 @@ const UserInfoBox = () => {
         <NameContent>홍길동</NameContent>
         <NameContent>IT / UXUI 디자인</NameContent>
       </NameBox>
-      <IntroduceText>안녕하세요. 저는 프론트 디자이너입니다. 잘 부탁드립니다.</IntroduceText>
+      <IntroduceText>
+        안녕하세요. 저는 프론트 디자이너입니다. 잘 부탁드립니다.
+      </IntroduceText>
       <SnsInfo>
         <SnsBtn>이메일</SnsBtn>
         <SnsBtn>연락처</SnsBtn>

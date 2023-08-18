@@ -1,6 +1,6 @@
-import { styled } from 'styled-components';
-import UserInfoBox from './UserInfoBox';
-import KeyContainer from './KeyContainer';
+import { styled } from "styled-components";
+import UserInfoBox from "./UserInfoBox";
+import KeyContainer from "./KeyContainer";
 
 const Container = styled.div`
   width: 100%;

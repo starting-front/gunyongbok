@@ -1,7 +1,7 @@
-import { styled } from 'styled-components';
-import TeamLogo from '../../assets/logo.svg';
-import NewsLogo from '../../assets/breaking_news.svg';
-import ProfileLogo from '../../assets/account_circle.svg';
+import { styled } from "styled-components";
+import TeamLogo from "../../assets/logo.svg";
+import NewsLogo from "../../assets/breaking_news.svg";
+import ProfileLogo from "../../assets/account_circle.svg";
 
 // 패딩 정적값이라 탭일때 반응형 구현 X -> 추후에 판단
 const HeaderBox = styled.div`

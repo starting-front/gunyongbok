@@ -195,6 +195,7 @@ const SignUp = () => {
     const isPasswordValid = data.password.trim() !== "";
 
     return (
+      validatePassword(data["password"]) &&
       isUsernameValid &&
       isEmailValid &&
       isPasswordValid &&
@@ -203,7 +204,7 @@ const SignUp = () => {
     );
   };
 
-  console.log(data, overLap);
+  console.log(data);
 
   return (
     <TopContainer>

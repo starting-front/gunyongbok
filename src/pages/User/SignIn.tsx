@@ -22,9 +22,10 @@ import SignInFooter from "../../components/Wrapper/SignIn/SignInFooter";
 import TextBox from "../../commons/Text/TextBox";
 import TextBreakLine from "../../commons/Break/SignIn/TextBreakLine";
 
-// Reused Standard Btn
+// LoginBtn
 import StandardBtn from "../../commons/Button/StandardBtn";
-import Logo from "../../assets/kakakoLogo.svg";
+import KakaoLoginBtn from "../../components/Auth/Kakao/KakaoLoginBtn";
+
 import axios from "axios";
 
 interface FormData {
@@ -65,12 +66,6 @@ const MainContainer = styled.div`
   @media (max-width: 599px) {
     box-shadow: none;
   }
-`;
-
-const LogoBox = styled.img`
-  width: 24px;
-  height: 24px;
-  margin-right: 8px;
 `;
 
 const SignIn = () => {
@@ -149,9 +144,7 @@ const SignIn = () => {
               이메일로 로그인 또는 회원가입
             </StandardBtn>
             <BreakLine />
-            <StandardBtn color="#351C1B" background="#FBE54D">
-              <LogoBox src={Logo} alt="logo" /> 카카오로 3초만에 계속하기
-            </StandardBtn>
+            <KakaoLoginBtn />
           </SignInContainer>
           <SignInFooter>
             <TextBox
@@ -172,10 +165,3 @@ const SignIn = () => {
 };
 
 export default SignIn;
-
-// {
-//   "username": "practice0810",
-//   "email": "practice0810@gmail.com",
-//   "password": "practice0810!",
-//   "role": "MENTEE"
-// }

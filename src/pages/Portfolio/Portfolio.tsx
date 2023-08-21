@@ -25,10 +25,14 @@ const TopContainer = styled.div`
   }
 `;
 
-const PortfolioWrapper = styled.div`
+interface PortfolioWrapperProps {
+  isScroll: boolean;
+}
+
+const PortfolioWrapper = styled.div<PortfolioWrapperProps>`
   width: 100%;
   max-width: 880px;
-  max-height: 310px;
+  max-height: ${({ isScroll }) => (isScroll ? "600px" : "310px")};
   padding: 32px 40px;
   box-sizing: border-box;
   gap: 20px;
@@ -39,7 +43,8 @@ const PortfolioWrapper = styled.div`
   @media (max-width: 599px) {
     width: 100vw;
     height: 100%;
-    max-height: calc(100vh - 314px);
+    max-height: ${({ isScroll }) =>
+      isScroll ? "100vh" : "calc(100vh - 314px)"};
   }
 `;
 
@@ -72,7 +77,11 @@ const Portfolio = () => {
     <TopContainer>
       <Header />
       {scroll ? <ScrolledProfileWrapper /> : <ProfileWrapper />}
-      <PortfolioWrapper ref={portfolioWrapperRef} onScroll={handleScroll}>
+      <PortfolioWrapper
+        ref={portfolioWrapperRef}
+        onScroll={handleScroll}
+        isScroll={scroll}
+      >
         <DemoList></DemoList>
         <DemoList></DemoList>
       </PortfolioWrapper>

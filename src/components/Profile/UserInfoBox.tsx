@@ -4,6 +4,7 @@ const InfoBox = styled.div`
   width: 100%;
   height: 66px;
   display: flex;
+  max-width: 456px;
   flex-direction: column;
   gap: 8px;
   @media (max-width: 599px) {

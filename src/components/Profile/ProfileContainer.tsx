@@ -69,8 +69,8 @@ const ProfileContainer = () => {
   return (
     <Container>
       <InfoWrapper>
-        <UserInfoBox></UserInfoBox>
-        <KeyContainer></KeyContainer>
+        <UserInfoBox />
+        <KeyContainer />
       </InfoWrapper>
       <TabWrapper>
         <TabText>포트폴리오</TabText>

@@ -1,11 +1,12 @@
 import { styled } from "styled-components";
+import { useRef, useState } from "react";
 
 // Header
 import Header from "../../components/Header/Header";
 
 // User Info
 import ProfileWrapper from "../../components/Wrapper/Portfolio/ProfileWrapper";
-import { useRef, useState } from "react";
+import ScrolledProfileWrapper from "./ScrolledProfileWrapper";
 
 const TopContainer = styled.div`
   width: 100%;
@@ -56,6 +57,7 @@ const DemoList = styled.div`
 const Portfolio = () => {
   const portfolioWrapperRef = useRef<HTMLDivElement | null>(null);
   const [scroll, setScroll] = useState<boolean>(false);
+
   const handleScroll = () => {
     const scrollTop = portfolioWrapperRef.current?.scrollTop || 0;
     if (scrollTop === 0) {
@@ -64,11 +66,12 @@ const Portfolio = () => {
       setScroll(true);
     }
   };
+
   console.log(scroll);
   return (
     <TopContainer>
       <Header />
-      <ProfileWrapper />
+      {scroll ? <ScrolledProfileWrapper /> : <ProfileWrapper />}
       <PortfolioWrapper ref={portfolioWrapperRef} onScroll={handleScroll}>
         <DemoList></DemoList>
         <DemoList></DemoList>

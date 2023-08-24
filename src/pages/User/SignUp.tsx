@@ -35,6 +35,7 @@ import RadioBtn from "../../commons/Button/RadioBtn";
 import ErrorInput from "../../commons/Input/ErrorInput";
 import validatePassword from "../../util/validatePw";
 import validateRePassword from "../../util/validateRePw";
+import validateEmail from "../../util/validateEmail";
 import ErrorMessage from "../../commons/Text/ErrorMessage";
 
 const TopContainer = styled.div`
@@ -195,6 +196,7 @@ const SignUp = () => {
     const isPasswordValid = data.password.trim() !== "";
 
     return (
+      validatePassword(data["password"]) &&
       isUsernameValid &&
       isEmailValid &&
       isPasswordValid &&
@@ -203,7 +205,7 @@ const SignUp = () => {
     );
   };
 
-  console.log(data, overLap);
+  console.log(data);
 
   return (
     <TopContainer>
@@ -250,15 +252,17 @@ const SignUp = () => {
                   중복검사
                 </ValidateBtn>
               </ValidateInputBox>
-              {clicked &&
-                (overLap ? (
-                  <ErrorMessage text="이미 사용중인 이메일입니다." />
-                ) : (
-                  <ErrorMessage
-                    text="사용가능한 이메일입니다"
-                    color="#303646"
-                  />
-                ))}
+              {clicked && overLap && (
+                <ErrorMessage text="이미 사용중인 이메일입니다" />
+              )}
+
+              {clicked && !overLap && !validateEmail(data["email"]) && (
+                <ErrorMessage text="올바르지 않은 이메일 형식입니다" />
+              )}
+
+              {clicked && !overLap && validateEmail(data["email"]) && (
+                <ErrorMessage text="사용가능한 이메일입니다" color="#303646" />
+              )}
             </InputBox>
             <InputBox>
               <Label>

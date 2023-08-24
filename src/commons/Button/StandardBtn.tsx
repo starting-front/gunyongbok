@@ -1,5 +1,5 @@
-import { MouseEventHandler, ReactNode } from 'react';
-import { styled } from 'styled-components';
+import { MouseEventHandler, ReactNode } from "react";
+import { styled } from "styled-components";
 
 interface BtnProps {
   children: ReactNode;
@@ -19,6 +19,7 @@ const Btn = styled.button<BtnProps>`
   align-items: center;
   border-radius: 6px;
   border: none;
+  cursor: pointer;
   background: ${(props) => props.background};
   color: ${(props) => props.color};
   font-family: Pretendard;
@@ -28,7 +29,13 @@ const Btn = styled.button<BtnProps>`
   box-shadow: 0px 8px 11px 0px rgba(134, 68, 255, 0.2);
 `;
 
-const StandardBtn = ({ background, color, children, onClick, disabled }: BtnProps) => {
+const StandardBtn = ({
+  background,
+  color,
+  children,
+  onClick,
+  disabled,
+}: BtnProps) => {
   const handleClick: MouseEventHandler<HTMLButtonElement> = (event) => {
     event.preventDefault();
     if (onClick) {
@@ -36,7 +43,12 @@ const StandardBtn = ({ background, color, children, onClick, disabled }: BtnProp
     }
   };
   return (
-    <Btn disabled={disabled} onClick={handleClick} background={background} color={color}>
+    <Btn
+      disabled={disabled}
+      onClick={handleClick}
+      background={background}
+      color={color}
+    >
       {children}
     </Btn>
   );

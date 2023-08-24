@@ -1,31 +1,32 @@
-import styled from 'styled-components';
-import { ChangeEvent, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import styled from "styled-components";
+import { ChangeEvent, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // Header
-import SignInHeader from '../../components/Header/SignInHeader';
-import MainTitle from '../../commons/Title/SignIn/MainTitle';
-import SubTitle from '../../commons/Title/SignIn/SubTitle';
+import SignInHeader from "../../components/Header/SignInHeader";
+import MainTitle from "../../commons/Title/SignIn/MainTitle";
+import SubTitle from "../../commons/Title/SignIn/SubTitle";
 
 // SignIn
-import SignInContainer from '../../components/Wrapper/SignIn/SignInContainer';
-import Input from '../../commons/Input/Input';
-import BreakLine from '../../commons/Break/SignIn/BreakLine';
-import Label from '../../commons/Label/Label';
-import InputBox from '../../components/Wrapper/InputBox';
+import SignInContainer from "../../components/Wrapper/SignIn/SignInContainer";
+import Input from "../../commons/Input/Input";
+import BreakLine from "../../commons/Break/SignIn/BreakLine";
+import Label from "../../commons/Label/Label";
+import InputBox from "../../components/Wrapper/InputBox";
 
 // Error
-import ErrorMessage from '../../commons/Text/ErrorMessage';
+import ErrorMessage from "../../commons/Text/ErrorMessage";
 
 // Footer
-import SignInFooter from '../../components/Wrapper/SignIn/SignInFooter';
-import TextBox from '../../commons/Text/TextBox';
-import TextBreakLine from '../../commons/Break/SignIn/TextBreakLine';
+import SignInFooter from "../../components/Wrapper/SignIn/SignInFooter";
+import TextBox from "../../commons/Text/TextBox";
+import TextBreakLine from "../../commons/Break/SignIn/TextBreakLine";
 
-// Reused Standard Btn
-import StandardBtn from '../../commons/Button/StandardBtn';
-import Logo from '../../assets/kakakoLogo.svg';
-import axios from 'axios';
+// LoginBtn
+import StandardBtn from "../../commons/Button/StandardBtn";
+import KakaoLoginBtn from "../../components/Auth/Kakao/KakaoLoginBtn";
+
+import axios from "axios";
 
 interface FormData {
   email: string;
@@ -67,27 +68,27 @@ const MainContainer = styled.div`
   }
 `;
 
-const LogoBox = styled.img`
-  width: 24px;
-  height: 24px;
-  margin-right: 8px;
-`;
-
 const SignIn = () => {
   const navigate = useNavigate();
   const serverUrl = import.meta.env.VITE_REACT_APP_DEFAULT_SERVER_URL;
   const [loginError, setLoginError] = useState<boolean>(false);
 
   const [data, setData] = useState<FormData>({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>, field: keyof FormData) => {
+  const handleChange = (
+    event: ChangeEvent<HTMLInputElement>,
+    field: keyof FormData
+  ) => {
     setData({ ...data, [field]: event.target.value });
   };
 
-  const handleChangeField = (fieldName: keyof FormData, e: ChangeEvent<HTMLInputElement>) => {
+  const handleChangeField = (
+    fieldName: keyof FormData,
+    e: ChangeEvent<HTMLInputElement>
+  ) => {
     handleChange(e, fieldName);
   };
 
@@ -115,28 +116,41 @@ const SignIn = () => {
           <SignInContainer height="164px" marginbottom="48px">
             <InputBox>
               <Label>이메일</Label>
-              <Input value={data.email} onChange={(e) => handleChangeField('email', e)} placeholder="이메일을 입력해주세요" />
+              <Input
+                value={data.email}
+                onChange={(e) => handleChangeField("email", e)}
+                placeholder="이메일을 입력해주세요"
+              />
             </InputBox>
             <InputBox>
               <Label>비밀번호</Label>
-              <Input type="password" value={data.password} onChange={(e) => handleChangeField('password', e)} placeholder="비밀번호를 입력해주세요" />
+              <Input
+                type="password"
+                value={data.password}
+                onChange={(e) => handleChangeField("password", e)}
+                placeholder="비밀번호를 입력해주세요"
+              />
             </InputBox>
-            {loginError && <ErrorMessage text="이메일 또는 비밀번호가 일치하지 않습니다." />}
+            {loginError && (
+              <ErrorMessage text="이메일 또는 비밀번호가 일치하지 않습니다." />
+            )}
           </SignInContainer>
           <SignInContainer height="148px" marginbottom="40px">
-            <StandardBtn onClick={handleLogin} color="#FFF" background="#8644FF">
+            <StandardBtn
+              onClick={handleLogin}
+              color="#FFF"
+              background="#8644FF"
+            >
               이메일로 로그인 또는 회원가입
             </StandardBtn>
             <BreakLine />
-            <StandardBtn color="#351C1B" background="#FBE54D">
-              <LogoBox src={Logo} alt="logo" /> 카카오로 3초만에 계속하기
-            </StandardBtn>
+            <KakaoLoginBtn />
           </SignInContainer>
           <SignInFooter>
             <TextBox
               text="회원가입"
               onClick={() => {
-                navigate('/signup');
+                navigate("/signup");
               }}
             ></TextBox>
             <TextBreakLine />
@@ -151,10 +165,3 @@ const SignIn = () => {
 };
 
 export default SignIn;
-
-// {
-//   "username": "practice0810",
-//   "email": "practice0810@gmail.com",
-//   "password": "practice0810!",
-//   "role": "MENTEE"
-// }

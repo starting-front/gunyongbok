@@ -1,6 +1,6 @@
-import { styled } from 'styled-components';
-import UserInfoBox from './UserInfoBox';
-import KeyContainer from './KeyContainer';
+import { styled } from "styled-components";
+import UserInfoBox from "./UserInfoBox";
+import KeyContainer from "./KeyContainer";
 
 const Container = styled.div`
   width: 100%;
@@ -69,8 +69,8 @@ const ProfileContainer = () => {
   return (
     <Container>
       <InfoWrapper>
-        <UserInfoBox></UserInfoBox>
-        <KeyContainer></KeyContainer>
+        <UserInfoBox />
+        <KeyContainer />
       </InfoWrapper>
       <TabWrapper>
         <TabText>포트폴리오</TabText>

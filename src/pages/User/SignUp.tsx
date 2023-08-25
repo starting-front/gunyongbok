@@ -4,9 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 // Header
-import HeaderTitle from "../../commons/Title/SignUp/HeaderTitle";
-import PageBackBtn from "../../commons/Button/PageBackBtn";
-import BackArrow from "../../assets/leftArrow.svg";
+import SignUpHeader from "../../components/Header/SignUpHeader";
 
 // SignUp
 import SignUpContainer from "../../components/Wrapper/SignUp/SignUpContainer";
@@ -73,20 +71,6 @@ const MainContainer = styled.div`
     max-height: none;
     box-shadow: none;
   }
-`;
-
-const HeaderContainer = styled.header`
-  width: 100%;
-  height: 105px;
-  display: flex;
-  justify-content: center;
-  padding: 40px 40px 0px 40px;
-  box-sizing: border-box;
-  position: relative;
-  top: 0;
-  border-bottom: 1px solid #e2e4eb;
-  z-index: 1;
-  background-color: rgba(255, 255, 255);
 `;
 
 const RequiredText = styled.div`
@@ -210,12 +194,7 @@ const SignUp = () => {
   return (
     <TopContainer>
       <MainContainer>
-        <HeaderContainer>
-          <HeaderTitle>
-            <PageBackBtn src={BackArrow} alt="pageback" />
-            회원가입
-          </HeaderTitle>
-        </HeaderContainer>
+        <SignUpHeader />
         <SignUpContainer>
           <SignUpInputContainer>
             <InputBox>

@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 import { useRef, useState } from "react";
 
 // Header
-import Header from "../../components/Header/Header";
+import Header from "../../components/Header/PortfolioHeader";
 
 // User Info
 import ProfileWrapper from "../../components/Wrapper/Portfolio/ProfileWrapper";

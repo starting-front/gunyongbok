@@ -5,7 +5,7 @@ import SignUp from "./User/SignUp";
 import Home from "./Home";
 import UserTypeSelect from "./UserType/UserTypeSelect";
 import Portfolio from "./Portfolio/Portfolio";
-import Test from "./Test";
+import ProfileEdit from "./Profile/ProfileEdit";
 
 const Router = () => {
   const [isInLogged] = useState(false);
@@ -24,7 +24,7 @@ const Router = () => {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/usertype" element={<UserTypeSelect />} />
           <Route path="/myportfolio" element={<Portfolio />} />
-          <Route path="/profile/edit" element={<Test />} />
+          <Route path="/profile/edit" element={<ProfileEdit />} />
           <Route path="/profile/upload" />
         </Routes>
       )}

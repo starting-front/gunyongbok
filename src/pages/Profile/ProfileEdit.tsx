@@ -5,9 +5,6 @@ import ResumeSetProfileForm from "../../components/Resume/Profile/ResumeSetProfi
 
 const HeaderContainer = styled.div`
   width: 100%;
-  max-width: 1024px;
-  padding: 0 16px;
-  box-sizing: border-box;
 `;
 
 const ProfileEdit = () => {

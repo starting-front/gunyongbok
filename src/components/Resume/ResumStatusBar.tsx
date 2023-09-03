@@ -5,6 +5,7 @@ const HeaderContainer = styled.div`
   max-width: 1024px;
   position: relative;
   font-family: Pretendard;
+  margin: 0 auto;
 `;
 
 const Line = styled.div`

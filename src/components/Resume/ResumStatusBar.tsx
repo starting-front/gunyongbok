@@ -5,13 +5,12 @@ const HeaderContainer = styled.div`
   max-width: 1024px;
   position: relative;
   font-family: Pretendard;
-  margin: 0 auto;
+  margin: 50px auto;
 `;
 
 const Line = styled.div`
   height: 3px;
   background-color: #e2e4eb;
-  margin: 0 auto;
 `;
 
 const CircleContainer = styled.div`

@@ -127,25 +127,25 @@ const ResumText = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 8px;
+  margin: 0 8px 0 15px;
+  white-space: nowrap;
 `;
 
 const ResumFooter = styled.div`
   width: 100%;
   height: 80px;
-  padding: 20px 200px;
+  padding: 20px;
   box-sizing: border-box;
   background-color: #8644ff;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 250px;
+  margin-top: 110px;
 `;
 
 const ResumFooterTitle = styled.div`
   width: 226px;
   height: 44px;
-  adding: 14px 0px;
   cursor: pointer;
   background-color: white;
   border-radius: 56px;

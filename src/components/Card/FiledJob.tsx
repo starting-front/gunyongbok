@@ -77,7 +77,6 @@ const FiledJobWrapper = styled.div`
   border-radius: 3px 3px 0 0;
   border-bottom: 1px solid #e2e4eb;
   cursor: pointer;
-
   &:last-child {
     border: none;
   }
@@ -100,6 +99,7 @@ const FiledJob = () => {
   const updateUserField = (name: string) => {
     setFieldTitle(name);
     setUserField(false);
+    setUserJob(true);
   };
 
   const updateUserJob = (name: string) => {

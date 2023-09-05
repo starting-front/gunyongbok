@@ -88,8 +88,9 @@ const ResumeTextarea = styled.textarea`
 const ResumIntroduceTextLength = styled.span<{ $legnthExceed?: boolean }>`
   position: absolute;
   color: ${(props) => (props.$legnthExceed ? "red" : "#303646")};
-  bottom: 20px;
-  right: 25px;
+  bottom: 18px;
+  right: 16px;
+  font-size: 14px;
 `;
 
 const ToggleContainer = styled.div<{ $isPublic?: boolean }>`
@@ -296,7 +297,7 @@ const ResumeSetProfileForm = () => {
 
         <ResumeLabel>키워드 (최대 5개 입력)</ResumeLabel>
         <ResumeInput
-          placeholder="나를 잘 나타내는 핵심 키워드를 입력해보세요 (최대5개)"
+          placeholder="나를 잘 나타내는 핵심 키워드를 입력해보세요 (최대 5개)"
           onChange={(e) => setCurrentKeyword(e.target.value)}
           onKeyDown={handleKeywordInputKeyDown}
           value={currentKeyword}

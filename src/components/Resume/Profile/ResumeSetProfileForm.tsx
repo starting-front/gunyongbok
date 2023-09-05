@@ -11,6 +11,7 @@ const ResumeContainer = styled.div`
   align-items: center;
   gap: 12px;
   margin: 47px 0 20px 0;
+  font-family: Pretendard;
 `;
 
 const ResumeForm = styled.form`
@@ -43,7 +44,6 @@ const ResumeLabel = styled.label`
   display: block;
   margin: 20px 0px 8px 0px;
   color: #303646;
-  font-family: Pretendard;
   font-size: 11px;
   font-weight: 400;
   line-height: 12px;
@@ -119,7 +119,6 @@ const ToggleSwitch = styled.div<{ $isPublic?: boolean }>`
 
 const ResumText = styled.span`
   color: #49526a;
-  font-family: Pretendard;
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
@@ -150,7 +149,6 @@ const ResumFooterTitle = styled.div`
   background-color: white;
   border-radius: 56px;
   color: #8644ff;
-  font-family: Pretendard;
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
@@ -158,6 +156,19 @@ const ResumFooterTitle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+const ResumeUserKeywords = styled.span`
+  display: inline-block;
+  background-color: #8644ff;
+  color: white;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin: 8px 8px 0 0;
 `;
 
 const ResumeSetProfileForm = () => {
@@ -168,7 +179,8 @@ const ResumeSetProfileForm = () => {
   const [email, setEmail] = useState("");
   const [tel, setTel] = useState("");
   const [introduce, setIntroduce] = useState("");
-  const [myKeywords, setMyKeywords] = useState([""]);
+  const [myKeywords, setMyKeywords] = useState<string[] | []>([]);
+  const [currentKeyword, setCurrentKeyword] = useState("");
 
   // 이메일 퍼블릭 버튼
   const togglePublicEmailBtn = () => setIsPublicEmail((prev) => !prev);
@@ -185,6 +197,24 @@ const ResumeSetProfileForm = () => {
     }
   };
 
+  const handleKeywordInputKeyDown = (e: any) => {
+    if (e.key === "Enter" && currentKeyword) {
+      if (currentKeyword.length >= 6)
+        return alert("6글자 이내로 작성 부탁드립니다.");
+      if (myKeywords.length >= 5)
+        return alert("키워드는 5개까지만 추가가능 합니다.");
+      setMyKeywords([...myKeywords, currentKeyword]);
+      setCurrentKeyword("");
+    }
+  };
+
+  const handleRemoveKeyword = (keywordToRemove: string) => {
+    const updatedKeywords = myKeywords.filter(
+      (keyword) => keyword !== keywordToRemove
+    );
+    setMyKeywords(updatedKeywords);
+  };
+
   return (
     <>
       <ResumeForm>
@@ -195,7 +225,12 @@ const ResumeSetProfileForm = () => {
           </ResumeSubTitle>
         </ResumeContainer>
         <ResumeLabel>이름</ResumeLabel>
-        <ResumeInput placeholder="이름을 입력해 주세요" />
+        <ResumeInput
+          placeholder="이름을 입력해 주세요"
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
 
         <ResumeLabel>이메일</ResumeLabel>
         <div
@@ -205,7 +240,12 @@ const ResumeSetProfileForm = () => {
             alignItems: "center",
           }}
         >
-          <ResumeInput placeholder="이메일을 입력해 주세요" className="email" />
+          <ResumeInput
+            placeholder="이메일을 입력해 주세요"
+            className="email"
+            type="email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
           <div style={{ display: "flex" }}>
             <ResumText>{isPublicEmail ? "공개" : "비공개"} </ResumText>
             <ToggleContainer
@@ -228,6 +268,7 @@ const ResumeSetProfileForm = () => {
           <ResumeInput
             placeholder="휴대폰 번호를 입력해 주세요"
             className="tel"
+            onChange={(e) => setTel(e.target.value)}
           />
           <div style={{ display: "flex" }}>
             <ResumText>{isPublicTel ? "공개" : "비공개"}</ResumText>
@@ -252,8 +293,27 @@ const ResumeSetProfileForm = () => {
             ({introduce.length}/30)
           </ResumIntroduceTextLength>
         </div>
+
         <ResumeLabel>키워드 (최대 5개 입력)</ResumeLabel>
-        <ResumeInput placeholder="나를 잘 나타내는 핵심 키워드를 입력해보세요 (최대5개)" />
+        <ResumeInput
+          placeholder="나를 잘 나타내는 핵심 키워드를 입력해보세요 (최대5개)"
+          onChange={(e) => setCurrentKeyword(e.target.value)}
+          onKeyDown={handleKeywordInputKeyDown}
+          value={currentKeyword}
+          type="text"
+        />
+
+        {myKeywords?.map((keyword, index) => (
+          <ResumeUserKeywords key={index}>
+            {keyword}
+            <span
+              onClick={() => handleRemoveKeyword(keyword)}
+              style={{ cursor: "pointer" }}
+            >
+              &nbsp;&nbsp;X
+            </span>
+          </ResumeUserKeywords>
+        ))}
       </ResumeForm>
       <ResumFooter>
         <div

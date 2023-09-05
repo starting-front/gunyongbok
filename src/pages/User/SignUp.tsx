@@ -25,8 +25,8 @@ import SignUpNextBtnBox from "../../components/Wrapper/SignUp/SignUpNextBtnBox";
 import SignUpAgreeBox from "../../components/Wrapper/SignUp/SignUpAgreeBox";
 import AgreeBox from "../../components/Wrapper/AgreeBox";
 import RightImg from "../../assets/right.svg";
-import StrokeBtn from "../../assets/radioBtnStroke.svg";
-import FillBtn from "../../assets/radioBtnFill.svg";
+import WhiteBtn from "../../assets/radio_white.png";
+import PurpleBtn from "../../assets/radio_purple.png";
 import RadioBtn from "../../commons/Button/RadioBtn";
 
 // Validate Input Value
@@ -118,6 +118,7 @@ const SignUp = () => {
   const [fillBtnSelected, setFillBtnSelected] = useState<boolean>(false);
   const [strokeBtnSelected, setStrokeBtnSelected] = useState<boolean>(false);
 
+  console.log(fillBtnSelected);
   const [data, setData] = useState<FormData>({
     username: "",
     email: "",
@@ -313,8 +314,11 @@ const SignUp = () => {
                   onClick={handleStrokeBtn}
                   selected={strokeBtnSelected}
                 >
-                  <StrokeImg src={StrokeBtn} />
-                  <FillImg src={FillBtn} />
+                  {fillBtnSelected && strokeBtnSelected ? (
+                    <StrokeImg src={PurpleBtn} />
+                  ) : (
+                    <StrokeImg src={WhiteBtn} />
+                  )}
                 </RadioBtn>
                 약관에 모두 동의 (필수)
               </AgreeBox>
@@ -324,8 +328,11 @@ const SignUp = () => {
                 border="none"
               >
                 <RadioBtn onClick={handleFillBtn} selected={fillBtnSelected}>
-                  <StrokeImg src={StrokeBtn} />
-                  <FillImg src={FillBtn} />
+                  {fillBtnSelected ? (
+                    <StrokeImg src={PurpleBtn} />
+                  ) : (
+                    <StrokeImg src={WhiteBtn} />
+                  )}
                 </RadioBtn>
                 개인정보 수집 및 이용동의 (필수) <Right src={RightImg} />
               </AgreeBox>

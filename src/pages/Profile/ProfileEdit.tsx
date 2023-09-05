@@ -10,7 +10,7 @@ const HeaderContainer = styled.div`
 const ProfileEdit = () => {
   return (
     <HeaderContainer>
-      <ResumStatusBar />
+      <ResumStatusBar background={"#B3BACB"} />
       <ResumeSetProfileForm />
     </HeaderContainer>
   );

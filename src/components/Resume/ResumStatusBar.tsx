@@ -37,6 +37,10 @@ const Circle = styled.div`
   border: 4px solid white;
 `;
 
+const Circle2 = styled(Circle)<{ $backgroundColor?: string }>`
+  background-color: ${(props) => props.$backgroundColor};
+`;
+
 const ResumStatusProfileContainer = styled.div`
   display: flex;
   justify-content: space-around;
@@ -49,13 +53,13 @@ const ResumStatusProfileText = styled.div`
   line-height: 12px;
 `;
 
-const ResumStatusBar = () => {
+const ResumStatusBar = (props: any) => {
   return (
     <HeaderContainer>
       <Line />
       <CircleContainer>
         <Circle>1</Circle>
-        <Circle>2</Circle>
+        <Circle2 $backgroundColor={props.background}>2</Circle2>
       </CircleContainer>
       <ResumStatusProfileContainer>
         <ResumStatusProfileText>내 프로필 설정</ResumStatusProfileText>

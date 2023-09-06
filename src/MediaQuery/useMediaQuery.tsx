@@ -1,17 +1,22 @@
 import React from "react";
-
 import { useMediaQuery } from "react-responsive";
 
 interface Props {
   children: React.ReactNode;
 }
 
-const MobileResumStatusBar = ({ children }: Props) => {
+export const MobileResumStatusBar = ({ children }: Props) => {
   const isMobile = useMediaQuery({
-    query: "(max-width:599px",
+    query: "(max-width: 599px)",
   });
 
   return <>{isMobile && children}</>;
 };
 
-export default MobileResumStatusBar;
+export const PcResumeStatusBar = ({ children }: Props) => {
+  const isPc = useMediaQuery({
+    query: "(min-width: 600px)",
+  });
+
+  return <>{isPc && children}</>;
+};

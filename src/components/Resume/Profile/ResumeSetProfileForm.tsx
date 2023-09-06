@@ -10,7 +10,7 @@ const ResumeContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
-  margin: 47px 0 20px 0;
+  margin: 0px 0 20px 0;
   font-family: Pretendard;
 `;
 
@@ -18,6 +18,11 @@ const ResumeForm = styled.form`
   max-width: 1024px;
   margin: 0 auto;
   padding: 0 20px;
+
+  @media screen and (max-width: 599px) {
+    padding: 80px 20px 20px 20px;
+    box-sizing: border-box;
+  }
 `;
 
 const ResumeMainTitle = styled.div`
@@ -141,6 +146,10 @@ const ResumFooter = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 110px;
+
+  @media screen and (max-width: 599px) {
+    display: none;
+  }
 `;
 
 const ResumFooterTitle = styled.div`

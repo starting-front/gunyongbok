@@ -1,4 +1,14 @@
+// MediaQuery
+import {
+  MobileResumStatusBar,
+  PcResumeStatusBar,
+} from "../../MediaQuery/useMediaQuery";
+
+// CSS
 import styled from "styled-components";
+
+// React-icons
+import { HiArrowLeft } from "react-icons/hi";
 
 const HeaderContainer = styled.div`
   width: 100%;
@@ -6,6 +16,8 @@ const HeaderContainer = styled.div`
   position: relative;
   font-family: Pretendard;
   margin: 50px auto;
+  
+  }
 `;
 
 const Line = styled.div`
@@ -53,19 +65,83 @@ const ResumStatusProfileText = styled.div`
   line-height: 12px;
 `;
 
-const ResumStatusBar = (props: any) => {
+const ResumeMobileFlex = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  box-sizing: border-box;
+  position: fixed;
+  width: 100%;
+  right: 0;
+  left: 0;
+  max-width: 1024px;
+  background-color: white;
+  z-index: 10;
+`;
+
+const ResumeNextTitle = styled.div`
+  color: #8644ff;
+  font-size: 17px;
+  line-height: 22px;
+  font-weight: bold;
+  cursor: pointer;
+`;
+
+const ResumeLine = styled.div`
+  height: 5px;
+  background-color: #e7daff;
+  position: fixed;
+  top: 60px;
+  right: 0;
+  left: 0;
+  z-index: 10;
+
+  &::before {
+    display: block;
+    content: "";
+    width: 50%;
+    background-color: #8644ff;
+    height: 4px;
+    top: 3px;
+  }
+`;
+
+const ResumStatusBar = ({ background }: { background: string }) => {
   return (
-    <HeaderContainer>
-      <Line />
-      <CircleContainer>
-        <Circle>1</Circle>
-        <Circle2 $backgroundColor={props.background}>2</Circle2>
-      </CircleContainer>
-      <ResumStatusProfileContainer>
-        <ResumStatusProfileText>내 프로필 설정</ResumStatusProfileText>
-        <ResumStatusProfileText>포트폴리오 업로드</ResumStatusProfileText>
-      </ResumStatusProfileContainer>
-    </HeaderContainer>
+    <>
+      <PcResumeStatusBar>
+        <HeaderContainer>
+          <Line />
+          <CircleContainer>
+            <Circle>1</Circle>
+            <Circle2 $backgroundColor={background}>2</Circle2>
+          </CircleContainer>
+          <ResumStatusProfileContainer>
+            <ResumStatusProfileText>내 프로필 설정</ResumStatusProfileText>
+            <ResumStatusProfileText>포트폴리오 업로드</ResumStatusProfileText>
+          </ResumStatusProfileContainer>
+        </HeaderContainer>
+      </PcResumeStatusBar>
+      <MobileResumStatusBar>
+        <ResumeMobileFlex>
+          <div
+            style={{
+              fontSize: "16px",
+              display: "flex",
+              alignItems: "center",
+              fontWeight: "bold",
+            }}
+          >
+            <HiArrowLeft style={{ cursor: "pointer", fontSize: "18px" }} />
+            <span style={{ marginLeft: "8px" }}>내 프로필 설정</span>
+          </div>
+          <div>
+            <ResumeNextTitle>다음</ResumeNextTitle>
+          </div>
+        </ResumeMobileFlex>
+        <ResumeLine />
+      </MobileResumStatusBar>
+    </>
   );
 };
 

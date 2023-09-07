@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 // Util
 import validateEmail from "../../../util/validateEmail";
@@ -290,6 +290,7 @@ const ResumeSetProfileForm = () => {
           <ResumeInput
             placeholder="휴대폰 번호를 입력해 주세요"
             className="tel"
+            value={tel}
             onChange={(e) => setTel(e.target.value)}
           />
           <div style={{ display: "flex" }}>

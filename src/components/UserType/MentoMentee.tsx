@@ -17,7 +17,7 @@ const hoverBackground = keyframes`
 
   }
   to{
-    opacity: 1;
+    opacity: 1
     transform: scale(1);
   }
 `;
@@ -34,6 +34,7 @@ const UserType = {
     position: relative;
     overflow: hidden;
     color: #050505;
+    z-index: 10;
 
     &:hover {
       background-color: #fafafa;
@@ -69,29 +70,29 @@ const UserType = {
     line-height: 20px;
   `,
 };
-interface MentoMenteeProps {
-  onUserTypeClick: (role: string) => void;
+
+interface Props {
+  onUserTypeClick: (id: number) => void;
 }
 
-const MentoMentee = ({ onUserTypeClick }: MentoMenteeProps) => {
+const MentoMentee = ({ onUserTypeClick }: Props) => {
   const [clickUserTypeId, setClickUserTypeId] = useState<number>(0);
 
   // 클릭한 회원유형 Id Get
-  const handleBackgroundClick = (id: number, role: string) => {
+  const handleBackgroundClick = (id: number) => {
     setClickUserTypeId(id);
-    onUserTypeClick(role);
+    // onUserTypeClick(id);
   };
 
   return (
     <>
       {userTypeSelect?.map((userTypeData, _) => {
         const isClicked = userTypeData.id === clickUserTypeId;
+
         return (
           <UserType.Background
             key={userTypeData.id}
-            onClick={() =>
-              handleBackgroundClick(userTypeData.id, userTypeData.role)
-            }
+            onClick={() => handleBackgroundClick(userTypeData.id)}
             className={isClicked ? "userActive" : ""}
           >
             <UserType.img src={userTypeData.iconSrc} alt="" />

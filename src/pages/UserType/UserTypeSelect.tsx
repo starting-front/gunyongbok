@@ -1,15 +1,15 @@
 // CSS
-import styled from 'styled-components';
+import styled from "styled-components";
 
 // Components
-import UserTypeHeader from '../../components/UserType/UserTypeHeader/UserTypeHeader';
-import MentoMentee from '../../components/UserType/MentoMentee';
+import UserTypeHeader from "../../components/UserType/UserTypeHeader/UserTypeHeader";
+import MentoMentee from "../../components/UserType/MentoMentee";
 
 // Hook
-import { useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import { useLocation } from "react-router-dom";
+import { useState } from "react";
 
-import axios from 'axios';
+import axios from "axios";
 
 const UserSelect = {
   Wrapper: styled.div`
@@ -72,8 +72,8 @@ const UserTypeSelect = () => {
   const [userInfo, setUserInfo] = useState({});
   const serverUrl = import.meta.env.VITE_REACT_APP_DEFAULT_SERVER_URL;
 
-  const handleUserTypeClick = (role: string) => {
-    state['role'] = role;
+  const handleUserTypeClick = (id: number) => {
+    state["role"] = id;
     setUserInfo(state);
   };
 

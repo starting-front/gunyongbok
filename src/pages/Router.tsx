@@ -5,9 +5,11 @@ import SignUp from "./User/SignUp";
 import Home from "./Home";
 import UserTypeSelect from "./UserType/UserTypeSelect";
 import Portfolio from "./Portfolio/Portfolio";
+import ProfileEdit from "./Profile/ProfileEdit";
+import PortfolioUpload from "./Profile/PortfolioUpload";
 
 const Router = () => {
-  const [isInLogged, setisInLogged] = useState(false);
+  const [isInLogged] = useState(false);
 
   return (
     <>
@@ -23,6 +25,8 @@ const Router = () => {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/usertype" element={<UserTypeSelect />} />
           <Route path="/myportfolio" element={<Portfolio />} />
+          <Route path="/profile/edit" element={<ProfileEdit />} />
+          <Route path="/profile/upload" element={<PortfolioUpload />} />
         </Routes>
       )}
     </>

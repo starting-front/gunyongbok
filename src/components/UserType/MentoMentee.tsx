@@ -71,11 +71,11 @@ const UserType = {
   `,
 };
 
-interface Props {
-  onUserTypeClick: (id: number) => void;
-}
+// interface Props {
+//   onUserTypeClick: (id: number) => void;
+// }
 
-const MentoMentee = ({ onUserTypeClick }: Props) => {
+const MentoMentee = () => {
   const [clickUserTypeId, setClickUserTypeId] = useState<number>(0);
 
   // 클릭한 회원유형 Id Get

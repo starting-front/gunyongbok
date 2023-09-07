@@ -94,7 +94,8 @@ const UserTypeSelect = () => {
           <UserTypeHeader title="회원유형 선택" />
         </UserSelect.Header>
         <UserSelect.Main>
-          <MentoMentee onUserTypeClick={handleUserTypeClick} />
+          <MentoMentee />
+          {/* <MentoMentee onUserTypeClick={handleUserTypeClick} /> */}
           <UserSelect.Button onClick={SubmitSignUpInfo}>다음</UserSelect.Button>
         </UserSelect.Main>
       </UserSelect.Container>

@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 
+// Util
+import validateEmail from "../../../util/validateEmail";
+
 // CSS
 import styled from "styled-components";
 
@@ -20,7 +23,7 @@ const ResumeForm = styled.form`
   padding: 0 20px;
 
   @media screen and (max-width: 599px) {
-    padding: 80px 20px 20px 20px;
+    padding: 80px 20px 100px 20px;
     box-sizing: border-box;
   }
 `;
@@ -182,14 +185,15 @@ const ResumeUserKeywords = styled.span`
 `;
 
 const ResumeSetProfileForm = () => {
-  const [isPublicEmail, setIsPublicEmail] = useState(true);
-  const [isPublicTel, setisPublicTel] = useState(false);
-  const [legnthExceed, setLengthExceed] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [tel, setTel] = useState("");
   const [introduce, setIntroduce] = useState("");
   const [myKeywords, setMyKeywords] = useState<string[] | []>([]);
+  const [isPublicEmail, setIsPublicEmail] = useState(true);
+  const [isPublicTel, setisPublicTel] = useState(false);
+  //
+  const [legnthExceed, setLengthExceed] = useState(false);
   const [currentKeyword, setCurrentKeyword] = useState("");
 
   // 이메일 퍼블릭 버튼
@@ -207,7 +211,9 @@ const ResumeSetProfileForm = () => {
     }
   };
 
-  const handleKeywordInputKeyDown = (e: any) => {
+  const handleKeywordInputKeyDown = (
+    e: React.KeyboardEvent<HTMLInputElement>
+  ) => {
     if (e.key === "Enter" && currentKeyword) {
       if (currentKeyword.length >= 6)
         return alert("6글자 이내로 작성 부탁드립니다.");
@@ -223,6 +229,12 @@ const ResumeSetProfileForm = () => {
       (keyword) => keyword !== keywordToRemove
     );
     setMyKeywords(updatedKeywords);
+  };
+
+  const handleUploadPortfolio = () => {
+    const emailCheck = validateEmail(email);
+    if (name.trim().length < 2) return alert("이름을 제대로 입력해 주세요!");
+    if (!emailCheck) return alert("올바른 이메일 작성 부탁드립니다");
   };
 
   return (
@@ -293,6 +305,7 @@ const ResumeSetProfileForm = () => {
 
         <ResumeLabel>분야 / 직무</ResumeLabel>
         <FiledJob />
+
         <ResumeLabel>소개글</ResumeLabel>
         <div className="introduce" style={{ position: "relative" }}>
           <ResumeTextarea
@@ -334,7 +347,9 @@ const ResumeSetProfileForm = () => {
             justifyContent: "end",
           }}
         >
-          <ResumFooterTitle>포트폴리오 업로드하러가기</ResumFooterTitle>
+          <ResumFooterTitle onClick={handleUploadPortfolio}>
+            포트폴리오 업로드하러가기
+          </ResumFooterTitle>
         </div>
       </ResumFooter>
     </>

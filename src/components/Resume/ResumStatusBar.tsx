@@ -50,7 +50,8 @@ const Circle = styled.div`
 `;
 
 const Circle2 = styled(Circle)<{ $backgroundColor?: string }>`
-  background-color: ${(props) => props.$backgroundColor};
+  background-color: ${(props) =>
+    props.$backgroundColor === "1" ? "#B3BACB" : "#8644ff"};
 `;
 
 const ResumStatusProfileContainer = styled.div`

@@ -6,7 +6,7 @@ import UserTypeHeader from "../../components/UserType/UserTypeHeader/UserTypeHea
 import MentoMentee from "../../components/UserType/MentoMentee";
 
 // Hook
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 import { useState } from "react";
 
 import axios from "axios";
@@ -68,14 +68,15 @@ const UserSelect = {
 };
 
 const UserTypeSelect = () => {
-  const { state } = useLocation();
-  const [userInfo, setUserInfo] = useState({});
+  // const { state } = useLocation();
+  // const [userInfo, setUserInfo] = useState({});
+  const [userInfo] = useState({});
   const serverUrl = import.meta.env.VITE_REACT_APP_DEFAULT_SERVER_URL;
 
-  const handleUserTypeClick = (id: number) => {
-    state["role"] = id;
-    setUserInfo(state);
-  };
+  // const handleUserTypeClick = (id: number) => {
+  //   state["role"] = id;
+  //   setUserInfo(state);
+  // };
 
   // 로컬 회원가입
   const SubmitSignUpInfo = async () => {

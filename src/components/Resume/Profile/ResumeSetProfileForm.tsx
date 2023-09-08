@@ -8,6 +8,7 @@ import styled from "styled-components";
 
 // Components
 import FiledJob from "../../Card/FiledJob";
+import ResumeFooterTitle from "../ResumFooterTitle";
 
 const ResumeContainer = styled.div`
   display: flex;
@@ -137,38 +138,6 @@ const ResumText = styled.span`
   justify-content: center;
   margin: 0 8px 0 15px;
   white-space: nowrap;
-`;
-
-const ResumFooter = styled.div`
-  width: 100%;
-  height: 80px;
-  padding: 20px;
-  box-sizing: border-box;
-  background-color: #8644ff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 110px;
-
-  @media screen and (max-width: 599px) {
-    display: none;
-  }
-`;
-
-const ResumFooterTitle = styled.div`
-  width: 226px;
-  height: 44px;
-  cursor: pointer;
-  background-color: white;
-  border-radius: 56px;
-  color: #8644ff;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 20px; /* 142.857% */
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;
 
 const ResumeUserKeywords = styled.span`
@@ -339,20 +308,10 @@ const ResumeSetProfileForm = () => {
           </ResumeUserKeywords>
         ))}
       </ResumeForm>
-      <ResumFooter>
-        <div
-          style={{
-            width: "100%",
-            maxWidth: "1200px",
-            display: "flex",
-            justifyContent: "end",
-          }}
-        >
-          <ResumFooterTitle onClick={handleUploadPortfolio}>
-            포트폴리오 업로드하러가기
-          </ResumFooterTitle>
-        </div>
-      </ResumFooter>
+      <ResumeFooterTitle
+        title="포트폴리오 업로드 하러가기"
+        onClick={handleUploadPortfolio}
+      />
     </>
   );
 };

@@ -3,13 +3,28 @@ import TeamLogo from "../../assets/logo.svg";
 import NewsLogo from "../../assets/breaking_news.svg";
 import ProfileLogo from "../../assets/account_circle.svg";
 
-// 패딩 정적값이라 탭일때 반응형 구현 X -> 추후에 판단
-const HeaderBox = styled.div`
+const TopContainer = styled.div`
   width: 100%;
   max-width: 1280px;
   height: 100%;
   max-height: 80px;
   padding: 24px 200px 0px 200px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  @media (max-width: 1280px) {
+    padding: 24px 0 0 0;
+  }
+  @media (max-width: 599px) {
+    display: none;
+  }
+`;
+
+const HeaderMain = styled.div`
+  width: 100%;
+  max-width: 880px;
+  height: 100%;
+  max-height: 56px;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
@@ -51,19 +66,21 @@ const TextBox = styled.div`
 
 const Header = () => {
   return (
-    <HeaderBox>
-      <img src={TeamLogo} />
-      <BtnBox>
-        <SubBtnBox>
-          <img src={NewsLogo} />
-          <TextBox>내 이력서</TextBox>
-        </SubBtnBox>
-        <SubBtnBox>
-          <img src={ProfileLogo} />
-          <TextBox>마이페이지</TextBox>
-        </SubBtnBox>
-      </BtnBox>
-    </HeaderBox>
+    <TopContainer>
+      <HeaderMain>
+        <img src={TeamLogo} />
+        <BtnBox>
+          <SubBtnBox>
+            <img src={NewsLogo} />
+            <TextBox>내 이력서</TextBox>
+          </SubBtnBox>
+          <SubBtnBox>
+            <img src={ProfileLogo} />
+            <TextBox>마이페이지</TextBox>
+          </SubBtnBox>
+        </BtnBox>
+      </HeaderMain>
+    </TopContainer>
   );
 };
 

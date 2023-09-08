@@ -11,8 +11,6 @@ import ScrolledProfileWrapper from "./ScrolledProfileWrapper";
 const TopContainer = styled.div`
   width: 100%;
   height: 100vh;
-  max-width: 1280px;
-  max-height: 720px;
   background-color: #fafafa;
   display: flex;
   flex-direction: column;

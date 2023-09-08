@@ -39,8 +39,6 @@ import ErrorMessage from "../../commons/Text/ErrorMessage";
 const TopContainer = styled.div`
   width: 100%;
   height: 100vh;
-  max-width: 1280px;
-  max-height: 720px;
   background-color: #fafafa;
   display: flex;
   flex-direction: column;
@@ -95,13 +93,6 @@ const StrokeImg = styled.img`
   height: 20px;
 `;
 
-const FillImg = styled.img`
-  width: 12px;
-  height: 12px;
-  position: absolute;
-  top: 10px;
-`;
-
 interface FormData {
   username: string;
   email: string;
@@ -118,7 +109,6 @@ const SignUp = () => {
   const [fillBtnSelected, setFillBtnSelected] = useState<boolean>(false);
   const [strokeBtnSelected, setStrokeBtnSelected] = useState<boolean>(false);
 
-  console.log(fillBtnSelected);
   const [data, setData] = useState<FormData>({
     username: "",
     email: "",

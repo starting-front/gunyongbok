@@ -3,6 +3,8 @@ import styled from "styled-components";
 
 const HeaderWrapper = styled.div`
   margin-bottom: 40px;
+  padding: 0 20px;
+  box-sizing: border-box;
 `;
 
 const MainTitle = styled.div`

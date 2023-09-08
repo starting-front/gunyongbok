@@ -21,7 +21,7 @@ const SignUpHeader = () => {
   return (
     <HeaderContainer>
       <HeaderTitle>
-        <PageBackBtn src={BackArrow} alt="pageback" />
+        <PageBackBtn path="/signin" src={BackArrow} alt="pageback" />
         회원가입
       </HeaderTitle>
     </HeaderContainer>

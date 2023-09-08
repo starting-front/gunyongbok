@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 
 interface ContainerProps {
   children: ReactNode;
-  marginbottom?: string;
+  $marginbottom?: string;
   height: string;
 }
 
@@ -14,17 +14,17 @@ const InputContainer = styled.form<ContainerProps>`
   flex-direction: column;
   align-items: flex-start;
   gap: 12px;
-  margin-bottom: ${(props) => props.marginbottom};
-  height: ${(props) => props.height};
+  margin-bottom: ${({ $marginbottom }) => $marginbottom};
+  height: ${({ height }) => height};
 `;
 
 const SignInContainer = ({
   children,
-  marginbottom,
+  $marginbottom,
   height,
 }: ContainerProps) => {
   return (
-    <InputContainer height={height} marginbottom={marginbottom}>
+    <InputContainer $marginbottom={$marginbottom} height={height}>
       {children}
     </InputContainer>
   );

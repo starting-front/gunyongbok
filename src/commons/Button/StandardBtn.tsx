@@ -3,8 +3,8 @@ import { styled } from "styled-components";
 
 interface BtnProps {
   children: ReactNode;
-  background: string;
-  color: string;
+  $background: string;
+  $color: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   disabled?: boolean;
 }
@@ -20,8 +20,8 @@ const Btn = styled.button<BtnProps>`
   border-radius: 6px;
   border: none;
   cursor: pointer;
-  background: ${(props) => props.background};
-  color: ${(props) => props.color};
+  background: ${({ $background }) => $background};
+  color: ${({ $color }) => $color};
   font-family: Pretendard;
   font-size: 14px;
   font-style: normal;
@@ -30,8 +30,8 @@ const Btn = styled.button<BtnProps>`
 `;
 
 const StandardBtn = ({
-  background,
-  color,
+  $background,
+  $color,
   children,
   onClick,
   disabled,
@@ -46,8 +46,8 @@ const StandardBtn = ({
     <Btn
       disabled={disabled}
       onClick={handleClick}
-      background={background}
-      color={color}
+      $background={$background}
+      $color={$color}
     >
       {children}
     </Btn>

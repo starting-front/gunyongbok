@@ -136,7 +136,7 @@ const SignIn = () => {
           <SignInContainer height="148px" $marginbottom="40px">
             <StandardBtn
               onClick={handleLogin}
-              $color="#FFF"
+              color="#FFF"
               $background="#8644FF"
             >
               이메일로 로그인 또는 회원가입

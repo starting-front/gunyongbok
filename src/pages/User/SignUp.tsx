@@ -223,15 +223,15 @@ const SignUp = () => {
                 </ValidateBtn>
               </ValidateInputBox>
               {clicked && overLap && (
-                <ErrorMessage text="이미 사용중인 이메일입니다" />
+                <ErrorMessage $text="이미 사용중인 이메일입니다" />
               )}
 
               {clicked && !overLap && !validateEmail(data["email"]) && (
-                <ErrorMessage text="올바르지 않은 이메일 형식입니다" />
+                <ErrorMessage $text="올바르지 않은 이메일 형식입니다" />
               )}
 
               {clicked && !overLap && validateEmail(data["email"]) && (
-                <ErrorMessage text="사용가능한 이메일입니다" color="#303646" />
+                <ErrorMessage $text="사용가능한 이메일입니다" color="#303646" />
               )}
             </InputBox>
             <InputBox>
@@ -254,7 +254,7 @@ const SignUp = () => {
                 />
               )}
               {validatePassword(data["password"]) || (
-                <ErrorMessage text="8자 이상의 영문,숫자,특수문자가 포함 되어야 해요" />
+                <ErrorMessage $text="8자 이상의 영문,숫자,특수문자가 포함 되어야 해요" />
               )}
             </InputBox>
             <InputBox>
@@ -277,7 +277,7 @@ const SignUp = () => {
                 />
               )}
               {validateRePassword(data["password"], rePassword) || (
-                <ErrorMessage text="비밀번호가 일치하지 않습니다" />
+                <ErrorMessage $text="비밀번호가 일치하지 않습니다" />
               )}
             </InputBox>
             <InputBox>
@@ -313,9 +313,9 @@ const SignUp = () => {
                 약관에 모두 동의 (필수)
               </AgreeBox>
               <AgreeBox
-                padding="12px 6px 4px 6px"
+                $padding="12px 6px 4px 6px"
                 fontSize="12px"
-                border="none"
+                $border="none"
               >
                 <RadioBtn onClick={handleFillBtn} selected={fillBtnSelected}>
                   {fillBtnSelected ? (
@@ -335,12 +335,12 @@ const SignUp = () => {
               disabled={false}
               onClick={MoveToUserTypePage}
               color="#FFF"
-              background="#8644FF"
+              $background="#8644FF"
             >
               다음
             </StandardBtn>
           ) : (
-            <StandardBtn disabled={true} color="#FFF" background="#C6A7FF">
+            <StandardBtn disabled={true} color="#FFF" $background="#C6A7FF">
               다음
             </StandardBtn>
           )}

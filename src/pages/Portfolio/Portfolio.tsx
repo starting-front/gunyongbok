@@ -24,13 +24,13 @@ const TopContainer = styled.div`
 `;
 
 interface PortfolioWrapperProps {
-  scroll: boolean | string;
+  $scroll: boolean | string;
 }
 
 const PortfolioWrapper = styled.div<PortfolioWrapperProps>`
   width: 100%;
   max-width: 880px;
-  max-height: ${({ scroll }) => (scroll ? "600px" : "310px")};
+  max-height: ${({ $scroll }) => ($scroll ? "600px" : "310px")};
   padding: 32px 40px;
   box-sizing: border-box;
   gap: 20px;
@@ -41,7 +41,7 @@ const PortfolioWrapper = styled.div<PortfolioWrapperProps>`
   @media (max-width: 599px) {
     width: 100vw;
     height: 100%;
-    max-height: ${({ scroll }) => (scroll ? "100vh" : "calc(100vh - 314px)")};
+    max-height: ${({ $scroll }) => ($scroll ? "100vh" : "calc(100vh - 314px)")};
   }
 `;
 
@@ -77,7 +77,7 @@ const Portfolio = () => {
       <PortfolioWrapper
         ref={portfolioWrapperRef}
         onScroll={handleScroll}
-        scroll={scroll ? "true" : "false"}
+        $scroll={scroll ? "true" : "false"}
       >
         <DemoList></DemoList>
         <DemoList></DemoList>

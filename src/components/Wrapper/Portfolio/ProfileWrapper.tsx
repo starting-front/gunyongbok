@@ -33,7 +33,8 @@ const ProfileImg = styled.div`
   z-index: 2;
   @media (max-width: 599px) {
     top: 23%;
-    left: 36%;
+    left: 50%;
+    transform: translateX(-50%);
   }
 `;
 

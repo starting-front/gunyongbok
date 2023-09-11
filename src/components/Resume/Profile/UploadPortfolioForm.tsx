@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 
-import preview from "../../../assets/preview.svg";
+import previewImage from "../../../assets/preview.svg";
 import { HiOutlineChevronRight } from "react-icons/hi";
 
 // CSS
@@ -119,10 +119,12 @@ const UploadPortfolioForm = () => {
     }
   };
 
+  const PrviewClose = () => setPreView(false);
+
   return (
     <>
       <div style={{ maxWidth: "1024px", margin: "0 auto" }}>
-        {preView && <PdfViewer file={selectedFile} />}
+        {preView && <PdfViewer file={selectedFile} onClick={PrviewClose} />}
         {/* <PdfViewer file={selectedFile} /> */}
         <ResumeHeader
           MainTitle="포트폴리오 업로드"
@@ -131,7 +133,7 @@ const UploadPortfolioForm = () => {
         <div style={{ padding: "0 20px", boxSizing: "border-box" }}>
           <ImageTitle>포트폴리오 커버 페이지 등록하기</ImageTitle>
           <img
-            src={!imgSrc ? preview : imgSrc}
+            src={!imgSrc ? previewImage : imgSrc}
             alt="view"
             width={250}
             height={127}

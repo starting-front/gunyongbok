@@ -11,11 +11,22 @@ const PDFWrap = styled.div`
   top: 0;
   bottom: 0;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
 
-const PdfViewer = ({ file }: any) => {
+const PDFCloseBtn = styled.div`
+  padding: 20px;
+  margin-top: 20px;
+  background-color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  color: red;
+  font-weight: bold;
+`;
+
+const PdfViewer = ({ file, onClick }: any) => {
   if (file) {
     const objectUrl = URL.createObjectURL(file);
 
@@ -28,6 +39,7 @@ const PdfViewer = ({ file }: any) => {
           height="600px"
           style={{ maxWidth: "1024px" }}
         />
+        <PDFCloseBtn onClick={onClick}>닫기</PDFCloseBtn>
       </PDFWrap>
     );
   }

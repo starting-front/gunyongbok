@@ -1,7 +1,7 @@
 // CSS
 import styled from "styled-components";
 
-const HeaderWrapper = styled.div`
+const HeaderWrapper = styled.div<{ profile?: boolean }>`
   margin-bottom: 40px;
   padding: 0 20px;
   box-sizing: border-box;
@@ -28,10 +28,11 @@ const SubTitle = styled.div`
 interface Props {
   MainTitle: string;
   SubTitle: string;
+  profile?: boolean;
 }
 const ResumeHeader = (props: Props) => {
   return (
-    <HeaderWrapper>
+    <HeaderWrapper $profile={profile}>
       <MainTitle>{props.MainTitle}</MainTitle>
       <SubTitle>{props.SubTitle}</SubTitle>
     </HeaderWrapper>

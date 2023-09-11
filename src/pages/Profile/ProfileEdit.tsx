@@ -10,7 +10,7 @@ const Profile = styled.div`
 const ProfileEdit = () => {
   return (
     <Profile>
-      <ResumStatusBar background="1" />
+      <ResumStatusBar background="1" MobileLineWidth="50%" />
       <ResumeSetProfileForm />
     </Profile>
   );

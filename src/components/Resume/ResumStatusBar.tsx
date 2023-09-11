@@ -88,7 +88,7 @@ const ResumeNextTitle = styled.div`
   cursor: pointer;
 `;
 
-const ResumeLine = styled.div`
+const ResumeLine = styled.div<{ $MobileLineWidth: string }>`
   height: 5px;
   background-color: #e7daff;
   position: fixed;
@@ -100,14 +100,20 @@ const ResumeLine = styled.div`
   &::before {
     display: block;
     content: "";
-    width: 50%;
+    width: ${(props) => props.$MobileLineWidth};
     background-color: #8644ff;
     height: 4px;
     top: 3px;
   }
 `;
 
-const ResumStatusBar = ({ background }: { background: string }) => {
+const ResumStatusBar = ({
+  background,
+  MobileLineWidth,
+}: {
+  background: string;
+  MobileLineWidth: string;
+}) => {
   return (
     <>
       <PcResumeStatusBar>
@@ -140,7 +146,7 @@ const ResumStatusBar = ({ background }: { background: string }) => {
             <ResumeNextTitle>다음</ResumeNextTitle>
           </div>
         </ResumeMobileFlex>
-        <ResumeLine />
+        <ResumeLine $MobileLineWidth={MobileLineWidth} />
       </MobileResumStatusBar>
     </>
   );

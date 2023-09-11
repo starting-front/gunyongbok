@@ -12,7 +12,7 @@ const PortfolioUploadMain = styled.div`
 const PortfolioUpload = () => {
   return (
     <PortfolioUploadMain>
-      <ResumStatusBar background="2" />
+      <ResumStatusBar background="2" MobileLineWidth="100%" />
       <UploadPortfolioForm />
     </PortfolioUploadMain>
   );

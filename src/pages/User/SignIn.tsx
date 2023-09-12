@@ -130,7 +130,7 @@ const SignIn = () => {
               />
             </InputBox>
             {loginError && (
-              <ErrorMessage text="이메일 또는 비밀번호가 일치하지 않습니다." />
+              <ErrorMessage $text="이메일 또는 비밀번호가 일치하지 않습니다." />
             )}
           </SignInContainer>
           <SignInContainer height="148px" $marginbottom="40px">

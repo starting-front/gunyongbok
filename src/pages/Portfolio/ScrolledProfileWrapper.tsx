@@ -20,25 +20,51 @@ const ProfileBox = styled.div`
   height: 90px;
   max-width: 1280px;
   display: flex;
-  padding: 24px 200px 0px 200px;
+  padding: 24px 10% 0px 10%;
   box-sizing: border-box;
   justify-content: space-between;
   align-items: flex-start;
 `;
 
+const SelectedContainer = styled.div`
+  width: 100%;
+  height: 90px;
+  max-width: 1280px;
+  display: flex;
+  padding: 24px 10% 0px 10%;
+  box-sizing: border-box;
+  align-items: flex-start;
+  gap: 16px;
+`;
+
+// 포트폴리오 , 피드백 보기 버튼 활성화 시킬때 분리하고 재사용 컴포넌트로 구성 예정 - 1
 const TabWrapper = styled.div`
   width: 74px;
   height: 28px;
   gap: 4px;
-  position: absolute;
-  left: 200px;
-  bottom: -3px;
   display: flex;
   flex-direction: column;
 `;
 
 const TabText = styled.div`
   color: #303646;
+  font-family: Pretendard;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 600;
+`;
+
+// 포트폴리오 , 피드백 보기 버튼 활성화 시킬때 분리하고 재사용 컴포넌트로 구성 예정 - 2
+const TabWrapper1 = styled.div`
+  width: 74px;
+  height: 28px;
+  gap: 4px;
+  display: flex;
+  flex-direction: column;
+`;
+
+const TabText1 = styled.div`
+  color: #b3bacb;
   font-family: Pretendard;
   font-size: 17px;
   font-style: normal;
@@ -58,10 +84,15 @@ const ScrolledProfileWrapper = () => {
         <UserInfoBox />
         <KeyContainer />
       </ProfileBox>
-      <TabWrapper>
-        <TabText>포트폴리오</TabText>
-        <TabIndicator />
-      </TabWrapper>
+      <SelectedContainer>
+        <TabWrapper>
+          <TabText>포트폴리오</TabText>
+          <TabIndicator />
+        </TabWrapper>
+        <TabWrapper1>
+          <TabText1>피드백보기</TabText1>
+        </TabWrapper1>
+      </SelectedContainer>
     </ScrollProfileWrapper>
   );
 };

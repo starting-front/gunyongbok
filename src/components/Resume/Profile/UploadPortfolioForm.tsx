@@ -1,6 +1,10 @@
+// React
 import { useState, useRef } from "react";
 
+// SVG
 import previewImage from "../../../assets/preview.svg";
+
+// lib
 import { HiOutlineChevronRight } from "react-icons/hi";
 
 // CSS
@@ -129,6 +133,7 @@ const UploadPortfolioForm = () => {
         <ResumeHeader
           MainTitle="포트폴리오 업로드"
           SubTitle="알찬 피드백을 받을 포트폴리오를 업로드 해볼까요"
+          paddingBottom="90"
         />
         <div style={{ padding: "0 20px", boxSizing: "border-box" }}>
           <ImageTitle>포트폴리오 커버 페이지 등록하기</ImageTitle>

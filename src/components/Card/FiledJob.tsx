@@ -1,6 +1,10 @@
-import { useState } from "react";
+// React
+import { useEffect, useState } from "react";
 
-// React Icons
+// Custom Hooks
+import useAcitivity from "../../hooks/useActivity";
+
+// lib
 import { FaAngleUp } from "react-icons/fa";
 
 // CSS
@@ -82,15 +86,20 @@ const FiledJobWrapper = styled.div`
   }
 `;
 
+const FIELD_DEFAULT = "분야를 선택해주세요";
+const JOB_DEFAULT = "직무를 선택해주세요";
+
 const FiledJob = () => {
-  const [fieldTitle, setFieldTitle] = useState("분야를 선택해주세요");
-  const [jobTitle, setJobTitle] = useState("직무를 선택해주세요");
+  const [fieldTitle, setFieldTitle] = useState(FIELD_DEFAULT);
+  const [jobTitle, setJobTitle] = useState(JOB_DEFAULT);
   const [userField, setUserField] = useState(false);
   const [userJob, setUserJob] = useState(false);
 
+  const { updateStatusBtn } = useAcitivity();
+
   const hasUpdateUserField = () => setUserField((prev) => !prev);
   const hasUpdateUserJob = () => {
-    if (fieldTitle === "분야를 선택해주세요") {
+    if (fieldTitle === FIELD_DEFAULT) {
       return alert("분야 먼저 선택해 주세요");
     }
     setUserJob((prev) => !prev);
@@ -106,6 +115,11 @@ const FiledJob = () => {
     setJobTitle(name);
     setUserJob(false);
   };
+
+  useEffect(() => {
+    if (fieldTitle !== FIELD_DEFAULT && jobTitle !== JOB_DEFAULT)
+      return updateStatusBtn(true);
+  }, [fieldTitle, jobTitle]);
 
   return (
     <SelectWrap>

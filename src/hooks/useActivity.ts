@@ -6,7 +6,7 @@ const useAcitivity = () => {
 
   const updateStatusBtn = (status: boolean) => setAcitivityBtn(status);
 
-  return [activityBtn, updateStatusBtn];
+  return { activityBtn, updateStatusBtn };
 };
 
 export default useAcitivity;

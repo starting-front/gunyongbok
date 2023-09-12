@@ -154,14 +154,19 @@ const ResumeUserKeywords = styled.span`
 `;
 
 const ResumeSetProfileForm = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [tel, setTel] = useState("");
-  const [introduce, setIntroduce] = useState("");
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    tel: "",
+    introduce: "",
+  });
   const [myKeywords, setMyKeywords] = useState<string[] | []>([]);
+
+  // 이메일, 전화번호 공개 비공개
   const [isPublicEmail, setIsPublicEmail] = useState(true);
   const [isPublicTel, setisPublicTel] = useState(false);
-  //
+
+  // 현재 문자열 길이, 맥시멈 길이
   const [legnthExceed, setLengthExceed] = useState(false);
   const [currentKeyword, setCurrentKeyword] = useState("");
 
@@ -170,9 +175,16 @@ const ResumeSetProfileForm = () => {
   // 전화번호 퍼블릭 버튼
   const togglePublicTelBtn = () => setisPublicTel((prev) => !prev);
 
-  const hasUpdateIntroduce = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const { value } = e.target;
-    setIntroduce(value);
+  // input 값 업데이트
+  const updateInputValue = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({
+      [name]: value,
+      ...prev,
+    }));
+
     if (value.length > 30) {
       setLengthExceed(true);
     } else {
@@ -201,9 +213,12 @@ const ResumeSetProfileForm = () => {
   };
 
   const handleUploadPortfolio = () => {
+    const { name, email, tel, introduce } = form;
     const emailCheck = validateEmail(email);
     if (name.trim().length < 2) return alert("이름을 제대로 입력해 주세요!");
     if (!emailCheck) return alert("올바른 이메일 작성 부탁드립니다");
+    if (tel.trim().length < 5)
+      return alert("핸드폰 번호의 길이는 최소 5글자 이상 입니다.");
   };
 
   return (
@@ -219,8 +234,9 @@ const ResumeSetProfileForm = () => {
         <ResumeInput
           placeholder="이름을 입력해 주세요"
           type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={form.name}
+          name="name"
+          onChange={updateInputValue}
         />
 
         <ResumeLabel>이메일</ResumeLabel>
@@ -235,7 +251,9 @@ const ResumeSetProfileForm = () => {
             placeholder="이메일을 입력해 주세요"
             className="email"
             type="email"
-            onChange={(e) => setEmail(e.target.value)}
+            name="email"
+            value={form.email}
+            onChange={updateInputValue}
           />
           <div style={{ display: "flex" }}>
             <ResumText>{isPublicEmail ? "공개" : "비공개"} </ResumText>
@@ -259,8 +277,9 @@ const ResumeSetProfileForm = () => {
           <ResumeInput
             placeholder="휴대폰 번호를 입력해 주세요"
             className="tel"
-            value={tel}
-            onChange={(e) => setTel(e.target.value)}
+            value={form.tel}
+            name="tel"
+            onChange={updateInputValue}
           />
           <div style={{ display: "flex" }}>
             <ResumText>{isPublicTel ? "공개" : "비공개"}</ResumText>
@@ -280,10 +299,12 @@ const ResumeSetProfileForm = () => {
         <div className="introduce" style={{ position: "relative" }}>
           <ResumeTextarea
             placeholder="나를 잘 표현하는 멋진 소개문구를 적어주세요"
-            onChange={hasUpdateIntroduce}
+            name="introduce"
+            value={form.introduce}
+            onChange={updateInputValue}
           />
           <ResumIntroduceTextLength $legnthExceed={legnthExceed}>
-            ({introduce.length}/30)
+            ({form.introduce.length}/30)
           </ResumIntroduceTextLength>
         </div>
 

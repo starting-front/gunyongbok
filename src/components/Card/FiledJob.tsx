@@ -95,7 +95,7 @@ const FiledJob = () => {
   const [userField, setUserField] = useState(false);
   const [userJob, setUserJob] = useState(false);
 
-  const { updateStatusBtn } = useAcitivity();
+  const [activityBtn, updateStatusBtn] = useAcitivity();
 
   const hasUpdateUserField = () => setUserField((prev) => !prev);
   const hasUpdateUserJob = () => {
@@ -118,8 +118,10 @@ const FiledJob = () => {
 
   useEffect(() => {
     if (fieldTitle !== FIELD_DEFAULT && jobTitle !== JOB_DEFAULT)
-      return updateStatusBtn(true);
-  }, [fieldTitle, jobTitle]);
+      return updateStatusBtn(false);
+
+    console.log(activityBtn);
+  }, [fieldTitle, jobTitle, activityBtn]);
 
   return (
     <SelectWrap>

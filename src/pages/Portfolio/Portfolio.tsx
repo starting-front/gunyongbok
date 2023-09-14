@@ -8,7 +8,8 @@ import Header from "../../components/Header/PortfolioHeader";
 import ProfileWrapper from "../../components/Wrapper/Portfolio/ProfileWrapper";
 import ScrolledProfileWrapper from "./ScrolledProfileWrapper";
 
-import Data from "../../components/Wrapper/Portfolio/portFolioData";
+// Portfolio
+import PortfolioContent from "../../components/Wrapper/Portfolio/PortfolioContent";
 
 const TopContainer = styled.div`
   width: 100%;
@@ -58,57 +59,6 @@ const PortfilioTitle = styled.div`
   font-weight: 600;
 `;
 
-// 분리
-const Container = styled.div`
-  width: 255px;
-  height: 240px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  @media (max-width: 599px) {
-    width: 100%;
-  }
-`;
-
-const ImgBox = styled.img`
-  width: 256px;
-  height: 192px;
-  border-radius: 4px;
-  margin-bottom: 12px;
-  @media (max-width: 599px) {
-    width: 100%;
-  }
-`;
-
-const DateBox = styled.div`
-  width: fit-content;
-  color: #626e8e;
-  font-family: Pretendard;
-  font-size: 11px;
-  font-style: normal;
-  font-weight: 600;
-  margin-bottom: 4px;
-`;
-
-const TitleBox = styled.div`
-  width: fit-content;
-  color: #050505;
-  font-family: Pretendard;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-`;
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  max-width: 800px;
-  @media (max-width: 599px) {
-    width: 100%;
-  }
-`;
-
 const Portfolio = () => {
   const portfolioWrapperRef = useRef<HTMLDivElement | null>(null);
   const [scroll, setScroll] = useState<boolean>(false);
@@ -133,15 +83,7 @@ const Portfolio = () => {
         $scroll={scroll ? "true" : "false"}
       >
         <PortfilioTitle>제 포트폴리오에요</PortfilioTitle>
-        <Wrapper>
-          {Data.map((item) => (
-            <Container key={item.id}>
-              <ImgBox src={item.img.Apple} alt="Portfolio Image" />
-              <DateBox>{item.date}</DateBox>
-              <TitleBox>{item.title}</TitleBox>
-            </Container>
-          ))}
-        </Wrapper>
+        <PortfolioContent />
       </PortfolioWrapper>
     </TopContainer>
   );

@@ -8,6 +8,8 @@ const ScrollProfileWrapper = styled.div`
   max-height: 139px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: relative;
   background: #fff;
   @media (max-width: 599px) {
@@ -15,12 +17,20 @@ const ScrollProfileWrapper = styled.div`
   }
 `;
 
+const ScrollProfileContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  max-width: 880px;
+  display: flex;
+  flex-direction: column;
+`;
+
 const ProfileBox = styled.div`
   width: 100%;
   height: 90px;
-  max-width: 1280px;
+  max-width: 880px;
   display: flex;
-  padding: 24px 10% 0px 10%;
+  padding-top: 24px;
   box-sizing: border-box;
   justify-content: space-between;
   align-items: flex-start;
@@ -29,9 +39,9 @@ const ProfileBox = styled.div`
 const SelectedContainer = styled.div`
   width: 100%;
   height: 90px;
-  max-width: 1280px;
+  max-width: 880px;
   display: flex;
-  padding: 24px 10% 0px 10%;
+  padding-top: 24px;
   box-sizing: border-box;
   align-items: flex-start;
   gap: 16px;
@@ -80,19 +90,21 @@ const TabIndicator = styled.div`
 const ScrolledProfileWrapper = () => {
   return (
     <ScrollProfileWrapper>
-      <ProfileBox>
-        <UserInfoBox />
-        <KeyContainer />
-      </ProfileBox>
-      <SelectedContainer>
-        <TabWrapper>
-          <TabText>포트폴리오</TabText>
-          <TabIndicator />
-        </TabWrapper>
-        <TabWrapper1>
-          <TabText1>피드백보기</TabText1>
-        </TabWrapper1>
-      </SelectedContainer>
+      <ScrollProfileContainer>
+        <ProfileBox>
+          <UserInfoBox />
+          <KeyContainer />
+        </ProfileBox>
+        <SelectedContainer>
+          <TabWrapper>
+            <TabText>포트폴리오</TabText>
+            <TabIndicator />
+          </TabWrapper>
+          <TabWrapper1>
+            <TabText1>피드백보기</TabText1>
+          </TabWrapper1>
+        </SelectedContainer>
+      </ScrollProfileContainer>
     </ScrollProfileWrapper>
   );
 };

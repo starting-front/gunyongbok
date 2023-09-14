@@ -5,7 +5,6 @@ import ProfileLogo from "../../assets/account_circle_white.svg";
 
 const TopContainer = styled.div`
   width: 100%;
-  max-width: 1280px;
   height: 100%;
   max-height: 80px;
   padding: 24px 200px 0px 200px;

@@ -34,16 +34,16 @@ interface PortfolioWrapperProps {
 const PortfolioWrapper = styled.div<PortfolioWrapperProps>`
   width: 100%;
   max-width: 880px;
+  height: ${({ $scroll }) => ($scroll ? "600px" : "310px")};
   padding: 32px 40px;
   box-sizing: border-box;
   gap: 20px;
-  border-radius: 12px;
+  border-radius: ${({ $scroll }) => ($scroll === "true" ? "0" : "12px")};
   border: 1px solid #ccd0dc;
   background: #fff;
   overflow: auto;
   display: flex;
   flex-direction: column;
-  height: ${({ $scroll }) => ($scroll ? "600px" : "310px")};
   @media (max-width: 599px) {
     width: 100vw;
     height: ${({ $scroll }) => ($scroll ? "100vh" : "calc(100vh - 314px)")};
@@ -73,7 +73,6 @@ const Portfolio = () => {
     }
   };
 
-  console.log(scroll);
   return (
     <TopContainer>
       {scroll ? <ScrollHeader /> : <Header />}

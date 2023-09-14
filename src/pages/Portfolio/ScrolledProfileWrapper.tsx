@@ -47,7 +47,8 @@ const SelectedContainer = styled.div`
   gap: 16px;
 `;
 
-// 포트폴리오 , 피드백 보기 버튼 활성화 시킬때 분리하고 재사용 컴포넌트로 구성 예정 - 1
+// 포트폴리오 , 피드백 보기 버튼 활성화 시킬때 분리하고 재사용 컴포넌트로 구성 예정
+// 추후에 수정 예정
 const TabWrapper = styled.div`
   width: 74px;
   height: 28px;
@@ -62,15 +63,6 @@ const TabText = styled.div`
   font-size: 17px;
   font-style: normal;
   font-weight: 600;
-`;
-
-// 포트폴리오 , 피드백 보기 버튼 활성화 시킬때 분리하고 재사용 컴포넌트로 구성 예정 - 2
-const TabWrapper1 = styled.div`
-  width: 74px;
-  height: 28px;
-  gap: 4px;
-  display: flex;
-  flex-direction: column;
 `;
 
 const TabText1 = styled.div`
@@ -100,9 +92,9 @@ const ScrolledProfileWrapper = () => {
             <TabText>포트폴리오</TabText>
             <TabIndicator />
           </TabWrapper>
-          <TabWrapper1>
+          <TabWrapper>
             <TabText1>피드백보기</TabText1>
-          </TabWrapper1>
+          </TabWrapper>
         </SelectedContainer>
       </ScrollProfileContainer>
     </ScrollProfileWrapper>

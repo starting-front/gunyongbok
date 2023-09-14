@@ -1,14 +1,12 @@
 // React
 import { useState } from "react";
 
-const useAcitivity = () => {
+function useAcitivity(): [boolean, (value: boolean) => void] {
   const [activityBtn, setAcitivityBtn] = useState(false);
 
-  const updateStatusBtn = (status: boolean) => {
-    setAcitivityBtn(status);
-  };
+  const updateStatusBtn = (value: boolean) => setAcitivityBtn(value);
 
   return [activityBtn, updateStatusBtn];
-};
+}
 
 export default useAcitivity;

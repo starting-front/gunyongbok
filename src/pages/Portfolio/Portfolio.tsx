@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 
 // Header
 import Header from "../../components/Header/PortfolioHeader";
+import ScrollHeader from "../../components/Header/PortfolioScrollHeader";
 
 // User Info
 import ProfileWrapper from "../../components/Wrapper/Portfolio/ProfileWrapper";
@@ -75,7 +76,7 @@ const Portfolio = () => {
   console.log(scroll);
   return (
     <TopContainer>
-      <Header />
+      {scroll ? <ScrollHeader /> : <Header />}
       {scroll ? <ScrolledProfileWrapper /> : <ProfileWrapper />}
       <PortfolioWrapper
         ref={portfolioWrapperRef}

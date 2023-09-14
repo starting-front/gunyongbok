@@ -34,7 +34,7 @@ interface PortfolioWrapperProps {
 const PortfolioWrapper = styled.div<PortfolioWrapperProps>`
   width: 100%;
   max-width: 880px;
-  padding: 32px 33px;
+  padding: 32px 40px;
   box-sizing: border-box;
   gap: 20px;
   border-radius: 12px;

@@ -11,6 +11,7 @@ const TopContainer = styled.div`
   box-sizing: border-box;
   display: flex;
   justify-content: center;
+
   background: linear-gradient(91deg, #c89eff 0%, #ff89c2 118.52%);
   @media (max-width: 1280px) {
     padding: 24px 0 0 0;

@@ -1,8 +1,11 @@
 // CSS
 import styled from "styled-components";
 
-const HeaderWrapper = styled.div`
+const HeaderWrapper = styled.div<{ $paddingBottom?: string }>`
   margin-bottom: 40px;
+  padding: 0 20px;
+  box-sizing: border-box;
+  padding-top: ${(props) => props.$paddingBottom}px;
 `;
 
 const MainTitle = styled.div`
@@ -26,10 +29,11 @@ const SubTitle = styled.div`
 interface Props {
   MainTitle: string;
   SubTitle: string;
+  paddingBottom?: string;
 }
 const ResumeHeader = (props: Props) => {
   return (
-    <HeaderWrapper>
+    <HeaderWrapper $paddingBottom={props.paddingBottom}>
       <MainTitle>{props.MainTitle}</MainTitle>
       <SubTitle>{props.SubTitle}</SubTitle>
     </HeaderWrapper>

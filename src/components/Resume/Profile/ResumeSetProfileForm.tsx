@@ -216,9 +216,13 @@ const ResumeSetProfileForm = () => {
     const { name, email, tel, introduce } = form;
     const emailCheck = validateEmail(email);
     if (name.trim().length < 2) return alert("이름을 제대로 입력해 주세요!");
-    if (!emailCheck) return alert("올바른 이메일 작성 부탁드립니다");
+    if (!emailCheck) return alert("올바른 이메일 작성 부탁 드립니다 !");
     if (tel.trim().length < 5)
-      return alert("핸드폰 번호의 길이는 최소 5글자 이상 입니다.");
+      return alert("핸드폰 번호의 길이는 최소 5글자 이상 입니다 !");
+    if (introduce.trim().length > 30)
+      return alert("자기소개는 30글자 이내로 가능 합니다 !");
+    if (introduce.trim().length < 5)
+      return alert("5글자 이상으로 자기소개를 작성해 주세요!");
   };
 
   return (

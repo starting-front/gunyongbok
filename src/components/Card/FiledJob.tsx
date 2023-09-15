@@ -1,8 +1,5 @@
 // React
-import { useEffect, useState } from "react";
-
-// Custom Hooks
-import useAcitivity from "../../hooks/useActivity";
+import { useState } from "react";
 
 // lib
 import { FaAngleUp } from "react-icons/fa";
@@ -31,7 +28,7 @@ const SelectWrap = styled.div`
 
 const SelectContainer = styled.div`
   width: 100%;
-
+  position: relative;
   @media screen and (max-width: 599px) {
     margin-bottom: 12px;
   }
@@ -90,14 +87,21 @@ const FIELD_DEFAULT = "분야를 선택해주세요";
 const JOB_DEFAULT = "직무를 선택해주세요";
 
 const FiledJob = () => {
+  // Default or userFiled, userJob
   const [fieldTitle, setFieldTitle] = useState(FIELD_DEFAULT);
   const [jobTitle, setJobTitle] = useState(JOB_DEFAULT);
+
+  // hasAcitivityStatus
   const [userField, setUserField] = useState(false);
   const [userJob, setUserJob] = useState(false);
 
-  const [activityBtn, updateStatusBtn] = useAcitivity();
+  // filedJob Container Status
+  const [test, setTest] = useState<null | Boolean>(null);
 
-  const hasUpdateUserField = () => setUserField((prev) => !prev);
+  const hasUpdateUserField = () => {
+    setUserField((prev) => !prev);
+    setTest(true);
+  };
   const hasUpdateUserJob = () => {
     if (fieldTitle === FIELD_DEFAULT) {
       return alert("분야 먼저 선택해 주세요");
@@ -116,13 +120,6 @@ const FiledJob = () => {
     setUserJob(false);
   };
 
-  useEffect(() => {
-    if (fieldTitle !== FIELD_DEFAULT && jobTitle !== JOB_DEFAULT)
-      return updateStatusBtn(false);
-
-    console.log(activityBtn);
-  }, [fieldTitle, jobTitle, activityBtn]);
-
   return (
     <SelectWrap>
       <SelectContainer>
@@ -131,15 +128,22 @@ const FiledJob = () => {
           <FaAngleUp className={userField ? "show" : "hide"} id="icon" />
         </FiledSelect>
 
-        {userField &&
-          Field?.map((data, _) => (
-            <FiledJobWrapper
-              key={data.id}
-              onClick={() => updateUserField(data.name)}
-            >
-              <div>{data.name}</div>
-            </FiledJobWrapper>
-          ))}
+        {test && (
+          <div
+            className="gooo!!!"
+            style={{ position: "absolute", zIndex: "10", width: "100%" }}
+          >
+            {userField &&
+              Field?.map((data, _) => (
+                <FiledJobWrapper
+                  key={data.id}
+                  onClick={() => updateUserField(data.name)}
+                >
+                  <div>{data.name}</div>
+                </FiledJobWrapper>
+              ))}
+          </div>
+        )}
       </SelectContainer>
 
       <SelectContainer>
@@ -147,15 +151,23 @@ const FiledJob = () => {
           {jobTitle}
           <FaAngleUp className={userJob ? "show" : "hide"} id="icon" />
         </FiledSelect>
-        {userJob &&
-          Job?.map((data, _) => (
-            <FiledJobWrapper
-              key={data.id}
-              onClick={() => updateUserJob(data.name)}
-            >
-              <div>{data.name}</div>
-            </FiledJobWrapper>
-          ))}
+
+        {test && (
+          <div
+            className="gooo!!!"
+            style={{ position: "absolute", zIndex: "10", width: "100%" }}
+          >
+            {userJob &&
+              Job?.map((data, _) => (
+                <FiledJobWrapper
+                  key={data.id}
+                  onClick={() => updateUserJob(data.name)}
+                >
+                  <div>{data.name}</div>
+                </FiledJobWrapper>
+              ))}
+          </div>
+        )}
       </SelectContainer>
     </SelectWrap>
   );

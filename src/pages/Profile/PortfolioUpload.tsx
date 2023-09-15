@@ -1,3 +1,9 @@
+// React
+import { useEffect } from "react";
+
+// Custom Hook
+import useAcitivity from "../../hooks/useActivity";
+
 // CSS
 import styled from "styled-components";
 
@@ -10,9 +16,15 @@ const PortfolioUploadMain = styled.div`
 `;
 
 const PortfolioUpload = () => {
+  const [activityBtn, updateStatusBtn] = useAcitivity();
+
   return (
     <PortfolioUploadMain>
-      <ResumStatusBar background="2" />
+      <ResumStatusBar
+        background="2"
+        MobileLineWidth="100%"
+        activityBtn={activityBtn}
+      />
       <UploadPortfolioForm />
     </PortfolioUploadMain>
   );

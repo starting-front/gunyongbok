@@ -1,4 +1,5 @@
-import { useState } from "react";
+// React
+import { useEffect, useState } from "react";
 
 // Util
 import validateEmail from "../../../util/validateEmail";
@@ -153,14 +154,23 @@ const ResumeUserKeywords = styled.span`
   margin: 8px 8px 0 0;
 `;
 
-const ResumeSetProfileForm = () => {
+interface Props {
+  updateStatusBtn: (value: boolean) => void;
+}
+
+const ResumeSetProfileForm = ({ updateStatusBtn }: Props) => {
+  // input 사용자 정보
   const [form, setForm] = useState({
     name: "",
     email: "",
     tel: "",
     introduce: "",
   });
+
+  // 키워드 배열
   const [myKeywords, setMyKeywords] = useState<string[] | []>([]);
+
+  const [hasFiledJob, setHasFiledJob] = useState(false);
 
   // 이메일, 전화번호 공개 비공개
   const [isPublicEmail, setIsPublicEmail] = useState(true);
@@ -169,6 +179,22 @@ const ResumeSetProfileForm = () => {
   // 현재 문자열 길이, 맥시멈 길이
   const [legnthExceed, setLengthExceed] = useState(false);
   const [currentKeyword, setCurrentKeyword] = useState("");
+
+  useEffect(() => {
+    const { name, email, tel, introduce } = form;
+    const emailCheck = validateEmail(email);
+    if (
+      name.trim().length >= 2 &&
+      emailCheck === true &&
+      tel.trim().length > 5 &&
+      introduce.trim().length > 5 &&
+      myKeywords.length >= 1 &&
+      hasFiledJob === true
+    ) {
+      return updateStatusBtn(true);
+    }
+    updateStatusBtn(false);
+  }, [form, myKeywords, currentKeyword, hasFiledJob]);
 
   // 이메일 퍼블릭 버튼
   const togglePublicEmailBtn = () => setIsPublicEmail((prev) => !prev);
@@ -181,8 +207,8 @@ const ResumeSetProfileForm = () => {
   ) => {
     const { name, value } = e.target;
     setForm((prev) => ({
-      [name]: value,
       ...prev,
+      [name]: value,
     }));
 
     if (value.length > 30) {
@@ -192,10 +218,11 @@ const ResumeSetProfileForm = () => {
     }
   };
 
+  // 키워드 추가 함수
   const handleKeywordInputKeyDown = (
     e: React.KeyboardEvent<HTMLInputElement>
   ) => {
-    if (e.key === "Enter" && currentKeyword) {
+    if (e.key === "Enter") {
       if (currentKeyword.length >= 6)
         return alert("6글자 이내로 작성 부탁드립니다.");
       if (myKeywords.length >= 5)
@@ -205,6 +232,7 @@ const ResumeSetProfileForm = () => {
     }
   };
 
+  // 키워드 삭제 함수
   const handleRemoveKeyword = (keywordToRemove: string) => {
     const updatedKeywords = myKeywords.filter(
       (keyword) => keyword !== keywordToRemove
@@ -212,6 +240,7 @@ const ResumeSetProfileForm = () => {
     setMyKeywords(updatedKeywords);
   };
 
+  // PC 다음 페이지 버튼
   const handleUploadPortfolio = () => {
     const { name, email, tel, introduce } = form;
     const emailCheck = validateEmail(email);
@@ -224,6 +253,9 @@ const ResumeSetProfileForm = () => {
     if (introduce.trim().length < 5)
       return alert("5글자 이상으로 자기소개를 작성해 주세요!");
   };
+
+  // 직무/분야 선택 여부 확인 props 함수
+  const updateFiledJob = (value: boolean) => setHasFiledJob(value);
 
   return (
     <>
@@ -297,7 +329,7 @@ const ResumeSetProfileForm = () => {
         </div>
 
         <ResumeLabel>분야 / 직무</ResumeLabel>
-        <FiledJob />
+        <FiledJob updateFiledJob={updateFiledJob} />
 
         <ResumeLabel>소개글</ResumeLabel>
         <div className="introduce" style={{ position: "relative" }}>

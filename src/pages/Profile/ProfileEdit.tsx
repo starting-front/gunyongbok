@@ -1,3 +1,6 @@
+// React
+import { useEffect } from "react";
+
 // Custom Hooks
 import useAcitivity from "../../hooks/useActivity";
 
@@ -14,10 +17,19 @@ const Profile = styled.div`
 
 const ProfileEdit = () => {
   const [activityBtn, updateStatusBtn] = useAcitivity();
+
+  useEffect(() => {
+    console.log(activityBtn);
+  }, [activityBtn]);
+
   return (
     <Profile>
-      <ResumStatusBar background="1" MobileLineWidth="50%" />
-      <ResumeSetProfileForm />
+      <ResumStatusBar
+        background="1"
+        MobileLineWidth="50%"
+        activityBtn={activityBtn}
+      />
+      <ResumeSetProfileForm updateStatusBtn={updateStatusBtn} />
     </Profile>
   );
 };

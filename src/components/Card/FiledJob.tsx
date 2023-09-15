@@ -1,5 +1,5 @@
 // React
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // lib
 import { FaAngleUp } from "react-icons/fa";
@@ -86,7 +86,11 @@ const FiledJobWrapper = styled.div`
 const FIELD_DEFAULT = "분야를 선택해주세요";
 const JOB_DEFAULT = "직무를 선택해주세요";
 
-const FiledJob = () => {
+interface Props {
+  updateFiledJob: (value: boolean) => void;
+}
+
+const FiledJob = ({ updateFiledJob }: Props) => {
   // Default or userFiled, userJob
   const [fieldTitle, setFieldTitle] = useState(FIELD_DEFAULT);
   const [jobTitle, setJobTitle] = useState(JOB_DEFAULT);
@@ -98,10 +102,16 @@ const FiledJob = () => {
   // filedJob Container Status
   const [test, setTest] = useState<null | Boolean>(null);
 
+  useEffect(() => {
+    if (fieldTitle !== FIELD_DEFAULT && jobTitle !== JOB_DEFAULT)
+      return updateFiledJob(true);
+  }, [fieldTitle, jobTitle]);
+
   const hasUpdateUserField = () => {
     setUserField((prev) => !prev);
     setTest(true);
   };
+
   const hasUpdateUserJob = () => {
     if (fieldTitle === FIELD_DEFAULT) {
       return alert("분야 먼저 선택해 주세요");

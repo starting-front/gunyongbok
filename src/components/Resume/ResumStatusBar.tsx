@@ -1,4 +1,5 @@
-// MediaQuery
+// lib
+import { HiArrowLeft } from "react-icons/hi";
 import {
   MobileResumStatusBar,
   PcResumeStatusBar,
@@ -6,9 +7,6 @@ import {
 
 // CSS
 import styled from "styled-components";
-
-// React-icons
-import { HiArrowLeft } from "react-icons/hi";
 
 const HeaderContainer = styled.div`
   width: 100%;
@@ -80,12 +78,14 @@ const ResumeMobileFlex = styled.div`
   z-index: 10;
 `;
 
-const ResumeNextTitle = styled.div`
+const ResumeNextBtn = styled.button<{ $activityBtn: boolean }>`
   color: #8644ff;
   font-size: 17px;
   line-height: 22px;
   font-weight: bold;
   cursor: pointer;
+  border: none;
+  opacity: ${(props) => (props.$activityBtn ? "1" : "0.5")};
 `;
 
 const ResumeLine = styled.div<{ $MobileLineWidth: string }>`
@@ -110,9 +110,11 @@ const ResumeLine = styled.div<{ $MobileLineWidth: string }>`
 const ResumStatusBar = ({
   background,
   MobileLineWidth,
+  activityBtn,
 }: {
   background: string;
   MobileLineWidth: string;
+  activityBtn: boolean;
 }) => {
   return (
     <>
@@ -143,7 +145,13 @@ const ResumStatusBar = ({
             <span style={{ marginLeft: "8px" }}>내 프로필 설정</span>
           </div>
           <div>
-            <ResumeNextTitle>다음</ResumeNextTitle>
+            <ResumeNextBtn
+              $activityBtn={activityBtn}
+              disabled={!activityBtn}
+              onClick={() => console.log(1)}
+            >
+              다음
+            </ResumeNextBtn>
           </div>
         </ResumeMobileFlex>
         <ResumeLine $MobileLineWidth={MobileLineWidth} />

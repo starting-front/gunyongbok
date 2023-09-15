@@ -11,7 +11,7 @@ const LogoBox = styled.img`
 
 const KakaoLoginBtn = () => {
   return (
-    <StandardBtn color="#351C1B" background="#FBE54D">
+    <StandardBtn color="#351C1B" $background="#FBE54D">
       <LogoBox src={Logo} alt="logo" /> 카카오로 3초만에 계속하기
     </StandardBtn>
   );

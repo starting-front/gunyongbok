@@ -4,9 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 // Header
-import HeaderTitle from "../../commons/Title/SignUp/HeaderTitle";
-import PageBackBtn from "../../commons/Button/PageBackBtn";
-import BackArrow from "../../assets/leftArrow.svg";
+import SignUpHeader from "../../components/Header/SignUpHeader";
 
 // SignUp
 import SignUpContainer from "../../components/Wrapper/SignUp/SignUpContainer";
@@ -27,8 +25,8 @@ import SignUpNextBtnBox from "../../components/Wrapper/SignUp/SignUpNextBtnBox";
 import SignUpAgreeBox from "../../components/Wrapper/SignUp/SignUpAgreeBox";
 import AgreeBox from "../../components/Wrapper/AgreeBox";
 import RightImg from "../../assets/right.svg";
-import StrokeBtn from "../../assets/radioBtnStroke.svg";
-import FillBtn from "../../assets/radioBtnFill.svg";
+import WhiteBtn from "../../assets/radio_white.png";
+import PurpleBtn from "../../assets/radio_purple.png";
 import RadioBtn from "../../commons/Button/RadioBtn";
 
 // Validate Input Value
@@ -41,8 +39,6 @@ import ErrorMessage from "../../commons/Text/ErrorMessage";
 const TopContainer = styled.div`
   width: 100%;
   height: 100vh;
-  max-width: 1280px;
-  max-height: 720px;
   background-color: #fafafa;
   display: flex;
   flex-direction: column;
@@ -75,20 +71,6 @@ const MainContainer = styled.div`
   }
 `;
 
-const HeaderContainer = styled.header`
-  width: 100%;
-  height: 105px;
-  display: flex;
-  justify-content: center;
-  padding: 40px 40px 0px 40px;
-  box-sizing: border-box;
-  position: relative;
-  top: 0;
-  border-bottom: 1px solid #e2e4eb;
-  z-index: 1;
-  background-color: rgba(255, 255, 255);
-`;
-
 const RequiredText = styled.div`
   width: 27px;
   height: 12px;
@@ -109,13 +91,6 @@ const Right = styled.img`
 const StrokeImg = styled.img`
   width: 20px;
   height: 20px;
-`;
-
-const FillImg = styled.img`
-  width: 12px;
-  height: 12px;
-  position: absolute;
-  top: 10px;
 `;
 
 interface FormData {
@@ -210,12 +185,7 @@ const SignUp = () => {
   return (
     <TopContainer>
       <MainContainer>
-        <HeaderContainer>
-          <HeaderTitle>
-            <PageBackBtn src={BackArrow} alt="pageback" />
-            회원가입
-          </HeaderTitle>
-        </HeaderContainer>
+        <SignUpHeader />
         <SignUpContainer>
           <SignUpInputContainer>
             <InputBox>
@@ -253,15 +223,15 @@ const SignUp = () => {
                 </ValidateBtn>
               </ValidateInputBox>
               {clicked && overLap && (
-                <ErrorMessage text="이미 사용중인 이메일입니다" />
+                <ErrorMessage $text="이미 사용중인 이메일입니다" />
               )}
 
               {clicked && !overLap && !validateEmail(data["email"]) && (
-                <ErrorMessage text="올바르지 않은 이메일 형식입니다" />
+                <ErrorMessage $text="올바르지 않은 이메일 형식입니다" />
               )}
 
               {clicked && !overLap && validateEmail(data["email"]) && (
-                <ErrorMessage text="사용가능한 이메일입니다" color="#303646" />
+                <ErrorMessage $text="사용가능한 이메일입니다" color="#303646" />
               )}
             </InputBox>
             <InputBox>
@@ -284,7 +254,7 @@ const SignUp = () => {
                 />
               )}
               {validatePassword(data["password"]) || (
-                <ErrorMessage text="8자 이상의 영문,숫자,특수문자가 포함 되어야 해요" />
+                <ErrorMessage $text="8자 이상의 영문,숫자,특수문자가 포함 되어야 해요" />
               )}
             </InputBox>
             <InputBox>
@@ -307,7 +277,7 @@ const SignUp = () => {
                 />
               )}
               {validateRePassword(data["password"], rePassword) || (
-                <ErrorMessage text="비밀번호가 일치하지 않습니다" />
+                <ErrorMessage $text="비밀번호가 일치하지 않습니다" />
               )}
             </InputBox>
             <InputBox>
@@ -334,19 +304,25 @@ const SignUp = () => {
                   onClick={handleStrokeBtn}
                   selected={strokeBtnSelected}
                 >
-                  <StrokeImg src={StrokeBtn} />
-                  <FillImg src={FillBtn} />
+                  {fillBtnSelected && strokeBtnSelected ? (
+                    <StrokeImg src={PurpleBtn} />
+                  ) : (
+                    <StrokeImg src={WhiteBtn} />
+                  )}
                 </RadioBtn>
                 약관에 모두 동의 (필수)
               </AgreeBox>
               <AgreeBox
-                padding="12px 6px 4px 6px"
+                $padding="12px 6px 4px 6px"
                 fontSize="12px"
-                border="none"
+                $border="none"
               >
                 <RadioBtn onClick={handleFillBtn} selected={fillBtnSelected}>
-                  <StrokeImg src={StrokeBtn} />
-                  <FillImg src={FillBtn} />
+                  {fillBtnSelected ? (
+                    <StrokeImg src={PurpleBtn} />
+                  ) : (
+                    <StrokeImg src={WhiteBtn} />
+                  )}
                 </RadioBtn>
                 개인정보 수집 및 이용동의 (필수) <Right src={RightImg} />
               </AgreeBox>
@@ -359,12 +335,12 @@ const SignUp = () => {
               disabled={false}
               onClick={MoveToUserTypePage}
               color="#FFF"
-              background="#8644FF"
+              $background="#8644FF"
             >
               다음
             </StandardBtn>
           ) : (
-            <StandardBtn disabled={true} color="#FFF" background="#C6A7FF">
+            <StandardBtn disabled={true} color="#FFF" $background="#C6A7FF">
               다음
             </StandardBtn>
           )}

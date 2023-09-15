@@ -36,8 +36,6 @@ interface FormData {
 const TopContainer = styled.div`
   width: 100%;
   height: 100vh;
-  max-width: 1280px;
-  max-height: 720px;
   background-color: #fafafa;
   display: flex;
   flex-direction: column;
@@ -109,11 +107,11 @@ const SignIn = () => {
     <>
       <TopContainer>
         <MainContainer>
-          <SignInHeader marginbottom="24px">
+          <SignInHeader $marginbottom="24px">
             <MainTitle text="세상에 없던 이력서"></MainTitle>
             <SubTitle text="나를 잘 표현한 이력서 멘토와 함께 작성해보세요"></SubTitle>
           </SignInHeader>
-          <SignInContainer height="164px" marginbottom="48px">
+          <SignInContainer height="164px" $marginbottom="48px">
             <InputBox>
               <Label>이메일</Label>
               <Input
@@ -132,14 +130,14 @@ const SignIn = () => {
               />
             </InputBox>
             {loginError && (
-              <ErrorMessage text="이메일 또는 비밀번호가 일치하지 않습니다." />
+              <ErrorMessage $text="이메일 또는 비밀번호가 일치하지 않습니다." />
             )}
           </SignInContainer>
-          <SignInContainer height="148px" marginbottom="40px">
+          <SignInContainer height="148px" $marginbottom="40px">
             <StandardBtn
               onClick={handleLogin}
               color="#FFF"
-              background="#8644FF"
+              $background="#8644FF"
             >
               이메일로 로그인 또는 회원가입
             </StandardBtn>

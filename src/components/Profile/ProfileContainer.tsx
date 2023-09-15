@@ -32,8 +32,22 @@ const InfoWrapper = styled.div`
     width: 100%;
     position: absolute;
     left: 0;
-    bottom: 2vh;
+    bottom: 8vh;
     align-items: center;
+  }
+`;
+
+const TabContainer = styled.div`
+  display: flex;
+  align-items: end;
+  position: absolute;
+  bottom: -2px;
+  width: 100%;
+  height: 30px;
+  gap: 16px;
+  box-sizing: border-box;
+  @media (max-width: 599px) {
+    padding-left: 16px;
   }
 `;
 
@@ -41,18 +55,29 @@ const TabWrapper = styled.div`
   width: 74px;
   height: 28px;
   gap: 4px;
-  position: absolute;
-  left: 40px;
-  bottom: -3px;
   display: flex;
   flex-direction: column;
-  @media (max-width: 599px) {
-    display: none;
-  }
 `;
 
 const TabText = styled.div`
   color: #303646;
+  font-family: Pretendard;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 600;
+`;
+
+const TabWrapper1 = styled.div`
+  width: 74px;
+  height: 28px;
+  gap: 4px;
+  display: flex;
+  flex-direction: column;
+`;
+
+// 포트폴리오 , 피드백 보기 버튼 활성화 시킬때 분리하고 재사용 컴포넌트로 구성 예정 - 1
+const TabText1 = styled.div`
+  color: #b3bacb;
   font-family: Pretendard;
   font-size: 17px;
   font-style: normal;
@@ -72,10 +97,15 @@ const ProfileContainer = () => {
         <UserInfoBox />
         <KeyContainer />
       </InfoWrapper>
-      <TabWrapper>
-        <TabText>포트폴리오</TabText>
-        <TabIndicator />
-      </TabWrapper>
+      <TabContainer>
+        <TabWrapper>
+          <TabText>포트폴리오</TabText>
+          <TabIndicator />
+        </TabWrapper>
+        <TabWrapper1>
+          <TabText1>피드백보기</TabText1>
+        </TabWrapper1>
+      </TabContainer>
     </Container>
   );
 };

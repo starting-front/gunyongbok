@@ -16,7 +16,7 @@ const Wrapper = styled.div`
   margin-bottom: 2vh;
   @media (max-width: 599px) {
     width: 100%;
-    max-height: 314px;
+    max-height: 380px;
     border-radius: 0;
     margin-bottom: 0;
   }
@@ -32,8 +32,9 @@ const ProfileImg = styled.div`
   left: 40px;
   z-index: 2;
   @media (max-width: 599px) {
-    top: 23%;
-    left: 36%;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
   }
 `;
 

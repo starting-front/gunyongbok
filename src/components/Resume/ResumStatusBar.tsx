@@ -8,6 +8,9 @@ import {
 // CSS
 import styled from "styled-components";
 
+// Components
+import Header from "../Header/PortfolioHeader";
+
 const HeaderContainer = styled.div`
   width: 100%;
   max-width: 1024px;
@@ -119,6 +122,7 @@ const ResumStatusBar = ({
   return (
     <>
       <PcResumeStatusBar>
+        <Header />
         <HeaderContainer>
           <Line />
           <CircleContainer>

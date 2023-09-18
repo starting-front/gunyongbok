@@ -68,8 +68,23 @@ const PortfoliodInput = styled.input`
     display: none;
   }
 
-  &.TeamMember {
-    width: 50%;
+  &.firstDate,
+  &.lastDate {
+    width: 48%;
+  }
+
+  &.firstDate[type="date"]::before,
+  &.lastDate[type="date"]::before {
+    content: attr(data-placeholder);
+    width: 100%;
+    color: #9ba4ba;
+  }
+
+  &.firstDate[type="date"]:focus::before,
+  &.firstDate[type="date"]:valid::before,
+  &.lastDate[type="date"]:focus::before,
+  &.lastDate[type="date"]:valid::before {
+    display: none;
   }
 `;
 
@@ -80,6 +95,39 @@ const RightArrowBox = styled.div`
   right: 15px;
 `;
 
+const SpanText = styled.span`
+  display: inline-block;
+  font-size: 14px;
+  color: #303646;
+  font-weight: 600;
+  line-height: 20px;
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+`;
+
+const SpanCircle = styled.span<{ $nowActivity: boolean }>`
+  display: inline-block;
+  width: 23px;
+  height: 23px;
+  border-radius: 100%;
+  border: 3px solid ${(props) => (props.$nowActivity ? "#8644ff" : "#ccd0dc")};
+  margin-left: 12px;
+  position: relative;
+
+  &.activity::before {
+    content: "";
+    width: 17px;
+    height: 17px;
+    border-radius: 100%;
+    position: absolute;
+    top: 3px;
+    left: 3.2px;
+    right: 0;
+    background-color: #8644ff;
+  }
+`;
+
 const DEFAULT_PDFNAME = "포트폴리오 파일을 첨부해 주세요";
 
 const UploadPortfolioForm = () => {
@@ -87,6 +135,7 @@ const UploadPortfolioForm = () => {
   const [imgSrc, setImgSrc] = useState("");
   const [portfolioPDFName, setPortfolioPDFName] = useState(DEFAULT_PDFNAME);
   const [preView, setPreView] = useState(false);
+  const [nowActivity, setNowActivity] = useState(false);
 
   const inputThumbnailRef = useRef<any>(null);
   const inputPortfolioRef = useRef<any>(null);
@@ -118,6 +167,7 @@ const UploadPortfolioForm = () => {
   ) => {
     if (event.target.files) {
       const file = event.target.files[0];
+      console.log(file, typeof file);
       setSelectedFile(file);
       setPortfolioPDFName(file.name);
     }
@@ -133,7 +183,7 @@ const UploadPortfolioForm = () => {
         <ResumeHeader
           MainTitle="포트폴리오 업로드"
           SubTitle="알찬 피드백을 받을 포트폴리오를 업로드 해볼까요"
-          paddingBottom="90"
+          paddingBottom="0"
         />
         <div style={{ padding: "0 20px", boxSizing: "border-box" }}>
           <ImageTitle>포트폴리오 커버 페이지 등록하기</ImageTitle>
@@ -142,7 +192,10 @@ const UploadPortfolioForm = () => {
             alt="view"
             width={250}
             height={127}
-            style={{ borderRadius: "10px", border: "1px solid #e2e4eb" }}
+            style={{
+              borderRadius: "10px",
+              border: imgSrc && "1px solid #e2e4eb",
+            }}
             onClick={handleThumbnailImageClick}
           />
           <input
@@ -175,12 +228,48 @@ const UploadPortfolioForm = () => {
             <PortfoliodInput placeholder="미입력시 기본 제목으로 자동저장됩니다. (OOO의 포트폴리오)" />
             <PortfolioLabel>프로젝트 유형 및 담당역할</PortfolioLabel>
             <PortfoliodInput placeholder="나의 역할을 선택해주세요" />
-            <PortfolioLabel>팀원</PortfolioLabel>
+            <div style={{ width: "50%", position: "relative" }}>
+              <PortfolioLabel>팀원</PortfolioLabel>
+              <PortfoliodInput
+                placeholder="팀원은 몇명이었나요?"
+                className="TeamMember"
+              />
+              <span
+                style={{
+                  position: "absolute",
+                  top: "33px",
+                  right: "12px",
+                  fontSize: "14px",
+                }}
+              >
+                명
+              </span>
+            </div>
+            <PortfolioLabel>기간</PortfolioLabel>
             <PortfoliodInput
-              placeholder="팀원은 몇명이었나요?"
-              className="TeamMember"
+              type="date"
+              data-placeholder="부터"
+              required
+              aria-required="true"
+              className="firstDate"
+            />
+            <span> ~ </span>
+            <PortfoliodInput
+              type="date"
+              data-placeholder="까지"
+              required
+              aria-required="true"
+              className="lastDate"
             />
           </form>
+          <SpanText>
+            아직 진행중이에요
+            <SpanCircle
+              onClick={() => setNowActivity((prev) => !prev)}
+              className={nowActivity ? "activity" : "nonActivity"}
+              $nowActivity={nowActivity}
+            ></SpanCircle>
+          </SpanText>
         </div>
       </div>
       <ResumeFooterTitle

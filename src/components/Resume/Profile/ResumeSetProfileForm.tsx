@@ -223,13 +223,22 @@ const ResumeSetProfileForm = ({ updateStatusBtn }: Props) => {
     e: React.KeyboardEvent<HTMLInputElement>
   ) => {
     if (e.key === "Enter") {
-      if (currentKeyword.length >= 6)
+      if (currentKeyword.trim().length < 2) {
+        setCurrentKeyword("");
+        return alert("키워드는 2글자 이상 작성 부탁드립니다.");
+      }
+      if (currentKeyword.length >= 6) {
+        setCurrentKeyword("");
         return alert("6글자 이내로 작성 부탁드립니다.");
-      if (myKeywords.length >= 5)
+      }
+      if (myKeywords.length >= 5) {
+        setCurrentKeyword("");
         return alert("키워드는 5개까지만 추가가능 합니다.");
+      }
       setMyKeywords([...myKeywords, currentKeyword]);
       setCurrentKeyword("");
     }
+    return;
   };
 
   // 키워드 삭제 함수

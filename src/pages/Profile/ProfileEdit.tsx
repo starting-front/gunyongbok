@@ -10,6 +10,7 @@ import styled from "styled-components";
 // Components
 import ResumStatusBar from "../../components/Resume/ResumStatusBar";
 import ResumeSetProfileForm from "../../components/Resume/Profile/ResumeSetProfileForm";
+import Header from "../../components/Header/PortfolioHeader";
 
 const Profile = styled.div`
   width: 100%;
@@ -24,6 +25,7 @@ const ProfileEdit = () => {
 
   return (
     <Profile>
+      <Header />
       <ResumStatusBar
         background="1"
         MobileLineWidth="50%"

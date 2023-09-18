@@ -26,7 +26,7 @@ const InfoWrapper = styled.div`
   align-items: flex-start;
   gap: 12px;
   position: absolute;
-  left: 40px;
+  left: 30px;
   bottom: 48px;
   @media (max-width: 599px) {
     width: 100%;
@@ -42,7 +42,8 @@ const TabContainer = styled.div`
   align-items: end;
   position: absolute;
   bottom: -2px;
-  width: 100%;
+  left: 30px;
+  width: 90%;
   height: 30px;
   gap: 16px;
   box-sizing: border-box;

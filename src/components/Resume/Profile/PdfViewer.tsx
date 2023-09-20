@@ -28,17 +28,18 @@ const PDFCloseBtn = styled.div`
 
 const PdfViewer = ({ file, onClick }: any) => {
   if (file) {
-    const objectUrl = URL.createObjectURL(file);
+    // const objectUrl = URL.createObjectURL(file);
 
     return (
       <PDFWrap>
-        <iframe
+        {/* <iframe
           title="PDF Preview"
           src={`${objectUrl}#toolbar=0&navpanes=0&scrollbar=0'`}
           width="100%"
           height="600px"
           style={{ maxWidth: "1024px" }}
-        />
+        /> */}
+        {/* <PDFViewer pdf={file} style={{ maxWidth: "1024px", height: "600px" }} /> */}
         <PDFCloseBtn onClick={onClick}>닫기</PDFCloseBtn>
       </PDFWrap>
     );

@@ -25,7 +25,7 @@ const ProfileEdit = () => {
 
   return (
     <Profile>
-      <Header />
+      <Header $maxWidth="1100px" />
       <ResumStatusBar
         background="1"
         MobileLineWidth="50%"

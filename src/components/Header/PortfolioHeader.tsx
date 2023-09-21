@@ -1,11 +1,16 @@
+import React from "react";
 import { styled } from "styled-components";
 import TeamLogo from "../../assets/logo.svg";
 import NewsLogo from "../../assets/breaking_news.svg";
 import ProfileLogo from "../../assets/account_circle.svg";
 
-const HeaderMain = styled.div`
+interface HeaderProps {
+  $maxWidth?: string;
+}
+
+const HeaderMain = styled.div<HeaderProps>`
   width: 100%;
-  max-width: 880px;
+  max-width: ${(props) => props.$maxWidth || "880px"};
   height: 100%;
   max-height: 56px;
   box-sizing: border-box;
@@ -48,17 +53,17 @@ const TextBox = styled.div`
   font-weight: 400;
 `;
 
-const Header = () => {
+const Header: React.FC<HeaderProps> = ({ $maxWidth }) => {
   return (
-    <HeaderMain>
-      <img src={TeamLogo} />
+    <HeaderMain $maxWidth={$maxWidth}>
+      <img src={TeamLogo} alt="Team Logo" />
       <BtnBox>
         <SubBtnBox>
-          <img src={NewsLogo} />
+          <img src={NewsLogo} alt="News Logo" />
           <TextBox>내 이력서 편집하기</TextBox>
         </SubBtnBox>
         <SubBtnBox>
-          <img src={ProfileLogo} />
+          <img src={ProfileLogo} alt="Profile Logo" />
           <TextBox>마이페이지</TextBox>
         </SubBtnBox>
       </BtnBox>

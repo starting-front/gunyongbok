@@ -273,7 +273,9 @@ const UploadPortfolioForm = () => {
         </div>
       </div>
       <ResumeFooterTitle
-        title="회고록 입력하러 가기"
+        title="다음 단계로"
+        nextTitle="임시저장"
+        next={false}
         onClick={() => console.log(1)}
       />
     </>

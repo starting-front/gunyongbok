@@ -27,29 +27,51 @@ const ResumFooterTitle = styled.div`
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
-  line-height: 20px; /* 142.857% */
+  line-height: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  &.nextTitle {
+    margin-right: 20px;
+  }
 `;
 
 interface Props {
   title: string;
   onClick: () => void;
+  next?: boolean;
+  nextTitle?: string;
+  onSave?: () => void;
 }
 
-const ResumeFooterTitle = ({ title, onClick }: Props) => {
+const ResumeFooterTitle = ({
+  title,
+  onClick,
+  nextTitle,
+  onSave,
+  next = true,
+}: Props) => {
   return (
     <ResumFooter>
       <div
         style={{
           width: "100%",
-          maxWidth: "1200px",
+          maxWidth: "1100px",
           display: "flex",
           justifyContent: "end",
         }}
       >
-        <ResumFooterTitle onClick={onClick}>{title}</ResumFooterTitle>
+        {next ? (
+          <ResumFooterTitle onClick={onClick}>{title}</ResumFooterTitle>
+        ) : (
+          <>
+            <ResumFooterTitle onClick={onSave} className="nextTitle">
+              {nextTitle}
+            </ResumFooterTitle>
+            <ResumFooterTitle onClick={onClick}>{title}</ResumFooterTitle>
+          </>
+        )}
       </div>
     </ResumFooter>
   );

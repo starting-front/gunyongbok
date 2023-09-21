@@ -116,6 +116,10 @@ const SpanText = styled.span`
   margin-top: 12px;
   display: flex;
   align-items: center;
+
+  @media screen and (max-width: 599px) {
+    padding-bottom: 80px;
+  }
 `;
 
 const SpanCircle = styled.span<{ $nowActivity: boolean }>`

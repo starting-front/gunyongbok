@@ -88,6 +88,15 @@ const PortfoliodInput = styled.input`
   }
 `;
 
+const TeamDivBox = styled.div`
+  width: 48%;
+  position: relative;
+
+  @media screen and (max-width: 599px) {
+    width: 100%;
+  }
+`;
+
 const RightArrowBox = styled.div`
   position: absolute;
   font-size: 18px;
@@ -228,12 +237,9 @@ const UploadPortfolioForm = () => {
             <PortfoliodInput placeholder="미입력시 기본 제목으로 자동저장됩니다. (OOO의 포트폴리오)" />
             <PortfolioLabel>프로젝트 유형 및 담당역할</PortfolioLabel>
             <PortfoliodInput placeholder="나의 역할을 선택해주세요" />
-            <div style={{ width: "50%", position: "relative" }}>
+            <TeamDivBox>
               <PortfolioLabel>팀원</PortfolioLabel>
-              <PortfoliodInput
-                placeholder="팀원은 몇명이었나요?"
-                className="TeamMember"
-              />
+              <PortfoliodInput placeholder="팀원은 몇명이었나요?" />
               <span
                 style={{
                   position: "absolute",
@@ -244,23 +250,31 @@ const UploadPortfolioForm = () => {
               >
                 명
               </span>
-            </div>
+            </TeamDivBox>
             <PortfolioLabel>기간</PortfolioLabel>
-            <PortfoliodInput
-              type="date"
-              data-placeholder="부터"
-              required
-              aria-required="true"
-              className="firstDate"
-            />
-            <span> ~ </span>
-            <PortfoliodInput
-              type="date"
-              data-placeholder="까지"
-              required
-              aria-required="true"
-              className="lastDate"
-            />
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <PortfoliodInput
+                type="date"
+                data-placeholder="부터"
+                required
+                aria-required="true"
+                className="firstDate"
+              />
+              <span style={{ margin: "0 8px" }}> ~ </span>
+              <PortfoliodInput
+                type="date"
+                data-placeholder="까지"
+                required
+                aria-required="true"
+                className="lastDate"
+              />
+            </div>
           </form>
           <SpanText>
             아직 진행중이에요
@@ -276,6 +290,7 @@ const UploadPortfolioForm = () => {
         title="다음 단계로"
         nextTitle="임시저장"
         next={false}
+        onSave={() => console.log(2)}
         onClick={() => console.log(1)}
       />
     </>

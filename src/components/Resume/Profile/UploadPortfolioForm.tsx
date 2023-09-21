@@ -1,5 +1,8 @@
 // React
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+
+// Custom Hooks
+import useAcitivity from "../../../hooks/useActivity";
 
 // SVG
 import previewImage from "../../../assets/preview.svg";
@@ -140,12 +143,32 @@ const SpanCircle = styled.span<{ $nowActivity: boolean }>`
 const DEFAULT_PDFNAME = "포트폴리오 파일을 첨부해 주세요";
 
 const UploadPortfolioForm = () => {
+  // pdf 파일 선택 / 파일명
   const [selectedFile, setSelectedFile] = useState<any>(null);
-  const [imgSrc, setImgSrc] = useState("");
   const [portfolioPDFName, setPortfolioPDFName] = useState(DEFAULT_PDFNAME);
+
+  // 썸네일 이미지
+  const [imgSrc, setImgSrc] = useState("");
+
+  // 미리보기 활성화
   const [preView, setPreView] = useState(false);
+
+  // 진행중 체크
   const [nowActivity, setNowActivity] = useState(false);
 
+  // form 업데이트
+  const [form, setForm] = useState({
+    portfolioName: "",
+    portfolioRole: "",
+    teamMember: "",
+    firstDate: "",
+    lastDate: "",
+  });
+
+  // 유저 전체상황 값 업데이트 확인
+  const [activityBtn, updateStatusBtn] = useAcitivity();
+
+  // ref
   const inputThumbnailRef = useRef<any>(null);
   const inputPortfolioRef = useRef<any>(null);
 
@@ -160,13 +183,8 @@ const UploadPortfolioForm = () => {
       reader.onload = function (e: any) {
         setImgSrc(e.target.result);
       };
-      reader.readAsDataURL(file);
+      return reader.readAsDataURL(file);
     }
-  };
-
-  const handlePreView = () => {
-    if (selectedFile) return setPreView((prev) => !prev);
-    alert("PDF 파일를 먼저 업로드 해주세요");
   };
 
   // 포트폴리오, input Ref
@@ -176,19 +194,39 @@ const UploadPortfolioForm = () => {
   ) => {
     if (event.target.files) {
       const file = event.target.files[0];
-      console.log(file, typeof file);
       setSelectedFile(file);
       setPortfolioPDFName(file.name);
     }
+    return;
   };
 
+  // Form 업데이트
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    return setForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  useEffect(() => {
+    console.log(form);
+  }, [form]);
+
+  // 미리보기 버튼
+  const handlePreView = () => {
+    if (selectedFile) return setPreView((prev) => !prev);
+    alert("PDF 파일를 먼저 업로드 해주세요");
+  };
+
+  // 미리보기 닫기 버튼
   const PrviewClose = () => setPreView(false);
 
   return (
     <>
       <div style={{ maxWidth: "1024px", margin: "0 auto" }}>
         {preView && <PdfViewer file={selectedFile} onClick={PrviewClose} />}
-        {/* <PdfViewer file={selectedFile} /> */}
         <ResumeHeader
           MainTitle="포트폴리오 업로드"
           SubTitle="알찬 피드백을 받을 포트폴리오를 업로드 해볼까요"
@@ -234,12 +272,24 @@ const UploadPortfolioForm = () => {
               <HiOutlineChevronRight />
             </RightArrowBox>
             <PortfolioLabel>포트폴리오 제목</PortfolioLabel>
-            <PortfoliodInput placeholder="미입력시 기본 제목으로 자동저장됩니다. (OOO의 포트폴리오)" />
+            <PortfoliodInput
+              placeholder="미입력시 기본 제목으로 자동저장됩니다. (OOO의 포트폴리오)"
+              name="portfolioName"
+              onChange={onChange}
+            />
             <PortfolioLabel>프로젝트 유형 및 담당역할</PortfolioLabel>
-            <PortfoliodInput placeholder="나의 역할을 선택해주세요" />
+            <PortfoliodInput
+              placeholder="나의 역할을 선택해주세요"
+              name="portfolioRole"
+              onChange={onChange}
+            />
             <TeamDivBox>
               <PortfolioLabel>팀원</PortfolioLabel>
-              <PortfoliodInput placeholder="팀원은 몇명이었나요?" />
+              <PortfoliodInput
+                placeholder="팀원은 몇명이었나요?"
+                name="teamMember"
+                onChange={onChange}
+              />
               <span
                 style={{
                   position: "absolute",
@@ -265,6 +315,8 @@ const UploadPortfolioForm = () => {
                 required
                 aria-required="true"
                 className="firstDate"
+                name="firstDate"
+                onChange={onChange}
               />
               <span style={{ margin: "0 8px" }}> ~ </span>
               <PortfoliodInput
@@ -273,6 +325,8 @@ const UploadPortfolioForm = () => {
                 required
                 aria-required="true"
                 className="lastDate"
+                name="lastDate"
+                onChange={onChange}
               />
             </div>
           </form>

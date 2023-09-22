@@ -1,8 +1,8 @@
 // React
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 
 // Custom Hooks
-import useAcitivity from "../../../hooks/useActivity";
+// import useAcitivity from "../../../hooks/useActivity";
 
 // SVG
 import previewImage from "../../../assets/preview.svg";
@@ -179,7 +179,7 @@ const UploadPortfolioForm = () => {
   });
 
   // 유저 전체상황 값 업데이트 확인
-  const [activityBtn, updateStatusBtn] = useAcitivity();
+  // const [activityBtn, updateStatusBtn] = useAcitivity();
 
   // ref
   const inputThumbnailRef = useRef<any>(null);
@@ -222,10 +222,6 @@ const UploadPortfolioForm = () => {
       [name]: value,
     }));
   };
-
-  useEffect(() => {
-    console.log(form);
-  }, [form]);
 
   // 미리보기 버튼
   const handlePreView = () => {

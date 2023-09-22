@@ -108,7 +108,7 @@ const PdfViewer = ({ file, onClick }: any) => {
     return (
       <PDFWrap>
         <Document file={objectUrl} onLoadSuccess={onDocumentLoadSuccess}>
-          <Page pageNumber={pageNumber} />
+          <Page pageNumber={pageNumber} width={1000} />
         </Document>
         <p>
           <PDFBtn onClick={handleCurrentPage}>이전</PDFBtn>

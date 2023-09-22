@@ -51,7 +51,7 @@ const TopContainer = styled.div`
 const MainContainer = styled.div`
   width: 100%;
   max-width: 408px;
-  height: 80%;
+  max-height: 586px;
   border-radius: 8px;
   background-color: #fff;
   padding: 40px;

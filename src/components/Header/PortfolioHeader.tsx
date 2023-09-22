@@ -12,12 +12,14 @@ const HeaderMain = styled.div<HeaderProps>`
   width: 100%;
   max-width: ${(props) => props.$maxWidth || "880px"};
   height: 100%;
-  max-height: 56px;
+  max-height: 80px;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: auto;
+  padding-top: 24px;
+  box-sizing: border-box;
   @media (max-width: 599px) {
     display: none;
   }

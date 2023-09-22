@@ -14,8 +14,7 @@ import PortfolioContent from "../../components/Wrapper/Portfolio/PortfolioConten
 
 const TopContainer = styled.div`
   width: 100%;
-  height: 100vh;
-  background-color: #fafafa;
+  height: 720px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -23,7 +22,7 @@ const TopContainer = styled.div`
   position: relative;
   @media (max-width: 599px) {
     width: 100%;
-    max-height: 100vh;
+    height: 100vh;
   }
 `;
 
@@ -35,7 +34,7 @@ const PortfolioWrapper = styled.div<PortfolioWrapperProps>`
   width: 100%;
   max-width: 880px;
   height: ${({ $scroll }) => ($scroll ? "600px" : "310px")};
-  padding: 32px 40px;
+  padding: 32px 33px;
   box-sizing: border-box;
   gap: 20px;
   border-radius: ${({ $scroll }) => ($scroll === "true" ? "0" : "12px")};

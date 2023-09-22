@@ -2,6 +2,8 @@ import { styled } from "styled-components";
 
 import Data from "./portFolioData";
 
+import PortfolioPlusWrapper from "./PortfolioPlusWrapper";
+
 const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -53,6 +55,8 @@ const TitleBox = styled.div`
 `;
 
 const PortfolioContent = () => {
+  const isDataLongEnough = Data.length < 6;
+
   return (
     <Wrapper>
       {Data.map((item) => (
@@ -62,6 +66,7 @@ const PortfolioContent = () => {
           <TitleBox>{item.title}</TitleBox>
         </Container>
       ))}
+      {isDataLongEnough && <PortfolioPlusWrapper />}
     </Wrapper>
   );
 };

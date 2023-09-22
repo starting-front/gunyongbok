@@ -13,12 +13,10 @@ import Header from "../Header/PortfolioHeader";
 
 const HeaderContainer = styled.div`
   width: 100%;
-  max-width: 1024px;
+  max-width: 986px;
   position: relative;
   font-family: Pretendard;
   margin: 50px auto;
-  
-  }
 `;
 
 const Line = styled.div`

@@ -27,6 +27,15 @@ const ImageTitle = styled.div`
   margin-bottom: 8px;
 `;
 
+const ProfolioContainer = styled.div`
+  max-width: 1024px;
+  margin: 0 auto;
+
+  @media screen and (max-width: 599px) {
+    padding: 0 20px;
+  }
+`;
+
 const PortfolioLabel = styled.label`
   display: block;
   margin: 20px 0px 8px 0px;
@@ -229,14 +238,13 @@ const UploadPortfolioForm = () => {
 
   return (
     <>
-      <div style={{ maxWidth: "1024px", margin: "0 auto" }}>
+      <ProfolioContainer>
         {preView && <PdfViewer file={selectedFile} onClick={PrviewClose} />}
         <ResumeHeader
           MainTitle="포트폴리오 업로드"
           SubTitle="알찬 피드백을 받을 포트폴리오를 업로드 해볼까요"
-          paddingBottom="0"
         />
-        <div style={{ padding: "0 20px", boxSizing: "border-box" }}>
+        <div>
           <ImageTitle>포트폴리오 커버 페이지 등록하기</ImageTitle>
           <img
             src={!imgSrc ? previewImage : imgSrc}
@@ -343,7 +351,7 @@ const UploadPortfolioForm = () => {
             ></SpanCircle>
           </SpanText>
         </div>
-      </div>
+      </ProfolioContainer>
       <ResumeFooterTitle
         title="다음 단계로"
         nextTitle="임시저장"

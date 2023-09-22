@@ -5,6 +5,10 @@ const HeaderWrapper = styled.div<{ $paddingBottom?: string }>`
   margin-bottom: 40px;
   box-sizing: border-box;
   padding-top: ${(props) => props.$paddingBottom}px;
+
+  @media screen and (max-width: 599px) {
+    padding-top: 100px;
+  }
 `;
 
 const MainTitle = styled.div`

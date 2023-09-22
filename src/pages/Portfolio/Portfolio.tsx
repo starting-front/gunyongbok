@@ -14,8 +14,7 @@ import PortfolioContent from "../../components/Wrapper/Portfolio/PortfolioConten
 
 const TopContainer = styled.div`
   width: 100%;
-  height: 100vh;
-  background-color: #fafafa;
+  height: 720px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -23,7 +22,7 @@ const TopContainer = styled.div`
   position: relative;
   @media (max-width: 599px) {
     width: 100%;
-    max-height: 100vh;
+    height: 100vh;
   }
 `;
 

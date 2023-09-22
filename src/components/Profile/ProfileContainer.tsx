@@ -48,7 +48,7 @@ const TabContainer = styled.div`
   gap: 16px;
   box-sizing: border-box;
   @media (max-width: 599px) {
-    padding-left: 16px;
+    left: 15px;
   }
 `;
 

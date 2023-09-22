@@ -1,5 +1,5 @@
 // React
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 // Custom Hooks
 // import useAcitivity from "../../../hooks/useActivity";
@@ -177,6 +177,10 @@ const UploadPortfolioForm = () => {
     firstDate: "",
     lastDate: "",
   });
+
+  useEffect(() => {
+    console.log(form);
+  }, []);
 
   // 유저 전체상황 값 업데이트 확인
   // const [activityBtn, updateStatusBtn] = useAcitivity();

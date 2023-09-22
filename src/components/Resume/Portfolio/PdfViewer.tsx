@@ -43,13 +43,52 @@ const PDFCloseBtn = styled.div`
   font-weight: bold;
 `;
 
+const PDFBtn = styled.button`
+  border: none;
+  padding: 16px 20px;
+  border-radius: 8px;
+`;
+
+const PDFPage = styled.span`
+  font-weight: bold;
+  &.pdf {
+    margin: 0 16px;
+  }
+
+  &.current,
+  &.showpage {
+    color: white;
+  }
+
+  &.line {
+    font-size: 24px;
+    margin: 0 8px;
+    color: orange;
+  }
+`;
+
 const PdfViewer = ({ file, onClick }: any) => {
   const [numPages, setNumPages] = useState<number>();
   const [pageNumber, setPageNumber] = useState<number>(1);
 
-  function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
+  // pdf 파일 load
+  const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) =>
     setNumPages(numPages);
-  }
+
+  // 이전 페이지네이션
+  const handleCurrentPage = () => {
+    if (pageNumber !== 1) return setPageNumber((prev) => prev - 1);
+    return alert("시작 페이지 입니다.");
+  };
+
+  // 다음 페이지네이션
+  const handleNextPage = () => {
+    if (numPages && pageNumber < numPages)
+      return setPageNumber((prev) => prev + 1);
+
+    return alert("최대 페이지 입니다.");
+  };
+
   if (file) {
     const objectUrl = URL.createObjectURL(file);
 
@@ -65,19 +104,20 @@ const PdfViewer = ({ file, onClick }: any) => {
         window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
       };
     }, []);
+
     return (
       <PDFWrap>
         <Document file={objectUrl} onLoadSuccess={onDocumentLoadSuccess}>
           <Page pageNumber={pageNumber} />
         </Document>
         <p>
-          <button onClick={() => setPageNumber((prev) => prev - 1)}>
-            이전
-          </button>
-          Page {pageNumber} of {numPages}
-          <button onClick={() => setPageNumber((prev) => prev + 1)}>
-            다음
-          </button>
+          <PDFBtn onClick={handleCurrentPage}>이전</PDFBtn>
+          <PDFPage className="pdf">
+            <PDFPage className="current">{pageNumber}</PDFPage>
+            <PDFPage className="line">/</PDFPage>
+            <PDFPage className="showpage">{numPages}</PDFPage>
+          </PDFPage>
+          <PDFBtn onClick={handleNextPage}>다음</PDFBtn>
         </p>
         <PDFCloseBtn onClick={onClick}>닫기</PDFCloseBtn>
       </PDFWrap>

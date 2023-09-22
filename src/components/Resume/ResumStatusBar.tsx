@@ -125,7 +125,7 @@ const ResumStatusBar = ({
   return (
     <>
       <PcResumeStatusBar>
-        <Header />
+        <Header $maxWidth="1100px" />
         <HeaderContainer>
           <Line />
           <CircleContainer>

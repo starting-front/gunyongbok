@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 const HeaderWrapper = styled.div<{ $paddingBottom?: string }>`
   margin-bottom: 40px;
-  padding: 0 20px;
   box-sizing: border-box;
   padding-top: ${(props) => props.$paddingBottom}px;
 `;

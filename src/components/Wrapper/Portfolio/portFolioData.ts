@@ -32,12 +32,6 @@ const Data = [
     date: "2023.01.01 ~ 2023.01.05",
     title: "이것은 포토폴리오 제목",
   },
-  {
-    id: 6,
-    img: { Apple },
-    date: "2023.01.01 ~ 2023.01.05",
-    title: "이것은 포토폴리오 제목",
-  },
 ];
 
 export default Data;

@@ -1,34 +1,23 @@
+import React from "react";
 import { styled } from "styled-components";
 import TeamLogo from "../../assets/logo.svg";
 import NewsLogo from "../../assets/breaking_news.svg";
 import ProfileLogo from "../../assets/account_circle.svg";
 
-const TopContainer = styled.div`
-  width: 100%;
-  max-width: 1280px;
-  height: 100%;
-  max-height: 80px;
-  padding: 24px 200px 0px 200px;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  @media (max-width: 1280px) {
-    padding: 24px 0 0 0;
-  }
-  @media (max-width: 599px) {
-    display: none;
-  }
-`;
+interface HeaderProps {
+  $maxWidth?: string;
+}
 
-const HeaderMain = styled.div`
+const HeaderMain = styled.div<HeaderProps>`
   width: 100%;
-  max-width: 880px;
+  max-width: ${(props) => props.$maxWidth || "880px"};
   height: 100%;
   max-height: 56px;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: auto;
   @media (max-width: 599px) {
     display: none;
   }
@@ -36,7 +25,7 @@ const HeaderMain = styled.div`
 
 const BtnBox = styled.div`
   display: flex;
-  width: 181px;
+  width: fit-content;
   gap: 20px;
 `;
 
@@ -64,23 +53,21 @@ const TextBox = styled.div`
   font-weight: 400;
 `;
 
-const Header = () => {
+const Header: React.FC<HeaderProps> = ({ $maxWidth }) => {
   return (
-    <TopContainer>
-      <HeaderMain>
-        <img src={TeamLogo} />
-        <BtnBox>
-          <SubBtnBox>
-            <img src={NewsLogo} />
-            <TextBox>내 이력서</TextBox>
-          </SubBtnBox>
-          <SubBtnBox>
-            <img src={ProfileLogo} />
-            <TextBox>마이페이지</TextBox>
-          </SubBtnBox>
-        </BtnBox>
-      </HeaderMain>
-    </TopContainer>
+    <HeaderMain $maxWidth={$maxWidth}>
+      <img src={TeamLogo} alt="Team Logo" />
+      <BtnBox>
+        <SubBtnBox>
+          <img src={NewsLogo} alt="News Logo" />
+          <TextBox>내 이력서 편집하기</TextBox>
+        </SubBtnBox>
+        <SubBtnBox>
+          <img src={ProfileLogo} alt="Profile Logo" />
+          <TextBox>마이페이지</TextBox>
+        </SubBtnBox>
+      </BtnBox>
+    </HeaderMain>
   );
 };
 

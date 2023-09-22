@@ -29,7 +29,7 @@ const ProfileImg = styled.div`
   background-color: gray;
   position: absolute;
   top: 40px;
-  left: 40px;
+  left: 30px;
   z-index: 2;
   @media (max-width: 599px) {
     top: 20%;

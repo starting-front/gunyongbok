@@ -8,6 +8,9 @@ import {
 // CSS
 import styled from "styled-components";
 
+// Components
+import Header from "../Header/PortfolioHeader";
+
 const HeaderContainer = styled.div`
   width: 100%;
   max-width: 1024px;
@@ -86,6 +89,7 @@ const ResumeNextBtn = styled.button<{ $activityBtn: boolean }>`
   cursor: pointer;
   border: none;
   opacity: ${(props) => (props.$activityBtn ? "1" : "0.5")};
+  background-color: white;
 `;
 
 const ResumeLine = styled.div<{ $MobileLineWidth: string }>`
@@ -111,14 +115,17 @@ const ResumStatusBar = ({
   background,
   MobileLineWidth,
   activityBtn,
+  profileTitle,
 }: {
   background: string;
   MobileLineWidth: string;
   activityBtn: boolean;
+  profileTitle: string;
 }) => {
   return (
     <>
       <PcResumeStatusBar>
+        <Header $maxWidth="1100px" />
         <HeaderContainer>
           <Line />
           <CircleContainer>
@@ -142,7 +149,7 @@ const ResumStatusBar = ({
             }}
           >
             <HiArrowLeft style={{ cursor: "pointer", fontSize: "18px" }} />
-            <span style={{ marginLeft: "8px" }}>내 프로필 설정</span>
+            <span style={{ marginLeft: "8px" }}>{profileTitle}</span>
           </div>
           <div>
             <ResumeNextBtn

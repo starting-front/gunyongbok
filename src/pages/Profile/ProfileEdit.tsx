@@ -10,7 +10,6 @@ import styled from "styled-components";
 // Components
 import ResumStatusBar from "../../components/Resume/ResumStatusBar";
 import ResumeSetProfileForm from "../../components/Resume/Profile/ResumeSetProfileForm";
-import Header from "../../components/Header/PortfolioHeader";
 
 const Profile = styled.div`
   width: 100%;
@@ -25,11 +24,11 @@ const ProfileEdit = () => {
 
   return (
     <Profile>
-      <Header $maxWidth="1100px" />
       <ResumStatusBar
         background="1"
         MobileLineWidth="50%"
         activityBtn={activityBtn}
+        profileTitle="내 프로필 설정"
       />
       <ResumeSetProfileForm updateStatusBtn={updateStatusBtn} />
     </Profile>

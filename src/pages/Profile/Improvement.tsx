@@ -4,11 +4,11 @@ import { useEffect } from "react";
 import useAcitivity from "../../hooks/useActivity";
 
 // Components
-import ResumStatusBar from "../../components/Resume/ResumStatusBar";
-import ProejctOverview from "../../components/Memoir/ProjectOverview";
+// import ResumStatusBar from "../../components/Resume/ResumStatusBar";
+// import ProejctOverview from "../../components/Memoir/ProjectOverview";
 
 const Improvements = () => {
-  const [activityBtn, updateStatusBtn] = useAcitivity();
+  const [activityBtn] = useAcitivity();
 
   useEffect(() => {
     console.log(activityBtn);

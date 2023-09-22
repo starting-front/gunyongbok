@@ -28,6 +28,7 @@ const ProfileEdit = () => {
         background="1"
         MobileLineWidth="50%"
         activityBtn={activityBtn}
+        profileTitle="내 프로필 설정"
       />
       <ResumeSetProfileForm updateStatusBtn={updateStatusBtn} />
     </Profile>

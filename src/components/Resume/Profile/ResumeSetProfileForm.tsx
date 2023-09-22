@@ -17,6 +17,9 @@ const ResumeContainer = styled.div`
   gap: 12px;
   margin: 0px 0 20px 0;
   font-family: Pretendard;
+  @media screen and (max-width: 599px) {
+    padding-bottom: 28px;
+  }
 `;
 
 const ResumeForm = styled.form`

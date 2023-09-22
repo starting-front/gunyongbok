@@ -34,6 +34,11 @@ const ProfolioContainer = styled.div`
   @media screen and (max-width: 599px) {
     padding: 0 20px;
   }
+
+  @media screen and (min-width: 600px) {
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
 `;
 
 const PortfolioLabel = styled.label`

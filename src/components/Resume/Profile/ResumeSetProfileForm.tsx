@@ -31,6 +31,11 @@ const ResumeForm = styled.form`
     padding: 80px 20px 100px 20px;
     box-sizing: border-box;
   }
+
+  @media screen and (min-width: 600px) {
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
 `;
 
 const ResumeMainTitle = styled.div`

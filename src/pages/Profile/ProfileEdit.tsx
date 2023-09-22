@@ -24,12 +24,14 @@ const ProfileEdit = () => {
 
   return (
     <Profile>
-      <ResumStatusBar
-        background="1"
-        MobileLineWidth="50%"
-        activityBtn={activityBtn}
-        profileTitle="내 프로필 설정"
-      />
+      <div style={{ padding: "0 20px", boxSizing: "border-box" }}>
+        <ResumStatusBar
+          background="1"
+          MobileLineWidth="50%"
+          activityBtn={activityBtn}
+          profileTitle="내 프로필 설정"
+        />
+      </div>
       <ResumeSetProfileForm updateStatusBtn={updateStatusBtn} />
     </Profile>
   );

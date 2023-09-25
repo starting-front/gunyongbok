@@ -1,7 +1,14 @@
+// React
+import { useNavigate } from "react-router-dom";
+
+// Assets
+import Logo from "../../../assets/kakakoLogo.svg";
+
+// CSS
 import { styled } from "styled-components";
 
+// Components
 import StandardBtn from "../../../commons/Button/StandardBtn";
-import Logo from "../../../assets/kakakoLogo.svg";
 
 const LogoBox = styled.img`
   width: 24px;
@@ -10,8 +17,15 @@ const LogoBox = styled.img`
 `;
 
 const KakaoLoginBtn = () => {
+  const path = useNavigate();
+  // 카카오 로그인 Auth CallBack
+  const handleKakaoAuth = () => path("/oauth/kakaoCallback");
   return (
-    <StandardBtn color="#351C1B" $background="#FBE54D">
+    <StandardBtn
+      color="#351C1B"
+      $background="#FBE54D"
+      onClick={handleKakaoAuth}
+    >
       <LogoBox src={Logo} alt="logo" /> 카카오로 3초만에 계속하기
     </StandardBtn>
   );

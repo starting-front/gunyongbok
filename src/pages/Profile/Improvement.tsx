@@ -5,7 +5,7 @@ import useAcitivity from "../../hooks/useActivity";
 
 // Components
 import ResumStatusBar from "../../components/Resume/ResumStatusBar";
-// import ProejctOverview from "../../components/Memoir/ProjectOverview";
+import ProjectImprovements from "../../components/Memoir/ProjectImprovements";
 
 const Improvements = () => {
   const [activityBtn] = useAcitivity();
@@ -17,6 +17,7 @@ const Improvements = () => {
         profileTitle="포트폴리오 업로드"
         activityBtn={activityBtn}
       />
+      <ProjectImprovements />
     </div>
   );
 };

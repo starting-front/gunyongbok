@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 // Custom Hooks
 import useAcitivity from "../../hooks/useActivity";
 

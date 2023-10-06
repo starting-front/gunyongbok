@@ -1,3 +1,6 @@
+// React
+import { useState } from "react";
+
 // CSS
 import styled from "styled-components";
 
@@ -64,7 +67,25 @@ const ImprovementTextarea = styled.textarea`
   }
 `;
 
+const DEFAULT_TEXTAREA = {
+  result: "",
+  Improvements: "",
+};
+
 const ProjectImprovements = () => {
+  const [form, setForm] = useState(DEFAULT_TEXTAREA);
+
+  const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+
+    setForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
+    console.log(form);
+  };
+
   return (
     <>
       <ImprovementwWrap>
@@ -74,11 +95,23 @@ const ProjectImprovements = () => {
         />
         <ImprovementContainer>
           <ImprovementLabel>프로젝트에서의 성과</ImprovementLabel>
-          <ImprovementTextarea placeholder="이 프로젝트로 얻게된 성과를 알려주세요" />
+          <ImprovementTextarea
+            placeholder="이 프로젝트로 얻게된 성과를 알려주세요"
+            id="result"
+            name="result"
+            onChange={onChange}
+            value={form.result}
+          />
         </ImprovementContainer>
         <ImprovementContainer>
           <ImprovementLabel>개선 및 아쉬운 점</ImprovementLabel>
-          <ImprovementTextarea placeholder="프로젝트에서 이것만은 개선할 수 있었다는 아쉬운점을 알려주세요" />
+          <ImprovementTextarea
+            placeholder="프로젝트에서 이것만은 개선할 수 있었다는 아쉬운점을 알려주세요"
+            id="Improvements"
+            name="Improvements"
+            onChange={onChange}
+            value={form.Improvements}
+          />
         </ImprovementContainer>
       </ImprovementwWrap>
       <ResumeFooterTitle

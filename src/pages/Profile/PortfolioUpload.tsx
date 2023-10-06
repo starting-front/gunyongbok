@@ -13,7 +13,7 @@ const PortfolioUploadMain = styled.div`
 `;
 
 const PortfolioUpload = () => {
-  const [activityBtn] = useAcitivity();
+  const [activityBtn, updateStatusBtn] = useAcitivity();
 
   return (
     <PortfolioUploadMain>
@@ -25,7 +25,7 @@ const PortfolioUpload = () => {
           activityBtn={activityBtn}
         />
       </div>
-      <UploadPortfolioForm />
+      <UploadPortfolioForm updateStatusBtn={updateStatusBtn} />
     </PortfolioUploadMain>
   );
 };

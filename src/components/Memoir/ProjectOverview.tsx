@@ -131,8 +131,11 @@ const ProejctOverview = ({ updateStatusBtn }: Props) => {
       !backgroundLength &&
       !objectiveLength &&
       !rolLength
-    )
-      return updateStatusBtn(true);
+    ) {
+      updateStatusBtn(true);
+    } else {
+      updateStatusBtn(false);
+    }
   }, [form]);
 
   const handleNextPage = () => {

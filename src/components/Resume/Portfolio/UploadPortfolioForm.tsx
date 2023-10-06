@@ -160,7 +160,11 @@ const SpanCircle = styled.span<{ $nowActivity: boolean }>`
 
 const DEFAULT_PDFNAME = "포트폴리오 파일을 첨부해 주세요";
 
-const UploadPortfolioForm = () => {
+interface Props {
+  updateStatusBtn: (value: boolean) => void;
+}
+
+const UploadPortfolioForm = ({ updateStatusBtn }: Props) => {
   // pdf 파일 선택 / 파일명
   const [selectedFile, setSelectedFile] = useState<any>(null);
   const [portfolioPDFName, setPortfolioPDFName] = useState(DEFAULT_PDFNAME);
@@ -183,16 +187,38 @@ const UploadPortfolioForm = () => {
     lastDate: "",
   });
 
-  useEffect(() => {
-    console.log(form);
-  }, []);
-
-  // 유저 전체상황 값 업데이트 확인
-  // const [activityBtn, updateStatusBtn] = useAcitivity();
-
   // ref
   const inputThumbnailRef = useRef<any>(null);
   const inputPortfolioRef = useRef<any>(null);
+
+  useEffect(() => {
+    const { portfolioName, portfolioRole, teamMember, firstDate, lastDate } =
+      form;
+
+    if (
+      inputThumbnailRef !== null &&
+      inputPortfolioRef !== null &&
+      portfolioName.length > 2 &&
+      portfolioRole.length > 2 &&
+      teamMember !== "" &&
+      firstDate !== "" &&
+      lastDate !== "" &&
+      selectedFile !== null &&
+      portfolioPDFName !== DEFAULT_PDFNAME &&
+      imgSrc !== ""
+    ) {
+      updateStatusBtn(true);
+    } else {
+      updateStatusBtn(false);
+    }
+  }, [
+    form,
+    inputPortfolioRef,
+    inputPortfolioRef,
+    selectedFile,
+    portfolioPDFName,
+    imgSrc,
+  ]);
 
   // 썸네일, input Ref
   const handleThumbnailImageClick = () => inputThumbnailRef.current.click();

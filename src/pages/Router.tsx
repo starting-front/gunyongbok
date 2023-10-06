@@ -5,6 +5,7 @@ import { useState } from "react";
 // Components
 import SignIn from "./User/SignIn";
 import SignUp from "./User/SignUp";
+import KOauth from "../components/Auth/Kakao/KOauth";
 import Home from "./Home";
 import UserTypeSelect from "./UserType/UserTypeSelect";
 import Portfolio from "./Portfolio/Portfolio";
@@ -28,6 +29,7 @@ const Router = () => {
           <Route index element={<Home />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/oauth/kakaoCallback" element={<KOauth />} />
           <Route path="/usertype" element={<UserTypeSelect />} />
           <Route path="/myportfolio" element={<Portfolio />} />
           <Route path="/profile/edit" element={<ProfileEdit />} />

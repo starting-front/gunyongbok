@@ -1,5 +1,5 @@
 // React
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // CSS
 import styled from "styled-components";
@@ -69,10 +69,14 @@ const ImprovementTextarea = styled.textarea`
 
 const DEFAULT_TEXTAREA = {
   result: "",
-  Improvements: "",
+  improvements: "",
 };
 
-const ProjectImprovements = () => {
+interface Props {
+  setAcitivityBtn: (value: boolean) => void;
+}
+
+const ProjectImprovements = ({ setAcitivityBtn }: Props) => {
   const [form, setForm] = useState(DEFAULT_TEXTAREA);
 
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -82,9 +86,24 @@ const ProjectImprovements = () => {
       ...prev,
       [name]: value,
     }));
-
-    console.log(form);
   };
+
+  const handleFormSubmit = () => {
+    const { result, improvements } = form;
+    if (result.length < 5)
+      return alert("프로젝트 성과는 5글자 이상 적어주세요");
+    if (improvements.length < 5)
+      return alert("프로젝트 개선 및 아쉬운점은 5글자 이상으로 적어주세요");
+  };
+
+  useEffect(() => {
+    const { result, improvements } = form;
+    if (result.length > 5 && improvements.length > 5) {
+      setAcitivityBtn(true);
+    } else {
+      setAcitivityBtn(false);
+    }
+  }, [form]);
 
   return (
     <>
@@ -107,10 +126,10 @@ const ProjectImprovements = () => {
           <ImprovementLabel>개선 및 아쉬운 점</ImprovementLabel>
           <ImprovementTextarea
             placeholder="프로젝트에서 이것만은 개선할 수 있었다는 아쉬운점을 알려주세요"
-            id="Improvements"
-            name="Improvements"
+            id="improvements"
+            name="improvements"
             onChange={onChange}
-            value={form.Improvements}
+            value={form.improvements}
           />
         </ImprovementContainer>
       </ImprovementwWrap>
@@ -118,7 +137,7 @@ const ProjectImprovements = () => {
         title="다음 단계로"
         nextTitle="건너뛰기"
         next={false}
-        onClick={() => console.log(1)}
+        onClick={handleFormSubmit}
       />
     </>
   );

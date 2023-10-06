@@ -6,7 +6,7 @@ import ResumStatusBar from "../../components/Resume/ResumStatusBar";
 import ProjectImprovements from "../../components/Memoir/ProjectImprovements";
 
 const Improvements = () => {
-  const [activityBtn, setAcitivityBtn] = useAcitivity();
+  const [activityBtn, updateStatusBtn] = useAcitivity();
   return (
     <div>
       <ResumStatusBar
@@ -15,7 +15,7 @@ const Improvements = () => {
         profileTitle="포트폴리오 업로드"
         activityBtn={activityBtn}
       />
-      <ProjectImprovements setAcitivityBtn={setAcitivityBtn} />
+      <ProjectImprovements updateStatusBtn={updateStatusBtn} />
     </div>
   );
 };

@@ -73,10 +73,10 @@ const DEFAULT_TEXTAREA = {
 };
 
 interface Props {
-  setAcitivityBtn: (value: boolean) => void;
+  updateStatusBtn: (value: boolean) => void;
 }
 
-const ProjectImprovements = ({ setAcitivityBtn }: Props) => {
+const ProjectImprovements = ({ updateStatusBtn }: Props) => {
   const [form, setForm] = useState(DEFAULT_TEXTAREA);
 
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -99,9 +99,9 @@ const ProjectImprovements = ({ setAcitivityBtn }: Props) => {
   useEffect(() => {
     const { result, improvements } = form;
     if (result.length > 5 && improvements.length > 5) {
-      setAcitivityBtn(true);
+      updateStatusBtn(true);
     } else {
-      setAcitivityBtn(false);
+      updateStatusBtn(false);
     }
   }, [form]);
 

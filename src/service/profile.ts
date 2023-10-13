@@ -11,7 +11,7 @@ export const bodySchema = yup.object().shape({
   // field: yup.string().required("분야를 선택해 주세요 !"),
   // job: yup.string().required("직무를 선택해 주세요 !"),
   introduce: yup.string().required("자기소개를 입력해 주세요 !"),
-  keywords: yup.array().of(yup.string()).required("키워드를 입력해 주세요 !"),
+  keywords: yup.array(),
 });
 
 interface ProfileReturn {
@@ -23,7 +23,6 @@ export const validateProfileEditInfoValue = (args: Profile): ProfileReturn => {
   if (bodySchema.isValidSync(args)) {
     console.log("ok");
   }
-  console.log(args);
 
   return { result: "false" };
 };

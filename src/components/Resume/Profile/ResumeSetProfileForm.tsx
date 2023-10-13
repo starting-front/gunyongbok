@@ -11,6 +11,8 @@ import styled from "styled-components";
 import FiledJob from "../../Card/FiledJob";
 import ResumeFooterTitle from "../ResumFooterTitle";
 
+import { validateProfileEditInfoValue } from "../../../service/profile";
+
 const ResumeContainer = styled.div`
   display: flex;
   align-items: center;
@@ -269,6 +271,7 @@ const ResumeSetProfileForm = ({ updateStatusBtn }: Props) => {
       return alert("자기소개는 30글자 이내로 가능 합니다 !");
     if (introduce.trim().length < 5)
       return alert("5글자 이상으로 자기소개를 작성해 주세요!");
+    validateProfileEditInfoValue({ ...form, myKeywords });
   };
 
   // 직무/분야 선택 여부 확인 props 함수

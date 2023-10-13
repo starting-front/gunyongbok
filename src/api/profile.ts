@@ -5,10 +5,10 @@ export interface Profile {
   name: string;
   email: string;
   tel: string;
-  field: string;
-  job: string;
+  // field: string;
+  // job: string;
   introduce: string;
-  keywords: string[];
+  myKeywords: string[] | [];
 }
 
 export const editProfileInfo = (args: Profile) => {

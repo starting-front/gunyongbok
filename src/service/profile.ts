@@ -14,6 +14,12 @@ export const bodySchema = yup.object().shape({
   keywords: yup.array(),
 });
 
+export const overViewSchema = yup.object().shape({
+  background: yup.string().required("프로젝트 준비배경을 입력해 주세요!"),
+  objective: yup.string().required("프로젝트 목표를 입력해 주세요!"),
+  role: yup.string().required("프로젝트 담당 역할을 입력해 주세요!"),
+});
+
 interface ProfileReturn {
   result: "true" | "false" | null;
 }

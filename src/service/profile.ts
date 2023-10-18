@@ -1,5 +1,5 @@
 // api
-import { Profile } from "../api/profile";
+import { Profile } from "../types/profile";
 
 // lib
 import * as yup from "yup";

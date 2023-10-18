@@ -1,15 +1,8 @@
 // Promise
 import axios from "axios";
 
-export interface Profile {
-  name: string;
-  email: string;
-  tel: string;
-  // field: string;
-  // job: string;
-  introduce: string;
-  myKeywords: string[] | [];
-}
+// types
+import { Profile } from "../types/profile";
 
 export const editProfileInfo = (args: Profile) => {
   const RESUME_ID = "test";

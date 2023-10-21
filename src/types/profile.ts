@@ -13,3 +13,8 @@ export interface Overview {
   objective: string;
   role: string;
 }
+
+export interface Improvement {
+  result: string;
+  improvements: string;
+}

@@ -7,3 +7,9 @@ export interface Profile {
   introduce: string;
   myKeywords: string[] | [];
 }
+
+export interface Overview {
+  backgroud: string;
+  objective: string;
+  role: string;
+}

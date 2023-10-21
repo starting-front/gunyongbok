@@ -1,5 +1,5 @@
 // api
-import { Profile } from "../types/profile";
+import { Profile, Overview } from "../types/profile";
 
 // lib
 import * as yup from "yup";
@@ -31,4 +31,12 @@ export const validateProfileEditInfoValue = (args: Profile): ProfileReturn => {
   }
 
   return { result: "false" };
+};
+
+// profile/overview
+export const validateProfileOverview = (args: Overview) => {
+  if (overViewSchema.isValidSync(args)) {
+    console.log("ok");
+  }
+  return null;
 };

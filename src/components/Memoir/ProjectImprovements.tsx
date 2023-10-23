@@ -67,6 +67,19 @@ const ImprovementTextarea = styled.textarea`
   }
 `;
 
+const TextLength = styled.span`
+  position: absolute;
+  bottom: 20px;
+  right: 16px;
+  font-size: 12px;
+  line-height: 12px;
+  color: #303646;
+
+  &.lengthOver {
+    color: red;
+  }
+`;
+
 const DEFAULT_TEXTAREA = {
   result: "",
   improvements: "",
@@ -78,6 +91,8 @@ interface Props {
 
 const ProjectImprovements = ({ updateStatusBtn }: Props) => {
   const [form, setForm] = useState(DEFAULT_TEXTAREA);
+  const [resultLength, setResultLength] = useState(false);
+  const [improvementsLength, setImprovementsLength] = useState(false);
 
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -91,18 +106,31 @@ const ProjectImprovements = ({ updateStatusBtn }: Props) => {
   const handleFormSubmit = () => {
     const { result, improvements } = form;
     if (result.length < 5)
-      return alert("프로젝트 성과는 5글자 이상 적어주세요");
+      return alert("프로젝트 성과는 5글자 이상 적어주세요 !");
     if (improvements.length < 5)
-      return alert("프로젝트 개선 및 아쉬운점은 5글자 이상으로 적어주세요");
+      return alert("프로젝트 개선 및 아쉬운점은 5글자 이상으로 적어주세요 !");
+    if (!resultLength || !improvementsLength)
+      return alert("성과 및 개선점은 100글자 이내로 기재해 주세요 !");
   };
 
   useEffect(() => {
     const { result, improvements } = form;
-    if (result.length > 5 && improvements.length > 5) {
+    if (
+      result.length > 5 &&
+      improvements.length > 5 &&
+      !resultLength &&
+      !improvements
+    ) {
       updateStatusBtn(true);
     } else {
       updateStatusBtn(false);
     }
+
+    result.length > 100 ? setResultLength(true) : setResultLength(false);
+
+    improvements.length > 100
+      ? setImprovementsLength(true)
+      : setImprovementsLength(false);
   }, [form]);
 
   return (
@@ -121,6 +149,9 @@ const ProjectImprovements = ({ updateStatusBtn }: Props) => {
             onChange={onChange}
             value={form.result}
           />
+          <TextLength
+            className={resultLength ? "lengthOver" : ""}
+          >{`(${form.result.length}/100)`}</TextLength>
         </ImprovementContainer>
         <ImprovementContainer>
           <ImprovementLabel>개선 및 아쉬운 점</ImprovementLabel>
@@ -131,6 +162,9 @@ const ProjectImprovements = ({ updateStatusBtn }: Props) => {
             onChange={onChange}
             value={form.improvements}
           />
+          <TextLength
+            className={improvementsLength ? "lengthOver" : ""}
+          >{`(${form.result.length}/100)`}</TextLength>
         </ImprovementContainer>
       </ImprovementwWrap>
       <ResumeFooterTitle

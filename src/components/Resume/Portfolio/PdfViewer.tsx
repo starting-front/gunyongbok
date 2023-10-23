@@ -107,6 +107,14 @@ const PdfViewer = ({ file, onClick }: any) => {
 
     return (
       <PDFWrap>
+        <iframe
+          title="PDF Preview"
+          src={`${objectUrl}#toolbar=0&navpanes=0&scrollbar=0'`}
+          width="100%"
+          height="600px"
+          style={{ maxWidth: "1024px" }}
+        />
+        <PDFCloseBtn onClick={onClick}>닫기</PDFCloseBtn>
         {/* <Document file={objectUrl} onLoadSuccess={onDocumentLoadSuccess}>
           <Page pageNumber={pageNumber} width={1000} />
         </Document>
